@@ -54,4 +54,5 @@ Add unit tests for any new or changed functionality. Lint and test your code.
 
 ## Release History
 
+* 0.1.2 Fix issue with Balance.
 * 0.1.1 Initial release
