@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js';
 import blockies from 'blockies';
 
 import {Bond, TimeBond, TransformBond} from 'oo7';
-import {splitValue} from 'oo7-parity';
+import {splitValue, denominations} from 'oo7-parity';
 import {ReactiveComponent, Reactive} from 'oo7-react';
 
 function createIdentityImage (address, scale = 8) {
