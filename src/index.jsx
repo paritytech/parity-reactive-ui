@@ -1,4 +1,5 @@
 import React from 'react';
+import BigNumber from 'bignumber.js';
 import blockies from 'blockies';
 
 import {Bond, TimeBond, TransformBond} from 'oo7';
