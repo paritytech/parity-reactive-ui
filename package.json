@@ -31,9 +31,15 @@
   "dependencies": {
     "bignumber.js": "^4.0.0",
     "blockies": "0.0.2",
+
+
+
     "oo7": "^0.1.1",
     "oo7-parity": "^0.1.1",
     "oo7-react": "^0.1.1",
+
+
+
     "react": "^15.4.2"
   },
   "devDependencies": {
