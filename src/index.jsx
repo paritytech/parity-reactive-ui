@@ -127,6 +127,25 @@ export class TransactionProgress extends ReactiveComponent {
 	}
 }
 
+export class SignatureProgress extends ReactiveComponent {
+	constructor() {
+		super(['request']);
+	}
+
+	render () {
+		if (typeof(this.state.request) != 'object' || this.state.request == null)
+			return (<div className='_progress _null'/>);
+		var x;
+		if (x = this.state.request.requested)
+			return (<div className='_progress _authorising'>Authorising signature...</div>);
+		if (x = this.state.request.signed)
+			return (<div className='_progress _authorised'>Authorised</div>);
+		if (x = this.state.request.failed)
+			return (<div className='_progress _failed'>Failed: {x.text}</div>);
+		return (<div></div>);
+	}
+}
+
 export class BalanceInput extends React.Component {
     constructor() {
 		super();
