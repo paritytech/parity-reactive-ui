@@ -5,6 +5,7 @@ import blockies from 'blockies';
 import {Bond, TimeBond, TransformBond} from 'oo7';
 import {splitValue, denominations} from 'oo7-parity';
 import {ReactiveComponent, Reactive} from 'oo7-react';
+import {TransactionProgressBadge} from './TransactionProgressBadge.js'
 
 function createIdentityImage (address, scale = 8) {
 	return blockies({
@@ -152,3 +153,5 @@ export class BalanceInput extends React.Component {
         this.state = { value: 1 };
 	}
 }
+
+export { TransactionProgressBadge };
