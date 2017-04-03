@@ -12,12 +12,17 @@ class TransactionProgressBadge extends ReactiveComponent {
 		}
 		let status =
 			this.state.value.estimating ? 'estimating...' :
+			this.state.value.estimated ? 'posting...' :
 			this.state.value.requested ? 'signing...' :
 			this.state.value.signed ? 'finalising...' :
 			this.state.value.confirmed ? 'finalised' :
-			this.state.value.failed ? 'cancelled' : 'unknown';
+			this.state.value.failed ?
+				this.state.value.failed.code == -32015 ? 'invalid' :
+				this.state.value.failed.code == -32040 ? 'rejected' :
+				`failed. ${this.state.value.failed.text}` :
+			'unknown';
 
-		return (<span style={styles.top}><span style={styles.left}>tx</span><span style={styles[status.replace('...', '')]}>{status}</span></span>);
+		return (<span style={styles.top}><span style={styles.left}>tx</span><span style={styles[status.replace(/\..*/, '')]}>{status}</span></span>);
 	}
 }
 
