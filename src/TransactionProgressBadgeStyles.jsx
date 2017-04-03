@@ -8,7 +8,7 @@ styles.top = {
 styles.left = {
   background: '#666',
   color: 'white',
-  textShadow: '0 1pt 2pt black',
+  textShadow: '0 1pt 2pt #333',
   border: '1px #333 solid',
   borderRight: 'none',
   padding: '0.1em 0.3em',
@@ -23,7 +23,7 @@ styles.right = {
   padding: '0.1em 0.3em',
   borderTopRightRadius: '0.3em',
   borderBottomRightRadius: '0.3em',
-  boxShadow: 'inset 0px 0.25pt 1.5pt 0px rgba(0,0,0,0.75)',
+  boxShadow: 'inset 0px 0.25pt 5pt 0px rgba(0,0,0,0.25)',
   fontWeight: 'bold'
 };
 
@@ -36,8 +36,20 @@ styles.estimating = rightWith({
 	background: '#ddf'
 });
 
-styles.cancelled = rightWith({
+styles.posting = rightWith({
+	background: '#ddf'
+});
+
+styles.rejected = rightWith({
 	background: '#ddd'
+});
+
+styles.invalid = rightWith({
+	background: '#fdd'
+});
+
+styles.failed = rightWith({
+	background: '#fdd'
 });
 
 styles.signing = rightWith({

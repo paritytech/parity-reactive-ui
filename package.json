@@ -1,6 +1,6 @@
 {
   "name": "parity-reactive-ui",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "description": "The Parity Reactive Bond-based UI Library",
   "main": "lib/index.js",
   "files": [
