@@ -52,23 +52,29 @@ export class BlockNumber extends ReactiveComponent {
 };
 
 export class AccountIcon extends ReactiveComponent {
-	constructor() { super(['address', 'className']); }
+	constructor() { super(['address', 'className', 'style']); }
 
 	render() {
 		if (typeof(this.state.address) == "string") {
 			return (<img
                 src={createIdentityImage(this.state.address)}
+				style={this.state.style}
                 className={typeof(this.state.className) === 'string' ? this.state.className : ''}
                 id={this.props.id}
                 data-address-img
             />);
 		} else {
-			return (<span className={this.props.undefClassName}>{this.props.undefContent}</span>);
+			return (<span
+				style={this.props.undefStyle}
+				className={this.props.undefClassName}
+			>{this.props.undefContent}</span>);
 		}
 	}
 };
 AccountIcon.defaultProps = {
+	style: {},
 	className: '_accountIcon',
+	undefStyle: {},
 	undefClassName: '_accountIcon _undefined',
 	undefContent: '',
 	id: null
