@@ -4,7 +4,7 @@ import blockies from 'blockies';
 
 import {Bond, TimeBond, TransformBond} from 'oo7';
 import {splitValue, denominations} from 'oo7-parity';
-import {ReactiveComponent, Reactive} from 'oo7-react';
+import {ReactiveComponent, Reactive, TextBond} from 'oo7-react';
 import {TransactionProgressBadge} from './TransactionProgressBadge.js'
 
 function createIdentityImage (address, scale = 8) {
@@ -159,5 +159,12 @@ export class BalanceInput extends React.Component {
         this.state = { value: 1 };
 	}
 }
+
+export class AddressBond extends TextBond {}
+AddressBond.defaultProps = {
+	floatingLabelText: 'Enter an address',
+	invalidText: 'Invalid 20-byte address',
+	validator: v => v.startsWith('0x') && v.length == 42
+};
 
 export { TransactionProgressBadge };
