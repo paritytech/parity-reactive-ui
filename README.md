@@ -29,7 +29,7 @@ The reactive components provided are:
 ```javascript
   // Assume React is already required.
   var pru = require('parity-reactive-ui'),
-      Account = pru.Account,
+      InlineAccount = pru.InlineAccount,
 	  oo7parity = require('oo7-parity'),
 	  setupBonds = oo7parity.setupBonds;
 
@@ -39,7 +39,7 @@ The reactive components provided are:
   class App extends React.Component {
 	  render() {
 		  return (<div>
-			  Your coinbase is <Account address={parity.bonds.coinbase} />
+			  Your current address is <InlineAccount address={parity.bonds.me} />.
 			</div>);
 	  }
   }
