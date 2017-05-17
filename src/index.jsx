@@ -6,8 +6,14 @@ import {BondedForm, BButton} from './BondedForm.js';
 import {InputBond} from './InputBond.js';
 import {HashBond} from './HashBond.js';
 import {URLBond} from './URLBond.js';
+import {TransactionProgressLabel} from './TransactionProgressLabel.js';
+import {TransactButton} from './TransactButton.js';
+import {SigningProgressLabel} from './SigningProgressLabel.js';
+import {SigningButton} from './SigningButton.js';
 
-export {AccountIcon, AccountLabel, AddressInputBond, InlineAccount, BondedForm, BButton, InputBond, HashBond, URLBond};
+export {AccountIcon, AccountLabel, AddressInputBond, InlineAccount, BondedForm,
+	BButton, InputBond, HashBond, URLBond, TransactionProgressLabel,
+	TransactButton, SigningProgressLabel, SigningButton};
 
 /*
 import React from 'react';
