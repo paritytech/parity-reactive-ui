@@ -5,14 +5,18 @@ A small library to provide oo7 (Joint Asynchronous Mapping Expression System)
 `Bond`-based Reactive components for Ethereum and Parity.
 
 The reactive components provided are:
-- `Balance` (display the reactive prop `value`);
-- `BlockNumber` (display the reactive prop `value`);
-- `AccountIcon` (display the account icon for the reactive prop `address`);
-- `Account` (display the account icon and name for the reactive prop `address`);
-- `RichAccount` (display the account icon, name and balance for the reactive
-	prop `address`);
-- `TransactionProgress` (display the progress of a transaction; reactive prop is
-	`request` and should be of type `Transaction`);
+- `AccountIcon` (an identicon image for a given account);
+- `AccountLabel` (a full Semantic UI label for a given account);
+- `InlineAccount` (a simple display component for an account designed to flow in text);
+- `SigningButton` (a button which completes a message-signing operation when clicked and displays the progress to the user);
+- `SigningProgressLabel` (a full Semantic UI label for displaying the progress of a signing a message);
+- `TransactButton` (a button which posts a transaction when clicked and displays the progress to the user);
+- `TransactionProgressLabel` (a full Semantic UI label for displaying the progress of a transaction);
+
+- `InputBond` (a Semantic UI derived `Input` component that accepts a Bond for its output);
+- `AddressInputBond` (an `InputBond`-like component for addresses);
+- `HashBond` (an `InputBond`-like component for 32 byte hashes);
+- `URLBond` (an `InputBond`-like component for URLs).
 
 ## Installation
 
