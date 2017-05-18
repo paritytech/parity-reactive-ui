@@ -1,7 +1,7 @@
 import React from 'react';
 import {ReactiveComponent} from 'oo7-react';
 import {Button} from 'semantic-ui-react';
-import {SigningProgressLabel, styleStatus} from './SigningProgressLabel.js';
+import {SigningProgressLabel, styleStatus} from './SigningProgressLabel';
 
 export class SigningButton extends React.Component {
 	constructor () {

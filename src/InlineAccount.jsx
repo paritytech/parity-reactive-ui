@@ -1,13 +1,12 @@
 import React from 'react';
-//import 'semantic-ui-css/semantic.min.css';
 import {ReactiveComponent, Rimg} from 'oo7-react';
-import {AccountIcon} from './AccountIcon.js';
+import {AccountIcon} from './AccountIcon';
 
 export class InlineAccount extends ReactiveComponent {
 	constructor () {
 		super(['address']);
 	}
-	render () {
+	readyRender () {
 		let a = parity.api.util.toChecksumAddress(this.state.address);
 		return (<InlineAccountAux
 			address={a}

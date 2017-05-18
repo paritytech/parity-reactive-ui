@@ -1,11 +1,10 @@
 import React from 'react';
-//import 'semantic-ui-css/semantic.min.css';
 import {Bond} from 'oo7';
 import {ReactiveComponent, Rimg} from 'oo7-react';
 import {isNullData} from 'oo7-parity';
 import {Label, Input} from 'semantic-ui-react';
-import {AccountIcon} from './AccountIcon.js';
-import {InputBond} from './InputBond.js';
+import {AccountIcon} from './AccountIcon';
+import {InputBond} from './InputBond';
 
 export class AddressInputBond extends InputBond {
 	constructor () {
