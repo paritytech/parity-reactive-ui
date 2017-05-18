@@ -1,15 +1,17 @@
-import {AccountIcon} from './AccountIcon.js';
-import {AccountLabel} from './AccountLabel.js';
-import {AddressInputBond} from './AddressInputBond.js';
-import {InlineAccount} from './InlineAccount.js';
-import {BondedForm, BButton} from './BondedForm.js';
-import {InputBond} from './InputBond.js';
-import {HashBond} from './HashBond.js';
-import {URLBond} from './URLBond.js';
-import {TransactionProgressLabel} from './TransactionProgressLabel.js';
-import {TransactButton} from './TransactButton.js';
-import {SigningProgressLabel} from './SigningProgressLabel.js';
-import {SigningButton} from './SigningButton.js';
+import 'semantic-ui-css/semantic.min.css';
+
+import {AccountIcon} from './AccountIcon';
+import {AccountLabel} from './AccountLabel';
+import {AddressInputBond} from './AddressInputBond';
+import {InlineAccount} from './InlineAccount';
+import {BondedForm, BButton} from './BondedForm';
+import {InputBond} from './InputBond';
+import {HashBond} from './HashBond';
+import {URLBond} from './URLBond';
+import {TransactionProgressLabel} from './TransactionProgressLabel';
+import {TransactButton} from './TransactButton';
+import {SigningProgressLabel} from './SigningProgressLabel';
+import {SigningButton} from './SigningButton';
 
 export {AccountIcon, AccountLabel, AddressInputBond, InlineAccount, BondedForm,
 	BButton, InputBond, HashBond, URLBond, TransactionProgressLabel,

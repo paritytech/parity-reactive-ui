@@ -1,6 +1,5 @@
 import blockies from 'blockies';
 import React from 'react';
-//import 'semantic-ui-css/semantic.min.css';
 import {Image} from 'semantic-ui-react';
 import {ReactiveComponent} from 'oo7-react';
 

@@ -13,6 +13,7 @@ The reactive components provided are:
 - `TransactButton` (a button which posts a transaction when clicked and displays the progress to the user);
 - `TransactionProgressLabel` (a full Semantic UI label for displaying the progress of a transaction);
 
+- `BButton` (a Semantic UI derived `Button` that accepts Bonds for certain props);
 - `InputBond` (a Semantic UI derived `Input` component that accepts a Bond for its output);
 - `AddressInputBond` (an `InputBond`-like component for addresses);
 - `HashBond` (an `InputBond`-like component for 32 byte hashes);

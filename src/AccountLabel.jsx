@@ -1,9 +1,8 @@
 import React from 'react';
-//import 'semantic-ui-css/semantic.min.css';
 import {ReactiveComponent, Rimg} from 'oo7-react';
 import {isNullData} from 'oo7-parity';
 import {Label, Icon} from 'semantic-ui-react';
-import {AccountIcon} from './AccountIcon.js';
+import {AccountIcon} from './AccountIcon';
 
 export class AccountLabel extends ReactiveComponent {
 	constructor () {

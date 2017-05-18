@@ -1,4 +1,4 @@
-import {InputBond} from './InputBond.js';
+import {InputBond} from './InputBond';
 
 export class HashBond extends InputBond {}
 HashBond.defaultProps = {

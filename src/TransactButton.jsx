@@ -1,7 +1,7 @@
 import React from 'react';
 import {ReactiveComponent} from 'oo7-react';
 import {Button} from 'semantic-ui-react';
-import {TransactionProgressLabel, styleStatus} from './TransactionProgressLabel.js';
+import {TransactionProgressLabel, styleStatus} from './TransactionProgressLabel';
 
 export class TransactButton extends React.Component {
 	constructor () {
