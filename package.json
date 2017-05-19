@@ -32,7 +32,7 @@
     "bignumber.js": "^4.0.0",
     "blockies": "0.0.2",
     "oo7": "^0.4.2",
-    "oo7-parity": "^0.5.3",
+    "oo7-parity": "^0.6.0",
     "oo7-react": "^0.4.0",
     "prop-types": "^15.5.9",
     "react": "^15.5.4",
