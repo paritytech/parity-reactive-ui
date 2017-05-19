@@ -1,4 +1,6 @@
 import React from 'react';
+import {Api} from '@parity/parity.js';
+import {bonds} from 'oo7-parity';
 import {ReactiveComponent, Rimg} from 'oo7-react';
 import {AccountIcon} from './AccountIcon';
 
@@ -7,11 +9,11 @@ export class InlineAccount extends ReactiveComponent {
 		super(['address']);
 	}
 	readyRender () {
-		let a = parity.api.util.toChecksumAddress(this.state.address);
+		let a = Api.util.toChecksumAddress(this.state.address);
 		return (<InlineAccountAux
 			address={a}
-			names={parity.bonds.namesOf(a)}
-			badges={parity.bonds.badgesOf(a)}
+			names={bonds.namesOf(a)}
+			badges={bonds.badgesOf(a)}
 		/>);
 	}
 }
@@ -22,7 +24,7 @@ export class InlineAccountAux extends ReactiveComponent {
 	}
 	readyRender () {
 		let badges = this.state.badges.map((b, i) => (
-			<Rimg key={i} alt={b.caption} src={parity.bonds.githubhint.entries(b.img)[0]} style={{height: '1em', verticalAlign: 'text-bottom'}}/>
+			<Rimg key={i} alt={b.caption} src={bonds.githubhint.entries(b.img)[0]} style={{height: '1em', verticalAlign: 'text-bottom'}}/>
 		));
 
 		return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import {ReactiveComponent} from 'oo7-react';
+import {bonds} from 'oo7-parity';
 import {Button} from 'semantic-ui-react';
 import {TransactionProgressLabel, styleStatus} from './TransactionProgressLabel';
 
@@ -13,7 +14,7 @@ export class TransactButton extends ReactiveComponent {
 		let s = this.state;
 		s.status = typeof(this.props.tx) === 'function'
 			? this.props.tx()
-			: parity.bonds.post(this.props.tx);
+			: bonds.post(this.props.tx);
 		this.setState(s);
 	}
 	render () {

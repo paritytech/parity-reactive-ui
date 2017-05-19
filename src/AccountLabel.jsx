@@ -1,4 +1,6 @@
 import React from 'react';
+import {Api} from '@parity/parity.js';
+import {bonds} from 'oo7-parity';
 import {ReactiveComponent, Rimg} from 'oo7-react';
 import {isNullData} from 'oo7-parity';
 import {Label, Icon} from 'semantic-ui-react';
@@ -39,11 +41,11 @@ export class AccountLabel extends ReactiveComponent {
 				Null
 			</Label>);
 		} else {
-			let a = parity.api.util.toChecksumAddress(this.state.address);
+			let a = Api.util.toChecksumAddress(this.state.address);
 			return (<AccountLabelAux
 				address={a}
-				names={parity.bonds.namesOf(a)}
-				badges={parity.bonds.badgesOf(a)}
+				names={bonds.namesOf(a)}
+				badges={bonds.badgesOf(a)}
 				noicon={this.props.noicon}
 			/>);
 		}
@@ -59,7 +61,7 @@ class AccountLabelAux extends ReactiveComponent {
 			<Rimg
 				key={i}
 				alt={b.caption}
-				src={parity.bonds.githubhint.entries(b.img)[0]}
+				src={bonds.githubhint.entries(b.img)[0]}
 				style={{
 					marginLeft: '0.25em',
 					marginRight: '0.25em',
