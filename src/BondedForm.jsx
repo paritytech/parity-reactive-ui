@@ -18,4 +18,4 @@ export class BondedForm extends ReactiveComponent {
 	}
 }
 
-export let BButton = () => new BondedForm(Button, ['label', 'content']);
+export let BButton = () => new BondedForm(Button, ['label', 'content', 'disabled']);

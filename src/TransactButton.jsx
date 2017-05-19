@@ -3,15 +3,17 @@ import {ReactiveComponent} from 'oo7-react';
 import {Button} from 'semantic-ui-react';
 import {TransactionProgressLabel, styleStatus} from './TransactionProgressLabel';
 
-export class TransactButton extends React.Component {
+export class TransactButton extends ReactiveComponent {
 	constructor () {
-		super();
+		super(['content', 'disabled']);
 		this.state = { status: null };
 		this.handleClick = this.handleClick.bind(this);
 	}
 	handleClick () {
 		let s = this.state;
-		s.status = parity.bonds.post(this.props.tx);
+		s.status = typeof(this.props.tx) === 'function'
+			? this.props.tx()
+			: parity.bonds.post(this.props.tx);
 		this.setState(s);
 	}
 	render () {
@@ -22,14 +24,14 @@ export class TransactButton extends React.Component {
 			icon={this.props.icon}
 			primary={this.props.primary}
 			secondary={this.props.secondary}
-			content={this.props.content}
+			content={this.state.content}
 			color={this.props.color}
 			status={this.state.status}
 			onClick={this.handleClick}
 			statusText={this.props.statusText}
 			statusIcon={this.props.statusIcon}
 			colorPolicy={this.props.colorPolicy}
-			disabled={this.props.disabled}
+			disabled={this.state.disabled}
 		/>
 	}//
 }

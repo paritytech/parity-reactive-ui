@@ -28,13 +28,10 @@ export class InputBond extends React.Component {
 			this.setState({ value: b.hasOwnProperty('corrected') ? b.corrected : v, validity: b });
 			if (this.props.bond instanceof Bond) {
 				if (b.ok) {
-					console.log(`InputBond: changed(${b.value})`);
 					this.props.bond.changed(b.value);
 				} else if (b.value !== undefined) {
-					console.log(`InputBond: changed(null)`);
 					this.props.bond.changed(b.value);
 				} else {
-					console.log(`InputBond: reset`);
 					this.props.bond.reset();
 				}
 			}
