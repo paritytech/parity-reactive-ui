@@ -1,5 +1,7 @@
 import 'semantic-ui-css/semantic.min.css';
 
+import {bonds, options} from 'oo7-parity';
+
 import {AccountIcon} from './AccountIcon';
 import {AccountLabel} from './AccountLabel';
 import {AddressInputBond} from './AddressInputBond';
@@ -15,7 +17,7 @@ import {SigningButton} from './SigningButton';
 
 export {AccountIcon, AccountLabel, AddressInputBond, InlineAccount, BondedForm,
 	BButton, InputBond, HashBond, URLBond, TransactionProgressLabel,
-	TransactButton, SigningProgressLabel, SigningButton};
+	TransactButton, SigningProgressLabel, SigningButton, bonds, options};
 
 /*
 import React from 'react';

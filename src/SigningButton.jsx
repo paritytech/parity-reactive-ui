@@ -1,5 +1,6 @@
 import React from 'react';
 import {ReactiveComponent} from 'oo7-react';
+import {bonds} from 'oo7-parity';
 import {Button} from 'semantic-ui-react';
 import {SigningProgressLabel, styleStatus} from './SigningProgressLabel';
 
@@ -11,7 +12,7 @@ export class SigningButton extends React.Component {
 	}
 	handleClick () {
 		let s = this.state;
-		s.status = parity.bonds.sign(this.props.message, this.props.from);
+		s.status = bonds.sign(this.props.message, this.props.from);
 		this.setState(s);
 	}
 	render () {

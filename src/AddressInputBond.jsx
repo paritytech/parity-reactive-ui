@@ -1,7 +1,8 @@
 import React from 'react';
+import {Api} from '@parity/parity.js';
 import {Bond} from 'oo7';
 import {ReactiveComponent, Rimg} from 'oo7-react';
-import {isNullData} from 'oo7-parity';
+import {bonds, isNullData} from 'oo7-parity';
 import {Label, Input} from 'semantic-ui-react';
 import {AccountIcon} from './AccountIcon';
 import {InputBond} from './InputBond';
@@ -10,7 +11,7 @@ export class AddressInputBond extends InputBond {
 	constructor () {
 		super();
 
-		parity.bonds.addressOf = n => Bond.mapAll([parity.bonds.registry.lookupAddress(n, 'A'), parity.bonds.me], (reg, me) =>
+		bonds.addressOf = n => Bond.mapAll([bonds.registry.lookupAddress(n, 'A'), bonds.me], (reg, me) =>
 			({ registry: isNullData(reg) ? null : reg, internal: n == 'null' ? '0x0000000000000000000000000000000000000000' : n == 'me' ? me : null })
 		);
 	}
@@ -69,7 +70,7 @@ AddressInputBond.defaultProps = {
 			return { ok: false, value: null, badChecksum: true };
 		}
 		else {
-			return parity.bonds.addressOf(a).map(a => {
+			return bonds.addressOf(a).map(a => {
 				let n = a.registry || a.internal;
 				return n ? { ok: true, value: n } : { ok: false, value: null };
 			});
