@@ -22,32 +22,24 @@ export class AddressInputBond extends InputBond {
 			style={this.props.style}
 			name={this.props.name}
 			type='text'
-			icon={this.state.validity === null
-					? undefined
-				: this.state.validity.ok
+			icon={this.state.ok
 					? (<i style={{opacity: 1}} className='icon'>
 						<AccountIcon
 							style={{opacity: 1, border: '0.5em solid transparent'}}
-							address={this.state.validity.value}
+							address={this.state.external}
 						/></i>)
 					: undefined}
 			iconPosition='left'
 			placeholder={this.props.placeholder}
-			error={this.state.validity.ok === false}
-			value={this.state.value}
-			onChange={(e, v) => this.fixValue(v.value, v)}
+			error={!this.state.ok}
+			value={this.state.display}
+			onChange={(e, v) => this.handleEdit(v.value, v)}
 		/>
-		{this.state.validity === null
+		{this.state.ok
 			? ''
-		: this.state.validity.badLength
-			? (<Label pointing='left' content='Too short' />)
-		: this.state.validity.noChecksum
+		: this.state.extra.noChecksum
 			? (<Label pointing='left' color='orange' basic content='No checksum' />)
-		: this.state.validity.badChecksum
-			? (<Label pointing='left' color='red' basic content='Bad checksum'/>)
-		: !this.state.validity.ok && this.state.value
-			? (<Label pointing='left' color='red' basic content='Unknown name'/>)
-			: ''
+		: (<Label pointing='left' content='Unknown/invalid address' />)
 		}
 		</span>);
 	}
@@ -58,22 +50,23 @@ AddressInputBond.defaultProps = {
 		let m = a.match(/^(0x)([a-fA-F0-9]+)$/);
 		if (m) {
 			if (m[2].length != 40) {
-				return { ok: false, value: null, badLength: true };
+				return null;
 			}
 			let addr = '0x' + m[2];
 			if (parity.api.util.toChecksumAddress(addr) === addr) {
-				return { ok: true, value: addr };
+				return { external: addr, internal: a, corrected: addr };
 			}
 			if (addr.toLowerCase() === addr) {
-				return { ok: true, value: addr, noChecksum: true };
+				return { external: addr, internal: a, corrected: addr, extra: { noChecksum: true } };
 			}
-			return { ok: false, value: null, badChecksum: true };
+			return null;
 		}
 		else {
 			return bonds.addressOf(a).map(a => {
 				let n = a.registry || a.internal;
-				return n ? { ok: true, value: n } : { ok: false, value: null };
+				return n ? { external: n, internal: a } : null;
 			});
 		}
-	}
+	},
+	defaultValue: ''
 };
