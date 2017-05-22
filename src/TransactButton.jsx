@@ -12,9 +12,13 @@ export class TransactButton extends ReactiveComponent {
 	}
 	handleClick () {
 		let s = this.state;
-		s.status = typeof(this.props.tx) === 'function'
-			? this.props.tx()
-			: bonds.post(this.props.tx);
+		if (s.status) {
+			s.status = null;
+		} else {
+			s.status = typeof(this.props.tx) === 'function'
+				? this.props.tx()
+				: bonds.post(this.props.tx);
+		}
 		this.setState(s);
 	}
 	render () {

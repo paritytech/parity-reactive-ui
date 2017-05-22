@@ -25,8 +25,8 @@ export class BalanceBond extends InputBond {
 		}
 	}
 
-	makeLabel () {
-		return (<Dropdown
+	makeAction (p) {
+		return p ? 'right' : (<Dropdown
 			onChange={(_, v) => this.setUnits(v.value)}
 			value={this.getUnits()}
 			options={denominations

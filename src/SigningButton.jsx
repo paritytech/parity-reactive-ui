@@ -12,7 +12,11 @@ export class SigningButton extends React.Component {
 	}
 	handleClick () {
 		let s = this.state;
-		s.status = bonds.sign(this.props.message, this.props.from);
+		if (s.status) {
+			s.status = null;
+		} else {
+			s.status = bonds.sign(this.props.message, this.props.from);
+		}
 		this.setState(s);
 	}
 	render () {
