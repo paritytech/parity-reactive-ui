@@ -7,7 +7,7 @@ import {Label, Input} from 'semantic-ui-react';
 import {AccountIcon} from './AccountIcon';
 import {InputBond} from './InputBond';
 
-export class AddressInputBond extends InputBond {
+export class AddressBond extends InputBond {
 	constructor () {
 		super();
 
@@ -16,25 +16,18 @@ export class AddressInputBond extends InputBond {
 		);
 	}
 
+	makeIcon (p) {
+		return p ? 'left' : this.state.ok
+				? (<i style={{opacity: 1}} className='icon'>
+					<AccountIcon
+						style={{opacity: 1, border: '0.5em solid transparent'}}
+						address={this.state.external}
+					/></i>)
+				: undefined;
+	}
+
 	render () {
-		return (<span><Input
-			className={this.props.className}
-			style={this.props.style}
-			name={this.props.name}
-			type='text'
-			icon={this.state.ok
-					? (<i style={{opacity: 1}} className='icon'>
-						<AccountIcon
-							style={{opacity: 1, border: '0.5em solid transparent'}}
-							address={this.state.external}
-						/></i>)
-					: undefined}
-			iconPosition='left'
-			placeholder={this.props.placeholder}
-			error={!this.state.ok}
-			value={this.state.display}
-			onChange={(e, v) => this.handleEdit(v.value, v)}
-		/>
+		return (<span>{InputBond.prototype.render.call(this)}
 		{this.state.ok
 			? ''
 		: this.state.extra.noChecksum
@@ -44,7 +37,7 @@ export class AddressInputBond extends InputBond {
 		</span>);
 	}
 }
-AddressInputBond.defaultProps = {
+AddressBond.defaultProps = {
 	placeholder: '0xAddress, name or e-mail',
 	validator: a => {
 		let m = a.match(/^(0x)([a-fA-F0-9]+)$/);

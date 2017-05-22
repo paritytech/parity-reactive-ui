@@ -98,7 +98,7 @@ export class InlineBalance extends ReactiveComponent {
 						borderLeft: 0,
 						color: 'fore',
 						fontSize: 'small',
-						verticalAlign: 'text-bottom',
+						verticalAlign: 'baseline',
 						fontWeight: this.state.denom === -1 ? 'normal' : 'bold'
 					}}>
 						{d}

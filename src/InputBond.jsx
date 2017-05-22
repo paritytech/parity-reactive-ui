@@ -86,14 +86,24 @@ export class InputBond extends React.Component {
 			className={this.props.className}
 			style={this.props.style}
 			name={this.props.name}
-			type='text'
+			children={this.props.children}
+			disabled={this.props.disabled}
+			fluid={this.props.fluid}
 			placeholder={this.props.placeholder}
+			inverted={this.props.inverted}
+			loading={this.props.loading}
+			size={this.props.size}
+			transparent={this.props.transparent}
+			type='text'
 			value={this.state.display}
 			error={!this.state.ok}
 			onChange={(e, v) => this.handleEdit(v.value)}
 			onBlur={() => this.handleBlur()}
-			label={this.makeLabel ? this.makeLabel() : undefined}
-			labelPosition={this.makeLabel ? 'right' : undefined}
+			action={this.makeAction ? this.makeAction() : this.props.action}
+			label={this.makeLabel ? this.makeLabel() : this.props.label}
+			labelPosition={this.makeLabel ? this.makeLabel(true) : this.props.labelPosition}
+			icon={this.makeIcon ? this.makeIcon() : this.props.icon}
+			iconPosition={this.makeIcon ? this.makeIcon(true) : this.props.iconPosition}
 		/>);
 	}
 }
