@@ -6,19 +6,43 @@ import {TransactionProgressLabel, styleStatus} from './TransactionProgressLabel'
 
 export class TransactButton extends ReactiveComponent {
 	constructor () {
-		super(['content', 'disabled', 'enabled', 'positive', 'negative', 'active']);
-		this.state = { status: null };
+		super(['content', 'disabled', 'notdisabled', 'positive', 'negative', 'active']);
+		this.state = { index: 0, status: null };
 		this.handleClick = this.handleClick.bind(this);
 	}
 	handleClick () {
+		let begin = false;
 		let s = this.state;
 		if (s.status) {
 			s.status = null;
 		} else {
-			s.status = typeof(this.props.tx) === 'function'
-				? this.props.tx()
-				: bonds.post(this.props.tx);
+			s.index = 0;
+			begin = true;
 		}
+		this.setState(s);
+
+		if (begin) {
+			this.execNext();
+		}
+	}
+	execNext () {
+		let s = this.state;
+		let single = typeof(this.props.tx) === 'function' || this.props.tx.length === undefined;
+		if ((single && s.index === 0) || s.index < this.props.tx.length) {
+			let t = single ? this.props.tx : this.props.tx[s.index];
+			s.status = typeof(t) === 'function'
+				? t()
+				: bonds.post(t);
+			s.status.tie((x, i) => {
+				if (this.props.order ? this.props.causal ? x.confirmed : x.signed : x.requested) {
+					this.execNext();
+					s.status.untie(i);
+				} else if (this.props.failed) {
+					s.status.untie(i);
+				}
+			});
+		}
+		s.index++
 		this.setState(s);
 	}
 	render () {
@@ -42,11 +66,12 @@ export class TransactButton extends ReactiveComponent {
 			content={this.state.content}
 			color={this.props.color}
 			status={this.state.status}
+			progress={{current: this.state.index, total: this.props.tx.length}}
 			onClick={this.handleClick}
 			statusText={this.props.statusText}
 			statusIcon={this.props.statusIcon}
 			colorPolicy={this.props.colorPolicy}
-			disabled={this.state.disabled || !this.state.enabled}
+			disabled={this.state.disabled || !this.state.notdisabled}
 		/>
 	}//
 }
@@ -54,7 +79,9 @@ TransactButton.defaultProps = {
 	statusText: false,
 	statusIcon: true,
 	colorPolicy: 'button',
-	enabled: true
+	notdisabled: true,
+	order: true,
+	causal: false
 };
 
 class TransactButtonAux extends ReactiveComponent {
@@ -63,7 +90,8 @@ class TransactButtonAux extends ReactiveComponent {
 	}
 	render() {
 		let specialColor = this.props.primary || this.props.secondary;
-		let clickable = !this.state.status || this.state.status.confirmed || this.state.status.failed;
+		let done = this.state.status && (this.state.status.confirmed || this.state.status.failed);
+		let clickable = !this.state.status || done;
 		let status = this.state.status && styleStatus(this.state.status);
 		let statusColor = status ? status.color : null;
 		let labelColor = (this.props.colorPolicy === 'button' && !specialColor ? this.props.color : null) || statusColor || this.props.color;
@@ -82,17 +110,19 @@ class TransactButtonAux extends ReactiveComponent {
 			fluid={this.props.fluid}
 			primary={this.props.primary}
 			secondary={this.props.secondary}
-			content={this.state.status === null || !clickable ? this.props.content : 'OK'}
+			content={done ? 'OK' : this.props.content}
 			color={buttonColor}
 			onClick={this.props.onClick}
 			label={this.state.status ? (<TransactionProgressLabel
 				value={this.state.status}
+				current={this.props.progress.current}
+				total={this.props.progress.total}
 				showContent={this.props.statusText}
 				showIcon={this.props.statusIcon}
 				color={labelColor}
 				basic={labelColor == buttonColor && !specialColor ? undefined : false}
 			/>) : null}
-			disabled={this.props.disabled || !clickable}
+			disabled={!done && this.props.disabled}
 		/>);
 	}
 }

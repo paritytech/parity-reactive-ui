@@ -41,7 +41,7 @@ export class InputBond extends React.Component {
 				if (b === null) {
 					this.props.bond.reset();
 				} else {
-					this.props.bond.changed(b.external);
+					this.props.bond.changed(b && b.hasOwnProperty('external') ? b.external : b && b.hasOwnProperty('internal') ? b.internal : this.state.internal);
 				}
 			}
 		}.bind(this);
