@@ -6,7 +6,7 @@ import {TransactionProgressLabel, styleStatus} from './TransactionProgressLabel'
 
 export class TransactButton extends ReactiveComponent {
 	constructor () {
-		super(['content', 'disabled', 'enabled', 'positive', 'negative', 'active']);
+		super(['content', 'disabled', 'notdisabled', 'positive', 'negative', 'active']);
 		this.state = { index: 0, status: null };
 		this.handleClick = this.handleClick.bind(this);
 	}
@@ -27,8 +27,9 @@ export class TransactButton extends ReactiveComponent {
 	}
 	execNext () {
 		let s = this.state;
-		if ((this.props.tx.length === undefined && s.index === 0) || s.index < this.props.tx.length) {
-			let t = this.props.tx.length === undefined ? this.props.tx : this.props.tx[s.index];
+		let single = typeof(this.props.tx) === 'function' || this.props.tx.length === undefined;
+		if ((single && s.index === 0) || s.index < this.props.tx.length) {
+			let t = single ? this.props.tx : this.props.tx[s.index];
 			s.status = typeof(t) === 'function'
 				? t()
 				: bonds.post(t);
@@ -70,7 +71,7 @@ export class TransactButton extends ReactiveComponent {
 			statusText={this.props.statusText}
 			statusIcon={this.props.statusIcon}
 			colorPolicy={this.props.colorPolicy}
-			disabled={this.state.disabled || !this.state.enabled}
+			disabled={this.state.disabled || !this.state.notdisabled}
 		/>
 	}//
 }
@@ -78,7 +79,7 @@ TransactButton.defaultProps = {
 	statusText: false,
 	statusIcon: true,
 	colorPolicy: 'button',
-	enabled: true,
+	notdisabled: true,
 	order: true,
 	causal: false
 };

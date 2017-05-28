@@ -22,4 +22,5 @@ export let BButton = () => new BondedForm(Button, ['label', 'content', 'disabled
 export let BStatistic = () => new BondedForm(Statistic, ['label', 'value', 'color']);
 export let BStatisticLabel = () => new BondedForm(Statistic.Label, ['children']);
 export let BStatisticValue = () => new BondedForm(Statistic.Value, ['children']);
-export let BLabel = () => new BondedForm(Label, ['content']);
+export let BLabel = () => new BondedForm(Label, ['content', 'detail']);
+export let BLabelDetail = () => new BondedForm(Label.Detail, ['content']);
