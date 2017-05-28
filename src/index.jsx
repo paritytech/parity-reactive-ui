@@ -6,7 +6,7 @@ import {AccountIcon} from './AccountIcon';
 import {AccountLabel} from './AccountLabel';
 import {AddressBond} from './AddressBond';
 import {InlineAccount} from './InlineAccount';
-import {BondedForm, BButton} from './BondedForm';
+import {BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel} from './BondedForm';
 import {InputBond} from './InputBond';
 import {HashBond} from './HashBond';
 import {URLBond} from './URLBond';
@@ -18,6 +18,7 @@ import {BalanceBond} from './BalanceBond';
 import {InlineBalance} from './InlineBalance';
 
 export {bonds, options, AccountIcon, AccountLabel, AddressBond,
-	InlineAccount, BondedForm, BButton, InputBond, HashBond, URLBond,
+	InlineAccount, BondedForm, BButton, BStatistic, BStatisticLabel,
+	BStatisticValue, BLabel, InputBond, HashBond, URLBond,
 	TransactionProgressLabel, TransactButton, SigningProgressLabel,
 	SigningButton, BalanceBond, InlineBalance};

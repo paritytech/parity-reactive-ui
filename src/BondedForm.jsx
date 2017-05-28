@@ -1,7 +1,7 @@
 import React from 'react';
 import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
-import {Button} from 'semantic-ui-react';
+import {Button, Label, Statistic} from 'semantic-ui-react';
 
 export class BondedForm extends ReactiveComponent {
 	constructor (object, bondableProps) {
@@ -19,6 +19,7 @@ export class BondedForm extends ReactiveComponent {
 }
 
 export let BButton = () => new BondedForm(Button, ['label', 'content', 'disabled']);
-export let BStatistic = () => new BondedForm(Statistic, ['label', 'content', 'color']);
+export let BStatistic = () => new BondedForm(Statistic, ['label', 'value', 'color']);
 export let BStatisticLabel = () => new BondedForm(Statistic.Label, ['children']);
 export let BStatisticValue = () => new BondedForm(Statistic.Value, ['children']);
+export let BLabel = () => new BondedForm(Label, ['content']);

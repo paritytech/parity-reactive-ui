@@ -28,18 +28,24 @@ export class TransactionProgressLabel extends ReactiveComponent {
 		let status = styleStatus(this.state.value);
 		return (<Label
 			pointing={this.props.pointing}
-			icon={this.props.showIcon ? (<Icon
+			color={this.props.color || status.color}
+			basic={this.props.basic == null ? status.basic : this.props.basic}
+		>
+			{this.props.showIcon ? (<Icon
 				name={status.icon}
 				loading={status.loading}
 			/>) : null}
-			color={this.props.color || status.color}
-			basic={this.props.basic == null ? status.basic : this.props.basic}
-			content={this.props.showContent ? status.text : null}
-		/>);
+			{this.props.showContent ? status.text : null}
+			{this.props.total < 2 ? null : (
+				<Label.Detail>{Math.min(this.props.total, this.props.current)} of {this.props.total}</Label.Detail>
+			)}
+		</Label>);
 	}
 }
 TransactionProgressLabel.defaultProps = {
 	showContent: true,
 	showIcon: true,
-	basic: null
+	basic: null,
+	current: 0,
+	total: 0
 };
