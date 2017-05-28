@@ -13,10 +13,13 @@ export class InlineAccount extends ReactiveComponent {
 		return (<InlineAccountAux
 			address={a}
 			names={bonds.namesOf(a)}
-			badges={bonds.badgesOf(a)}
+			badges={this.props.badges ? bonds.badgesOf(a) : []}
 		/>);
 	}
 }
+InlineAccount.defaultProps = {
+	badges: true
+};
 
 export class InlineAccountAux extends ReactiveComponent {
 	constructor () {
@@ -37,8 +40,7 @@ export class InlineAccountAux extends ReactiveComponent {
 					paddingTop: '0.1em',
 					paddingBottom: '0.1em',
 					fontWeight: '900',
-					color: (this.state.names.owned ? '#e7ae07' : '#1e7bc0'),
-					borderBottom: '2px solid #' + (this.state.names.owned ? 'FBBD08' : '2185D0'),
+					borderBottom: this.state.names.owned ? '2px solid #FBBD08' : '0',
 					whiteSpace: 'nowrap'
 				}}
 			>

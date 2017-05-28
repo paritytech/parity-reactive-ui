@@ -77,7 +77,7 @@ export class InlineBalance extends ReactiveComponent {
 					{isNeg ? '-' : this.props.forceSign ? '+' : ''}
 					{units}
 					{
-						<span style={{fontSize: 'small', opacity: 0.66}}>
+						<span style={{fontSize: '85%', opacity: 0.66}}>
 							{decimals}
 						</span>
 					}
@@ -97,7 +97,7 @@ export class InlineBalance extends ReactiveComponent {
 						borderBottomLeftRadius: 0,
 						borderLeft: 0,
 						color: 'fore',
-						fontSize: 'small',
+						fontSize: '85%',
 						verticalAlign: 'baseline',
 						fontWeight: this.state.denom === -1 ? 'normal' : 'bold'
 					}}>

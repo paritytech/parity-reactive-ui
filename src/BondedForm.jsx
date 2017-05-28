@@ -19,3 +19,6 @@ export class BondedForm extends ReactiveComponent {
 }
 
 export let BButton = () => new BondedForm(Button, ['label', 'content', 'disabled']);
+export let BStatistic = () => new BondedForm(Statistic, ['label', 'content', 'color']);
+export let BStatisticLabel = () => new BondedForm(Statistic.Label, ['children']);
+export let BStatisticValue = () => new BondedForm(Statistic.Value, ['children']);
