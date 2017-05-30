@@ -96,7 +96,7 @@ export class InputBond extends React.Component {
 			size={this.props.size}
 			transparent={this.props.transparent}
 			type='text'
-			value={this.state.display}
+			value={this.state.display || this.props.defaultValue}
 			error={!this.state.ok}
 			onChange={(e, v) => this.handleEdit(v.value)}
 			onBlur={() => this.handleBlur()}
