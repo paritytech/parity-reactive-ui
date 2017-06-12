@@ -52,6 +52,81 @@ The reactive components provided are:
   npm test
 ```
 
+## Hacking
+
+The best way to make sure `parity-reactive-ui` work in the final Dapp environment is to see it in action as you develop. To do so, follow these steps:
+
+<details>
+	<summary>Steps</summary>
+	
+Step 1:
+Link `parity-react-ui`:
+
+```
+cd parity-react-ui
+npm link
+```
+
+Step 2:
+Clone the skeleton dapp into somewhere memorable:
+
+```
+gcl git@github.com:louisgv/parity-reactive-ui.git $HOME/some/memorable/dir
+```
+
+Step 3:
+Link the parity-reactive-ui:
+
+```
+cd $HOME/some/memorable/dir
+./init.sh
+npm r -S parity-reactive-ui
+npm link parity-reactive-ui
+npm run build
+```
+
+Step 4:
+
+Symlink its dist into your `dapps` directory (for more info checkout the [DAPP tutorial](https://github.com/paritytech/parity/wiki/Tutorial-Part-1)):
+
+```
+ln -s $HOME/some/memorable/dir/dist /path/to/your/parity/dapps/parity-reactive-ui-test
+```
+
+Step 5:
+Edit the `/dist/manifest.json` to something relevant:
+
+```
+{
+"id": "parity-reactive-ui-test",
+"name": "PRUIT",
+"description": "A skeleton dapp to test parity-reactive-ui",
+"version": "0.1",
+"author": "Parity Technologies Ltd",
+"iconUrl": "title.png"
+}
+```
+
+Step 6:
+Add a watch job into the `scripts` property of `package.json`:
+
+```
+"scripts": {
+...,
+"watch": "webpack --watch",
+}
+```
+
+Step 7:
+Run watch on both project, restart purity, then import the desired `purity-reactive-ui` component into skeleton to test.
+
+```
+npm run watch
+```
+
+</details>
+
+
 ## Contributing
 
 In lieu of a formal styleguide, take care to maintain the existing coding style.
