@@ -29,6 +29,7 @@
   },
   "homepage": "https://github.com/ethcore/parity-reactive-ui#readme",
   "dependencies": {
+    "@parity/parity.js": "^1.7.88",
     "bignumber.js": "^4.0.0",
     "blockies": "0.0.2",
     "oo7": "^0.5.0",
