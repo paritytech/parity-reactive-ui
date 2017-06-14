@@ -9,8 +9,6 @@ export class App extends React.Component {
 		super();
 		this.bond = new Bond
 		this.time = new TimeBond
-
-		console.log(this.bond);
 	}
 
 	render() {

@@ -11,9 +11,9 @@ devServer: {
 	port: 9999
 },
 output: {
-	path: path.resolve(__dirname, '..', 'public'),
+	path: path.resolve(__dirname, '..', 'public', 'dev'),
 	filename: 'bundle.js',
-	publicPath: '/',
-	libraryTarget: 'commonjs'
+	publicPath: '/dev',
+	libraryTarget: 'umd'
 },
 });
