@@ -6,68 +6,67 @@ export class InputBond extends React.Component {
 	constructor () {
 		super();
 		this.state = {
-			display: null,
-			internal: null,
-			external: null,
+			display: undefined,
+			internal: undefined,
+			external: undefined,
 			ok: false,
 			extra: {}
 		};
 	}
 
-	handleEdit(v) {
-		let f = function (b) {
-			if (typeof(b) === 'string') {
-				b = { display: b, external: b, internal: b };
-			}
-			if (typeof(b) !== 'object') {
-				throw { message: 'Invalid value returned from validity function. Must be object with internal and optionally external, display, blurred fields or null', b };
-			}
+	dispatcher = (b) => {
+		if (typeof(b) === 'string') {
+			b = { display: b, external: b, internal: b };
+		}
+		if (typeof(b) !== 'object') {
+			throw { message: 'Invalid value returned from validity function. Must be object with internal and optionally external, display, blurred fields or null', b };
+		}
+		if (b === null) {
+			this.setState({ok: false});
+		} else {
+			const i = b && b.hasOwnProperty('internal') ? b.internal : this.state.internal;
+			this.setState({
+				ok: true,
+				internal: i,
+				display: typeof(b.display) === 'string' ? b.display : this.state.display,
+				corrected: b.corrected,
+				extra: b.extra || {},
+				external: b && b.hasOwnProperty('external') ? b.external : i
+			});
+		}
+		if (this.props.bond instanceof Bond) {
 			if (b === null) {
-				let s = this.state;
-				s.ok = false;
-				this.setState(s);
+				this.props.bond.reset();
 			} else {
-				let i = b && b.hasOwnProperty('internal') ? b.internal : this.state.internal;
-				this.setState({
-					ok: true,
-					internal: i,
-					display: typeof(b.display) === 'string' ? b.display : this.state.display,
-					corrected: b.corrected,
-					extra: b.extra || {},
-					external: b && b.hasOwnProperty('external') ? b.external : i
-				});
+				this.props.bond.changed(b && b.hasOwnProperty('external') ? b.external : b && b.hasOwnProperty('internal') ? b.internal : this.state.internal);
 			}
-			if (this.props.bond instanceof Bond) {
-				if (b === null) {
-					this.props.bond.reset();
-				} else {
-					this.props.bond.changed(b && b.hasOwnProperty('external') ? b.external : b && b.hasOwnProperty('internal') ? b.internal : this.state.internal);
-				}
-			}
-		}.bind(this);
+		}
+	}
 
-		let s = this.state;
-		s.display = v;
-		this.setState(s);
+	handleEdit(display) {
+		this.setState({display});
 
 		if (typeof(this.props.validator) !== 'function') {
-			f(v);
+			this.dispatcher(display);
 		} else {
-			let a = v !== undefined && this.props.validator(v, s);
+			const a = display !== undefined &&
+				this.props.validator(display, this.state);
 			if (a instanceof Promise || a instanceof Bond) {
-				a.then(f);
+				a.then(this.dispatcher);
 			} else {
-				f(a);
+				this.dispatcher(a);
 			}
 		}
 	}
 
 	componentWillMount() {
+		const {display} = this.state;
+		const {defaultValue} = this.props;
 		this.handleEdit(
-			typeof(this.state.display) === 'string'
-				? this.state.display
-			: typeof(this.props.defaultValue) === 'string'
-				? this.props.defaultValue
+			typeof(display) === 'string'
+				? display
+			: typeof(defaultValue) === 'string'
+				? defaultValue
 			: ''
 		);
 	}
