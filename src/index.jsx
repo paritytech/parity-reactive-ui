@@ -16,9 +16,10 @@ import {SigningProgressLabel} from './SigningProgressLabel';
 import {SigningButton} from './SigningButton';
 import {BalanceBond} from './BalanceBond';
 import {InlineBalance} from './InlineBalance';
+import {Block} from './Block';
 
 export {bonds, options, AccountIcon, AccountLabel, AddressBond,
 	InlineAccount, BondedForm, BButton, BStatistic, BStatisticLabel,
 	BStatisticValue, BLabel, InputBond, HashBond, URLBond,
 	TransactionProgressLabel, TransactButton, SigningProgressLabel,
-	SigningButton, BalanceBond, InlineBalance};
+	SigningButton, BalanceBond, InlineBalance, Block};
