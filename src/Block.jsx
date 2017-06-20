@@ -8,6 +8,10 @@ import { Card, List, Icon} from 'semantic-ui-react'
 // properties: author/miner[default], minerRegistry,  difficulty, totalDifficulty , gasLimit, gasUsed, hash, parentHash, sh3Uncles, size, transactions, timestamp[default], blockNumber[default], extraData
 // not included: stateRoot, receiptsRoot (txns), step, transactionsRoot, uncles, logsBloom, sealFields, signature
 // planned to include: [nonce, blockReward, unclesReward]
+
+const digits = 6
+const formatDifficulty = d => d.toString(10).substring(0,digits-1) + 'e^' + (d.toString(10).length - (digits-1))
+
 export class Block extends ReactiveComponent {
   constructor() {
     super(['block']);
@@ -94,13 +98,12 @@ export class Block extends ReactiveComponent {
                         Miners Registry
                       </List.Content>
                     </List.Item> : ""  }
-                    {/* TODO: FORMAT Block difficulty & totalDifficulty */}
                     {this.props.difficulty ?  <List.Item>
                       <List.Content>
                         Difficulty
                       </List.Content>
                       <List.Content floated='right'>
-                        <Rspan style={{fontSize:'x-small'}}>{this.state.block.difficulty.toString(10)}</Rspan>
+                        <Rspan>{formatDifficulty(this.state.block.difficulty)}</Rspan>
                       </List.Content>
                     </List.Item> : "" }
                     {this.props.totalDifficulty ?  <List.Item>
@@ -108,7 +111,7 @@ export class Block extends ReactiveComponent {
                         Total Difficulty
                       </List.Content>
                       <List.Content floated='right'>
-                        <Rspan style={{fontSize:'x-small'}}>{this.state.block.totalDifficulty.toString(10)}</Rspan>
+                        <Rspan>{formatDifficulty(this.state.block.totalDifficulty)}</Rspan>
                       </List.Content>
                     </List.Item> : "" }
                     {this.props.size ?  <List.Item>
