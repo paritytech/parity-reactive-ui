@@ -46,6 +46,30 @@ The reactive components provided are:
   }
 ```
 
+## Hacking
+
+There are two hacking environment available in this repo:
+
+<details>
+	<summary> `npm run watch:dev` # works in the parity dapp environment, no hot reload.</summary>
+
+	Before running the main command, this setup requires exposing the `public` directory as a local dapp:
+
+	`ln -s $PWD/public /path/to/parity/dapps/pruit`
+
+	`Restart parity` and head over to the PRUIT app. This environment is suitable to test any component that interact with the Parity DApp API
+
+</details>
+
+<details>
+	<summary> `npm run dev` # works in localhost, has hot reload </summary>
+
+	Go to `localhost:9999`
+
+	This environment is suitable to quick test any parity-reactive-ui components that does not directly interact with the Parity dapp API.
+
+</details>
+
 ## Tests
 
 ```sh
