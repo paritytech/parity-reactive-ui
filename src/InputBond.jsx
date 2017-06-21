@@ -65,10 +65,10 @@ export class InputBond extends React.Component {
 	}
 
 	handleBlur () {
-		this.setState((s, _) => { return typeof(s.corrected) === 'string' && typeof(s.display) === 'string'
+		this.setState(s => typeof(s.corrected) === 'string' && typeof(s.display) === 'string'
 			? { display: s.corrected, corrected: undefined }
-			: {};
-		});
+			: {}
+		);
 	}
 
 	resetDefaultValueUpdate() {
@@ -81,7 +81,7 @@ export class InputBond extends React.Component {
 	render () {
 		if (this.state.onlyDefault && typeof(this.props.defaultValue) === 'string' && this.state.display !== this.props.defaultValue) {
 			this.resetDefaultValueUpdate();
-			this.lastDefaultValueUpdate = window.setTimeout(() => this.handleEdit(this.props.defaultValue, true), 0);
+			this.lastDefaultValueUpdate = window.setTimeout(() => { this.handleEdit(this.props.defaultValue, true); }, 0);
 		}
 		return (<Input
 			className={this.props.className}
