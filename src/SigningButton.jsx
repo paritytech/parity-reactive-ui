@@ -16,6 +16,7 @@ export class SigningButton extends React.Component {
 			s.status = null;
 		} else {
 			s.status = bonds.sign(this.props.message, this.props.from);
+			s.status.done(v => this.props.onSigned(v));
 		}
 		this.setState(s);
 	}
@@ -28,6 +29,7 @@ export class SigningButton extends React.Component {
 			color={this.props.color}
 			status={this.state.status}
 			onClick={this.handleClick}
+			onSigned={this.props.onSigned}
 			statusText={this.props.statusText}
 			statusIcon={this.props.statusIcon}
 			colorPolicy={this.props.colorPolicy}

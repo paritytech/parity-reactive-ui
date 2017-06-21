@@ -5,10 +5,12 @@ import {bonds, options} from 'oo7-parity';
 import {AccountIcon} from './AccountIcon';
 import {AccountLabel} from './AccountLabel';
 import {AddressBond} from './AddressBond';
+import {DropdownBond} from './DropdownBond';
 import {InlineAccount} from './InlineAccount';
-import {BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel} from './BondedForm';
+import {BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel, BLabelDetail} from './BondedForm';
 import {InputBond} from './InputBond';
 import {HashBond} from './HashBond';
+import {MultiInputBond} from './MultiInputBond';
 import {URLBond} from './URLBond';
 import {TransactionProgressLabel} from './TransactionProgressLabel';
 import {TransactButton} from './TransactButton';
@@ -19,6 +21,7 @@ import {InlineBalance} from './InlineBalance';
 
 export {bonds, options, AccountIcon, AccountLabel, AddressBond,
 	InlineAccount, BondedForm, BButton, BStatistic, BStatisticLabel,
-	BStatisticValue, BLabel, InputBond, HashBond, URLBond,
+	BStatisticValue, BLabel, BLabelDetail, InputBond, HashBond, URLBond,
 	TransactionProgressLabel, TransactButton, SigningProgressLabel,
-	SigningButton, BalanceBond, InlineBalance};
+	SigningButton, BalanceBond, InlineBalance, DropdownBond, MultiInputBond
+};
