@@ -34,7 +34,7 @@ export class Transaction extends ReactiveComponent {
   render() {
     if (this.state.transaction === null || this.state.transaction === undefined){
       return (
-        <Card>
+        <Card fluid>
           <Card.Content>
             <Card.Description>
               <Icon name='warning circle' style={{height: '100%'}} />
@@ -44,8 +44,7 @@ export class Transaction extends ReactiveComponent {
         </Card>
       )
     } else {
-      return (<div>
-                <Card>
+      return (  <Card fluid>
                   <Card.Content>
                     <Card.Description>
                       <List divided verticalAlign='middle'>
@@ -213,7 +212,6 @@ export class Transaction extends ReactiveComponent {
                     </Card.Description>
                   </Card.Content>
                 </Card>
-              </div>
       );
     }
   }

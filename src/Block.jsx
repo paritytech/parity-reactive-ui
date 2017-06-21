@@ -19,7 +19,7 @@ export class Block extends ReactiveComponent {
 	render() {
     if (this.state.block === null || this.state.block === undefined){
       return (
-        <Card>
+        <Card fluid>
           <Card.Content>
             <Card.Description>
               <Icon name='warning circle' style={{height: '100%'}} />
@@ -30,7 +30,7 @@ export class Block extends ReactiveComponent {
       )
     } else {
       return (
-            <Card>
+            <Card fluid>
               <Card.Content>
                 <Card.Description>
                   <List divided verticalAlign='middle'>
