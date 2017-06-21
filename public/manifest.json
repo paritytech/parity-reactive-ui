@@ -1,0 +1,8 @@
+{
+	"id": "parity-reactive-ui-test",
+	"name": "PRUIT",
+	"description": "A skeleton dapp to test parity-reactive-ui",
+	"version": "0.1",
+	"author": "Parity Technologies Ltd",
+	"iconUrl": "title.png"
+}
