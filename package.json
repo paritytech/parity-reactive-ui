@@ -34,9 +34,9 @@
   "dependencies": {
     "bignumber.js": "^4.0.0",
     "blockies": "0.0.2",
-    "oo7": "file:../oo7",
-    "oo7-parity": "file:../oo7-parity",
-    "oo7-react": "file:../oo7-react",
+    "oo7": "^0.5.1",
+    "oo7-parity": "^0.6.3",
+    "oo7-react": "^0.4.2",
     "prop-types": "^15.5.9",
     "react": "^15.5.4",
     "react-dom": "^15.4.2",
