@@ -27,14 +27,22 @@ export class AddressBond extends InputBond {
 	}
 
 	render () {
-		return (<div style={{display: 'inline-block'}}><div>{InputBond.prototype.render.call(this)}</div><div>
-		{this.state.ok
-			? ''
-		: this.state.extra.noChecksum
-			? (<Label pointing color='orange' basic content='No checksum' />)
-		: (<Label pointing basic content='Unknown/invalid address' />)
-	}</div>
-		</div>);
+		const labelStyle = {
+			position: 'absolute',
+			zIndex: this.props.labelZIndex || 10
+		};
+		return (
+			<div>
+				{InputBond.prototype.render.call(this)}
+				<div>
+					{this.state.ok
+						? ''
+						: this.state.extra.noChecksum
+							? (<Label pointing color='orange' basic content='No checksum' style={labelStyle} />)
+							: (<Label pointing basic content='Unknown/invalid address' style={labelStyle} />)}
+				</div>
+			</div>
+		);
 	}
 }
 AddressBond.defaultProps = {

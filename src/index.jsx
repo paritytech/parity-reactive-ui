@@ -1,26 +1,22 @@
 import 'semantic-ui-css/semantic.min.css';
 
-import {bonds, options} from 'oo7-parity';
+export {bonds, options} from 'oo7-parity';
 
-import {AccountIcon} from './AccountIcon';
-import {AccountLabel} from './AccountLabel';
-import {AddressBond} from './AddressBond';
-import {InlineAccount} from './InlineAccount';
-import {BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel} from './BondedForm';
-import {InputBond} from './InputBond';
-import {HashBond} from './HashBond';
-import {URLBond} from './URLBond';
-import {TransactionProgressLabel} from './TransactionProgressLabel';
-import {TransactButton} from './TransactButton';
-import {SigningProgressLabel} from './SigningProgressLabel';
-import {SigningButton} from './SigningButton';
-import {BalanceBond} from './BalanceBond';
-import {InlineBalance} from './InlineBalance';
-import {Block} from './Block';
-import {Transaction} from './Transaction';
-
-export {bonds, options, AccountIcon, AccountLabel, AddressBond,
-	InlineAccount, BondedForm, BButton, BStatistic, BStatisticLabel,
-	BStatisticValue, BLabel, InputBond, HashBond, URLBond,
-	TransactionProgressLabel, TransactButton, SigningProgressLabel,
-	SigningButton, BalanceBond, InlineBalance, Block, Transaction};
+export {AccountIcon} from './AccountIcon';
+export {AccountLabel} from './AccountLabel';
+export {AddressBond} from './AddressBond';
+export {InlineAccount} from './InlineAccount';
+export {BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel, BLabelDetail} from './BondedForm';
+export {InputBond} from './InputBond';
+export {DropdownBond} from './DropdownBond';
+export {MultiInputBond} from './MultiInputBond';
+export {HashBond} from './HashBond';
+export {URLBond} from './URLBond';
+export {TransactionProgressLabel} from './TransactionProgressLabel';
+export {TransactButton} from './TransactButton';
+export {SigningProgressLabel} from './SigningProgressLabel';
+export {SigningButton} from './SigningButton';
+export {BalanceBond} from './BalanceBond';
+export {InlineBalance} from './InlineBalance';
+export {Block} from './Block';
+export {Transaction} from './Transaction';
