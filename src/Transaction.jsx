@@ -2,6 +2,7 @@ import React from 'react';
 import { ReactiveComponent, Rspan, Hash } from 'oo7-react';
 import { Card, List, Icon} from 'semantic-ui-react';
 import { formatBlockNumber, formatBalance } from 'oo7-parity';
+import { InlineAccount, InlineBalance } from 'parity-reactive-ui';
 
 // supports:
 // gas: true,
@@ -77,7 +78,7 @@ export class Transaction extends ReactiveComponent {
                             From
                           </List.Content>
                           <List.Content floated='right'>
-                            <Hash value={this.state.transaction.from}></Hash>
+                            <InlineAccount address={this.state.transaction.from}></InlineAccount>
                           </List.Content>
                         </List.Item> : "" }
                         {this.props.to ?  <List.Item>
@@ -85,15 +86,15 @@ export class Transaction extends ReactiveComponent {
                             To
                           </List.Content>
                           <List.Content floated='right'>
-                            <Hash value={this.state.transaction.to}></Hash>
+                            <InlineAccount address={this.state.transaction.to}></InlineAccount>
                           </List.Content>
                         </List.Item> : "" }
                         {this.props.ether ?  <List.Item>
                           <List.Content>
-                            Ether
+                            Amount
                           </List.Content>
                           <List.Content floated='right'>
-                            <Rspan>{formatBalance(this.state.transaction.value)}</Rspan>
+                            <InlineBalance value={this.state.transaction.value} />
                           </List.Content>
                         </List.Item> : "" }
                         {this.props.condition ? <List.Item>
@@ -109,7 +110,7 @@ export class Transaction extends ReactiveComponent {
                             Creates
                           </List.Content>
                           <List.Content floated='right'>
-                            <Hash value={this.state.transaction.creates}></Hash>
+                            <InlineAccount address={this.state.transaction.creates}></InlineAccount>
                           </List.Content>
                         </List.Item> : "" }
                         {this.props.gas ? <List.Item>
@@ -125,7 +126,7 @@ export class Transaction extends ReactiveComponent {
                             Gas Price
                           </List.Content>
                           <List.Content floated='right'>
-                            <Rspan>{formatBalance(this.state.transaction.gasPrice)}</Rspan>
+                            <InlineBalance value={this.state.transaction.gasPrice} />
                           </List.Content>
                         </List.Item> : "" }
                         {this.props.input ? <List.Item>
@@ -134,7 +135,7 @@ export class Transaction extends ReactiveComponent {
                           </List.Content>
                           <List.Content floated='right'>
                             {/* Input is raw byte data */}
-                            <Hash value={this.state.transaction.input}></Hash>
+                            <Hash value={this.state.transaction.input.toString(16)}></Hash>
                           </List.Content>
                         </List.Item> : "" }
                         {this.props.networkId ? <List.Item>
@@ -197,7 +198,7 @@ export class Transaction extends ReactiveComponent {
                           </List.Content>
                           <List.Content floated='right'>
                                 {/* RAW BYTE DATA */}
-                            <Hash value={this.state.transaction.raw}></Hash>
+                            <Hash value={this.state.transaction.raw.toString(16)}></Hash>
                           </List.Content>
                         </List.Item> : "" }
                         {this.props.transactionIndex ? <List.Item>
