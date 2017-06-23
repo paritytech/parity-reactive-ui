@@ -6,7 +6,7 @@ import {TransactionProgressLabel, styleStatus} from './TransactionProgressLabel'
 
 export class TransactButton extends ReactiveComponent {
 	constructor () {
-		super(['content', 'disabled', 'notdisabled', 'positive', 'negative', 'active']);
+		super(['content', 'disabled', 'enabled', 'positive', 'negative', 'active']);
 		this.state = { index: 0, status: null };
 		this.handleClick = this.handleClick.bind(this);
 	}
@@ -71,7 +71,7 @@ export class TransactButton extends ReactiveComponent {
 			statusText={this.props.statusText}
 			statusIcon={this.props.statusIcon}
 			colorPolicy={this.props.colorPolicy}
-			disabled={this.state.disabled || !this.state.notdisabled}
+			disabled={this.state.disabled || !this.state.enabled}
 		/>
 	}//
 }
@@ -79,9 +79,9 @@ TransactButton.defaultProps = {
 	statusText: false,
 	statusIcon: true,
 	colorPolicy: 'button',
-	notdisabled: true,
+	enabled: true,
 	order: true,
-	causal: false
+	causal: true
 };
 
 class TransactButtonAux extends ReactiveComponent {
