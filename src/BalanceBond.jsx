@@ -40,7 +40,7 @@ BalanceBond.defaultProps = {
 	placeholder: '0',
 	defaultValue: '0',
 	validator: (u, s) => {
-		let q = interpretRender(u, null);
+		let q = u === '' ? { denom: 6, units: '0', decimals: '', origNum: '', origDenom: ''} : interpretRender(u, null);
 		let d = q && q.denom !== null ? q.origNum : undefined;
 		if (q) {
 			defDenom(q, s.internal ? s.internal.denom : 6);
