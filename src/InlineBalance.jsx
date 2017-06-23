@@ -9,7 +9,7 @@ export class InlineBalance extends ReactiveComponent {
 		super(['value']);
 		this.state = {
 			precise: false,
-			denom: -1
+			denom: null
 		};
 	}
 
@@ -19,20 +19,25 @@ export class InlineBalance extends ReactiveComponent {
 		this.setState(s);
 	}
 
-	cycleDenom () {
+	denom () {
 		let s = this.state;
-		s.denom = (s.denom + 2) % (usableDenoms.length + 1) - 1;
-		this.setState(s);
+		return s.denom === null ? usableDenoms.indexOf(this.props.defaultDenom) : s.denom;
+	}
+
+	cycleDenom () {
+		let denom = (this.denom() + 2) % (usableDenoms.length + 1) - 1;
+		this.setState({denom});
 	}
 
 	readyRender () {
 		let v = new BigNumber(this.state.value || 0);
 		let isNeg = v.lt(0);
 		let s;
-		if (this.state.denom === -1) {
+		let sd = this.denom();
+		if (sd === -1) {
 			s = splitValue(v.mul(isNeg ? -1 : 1));
 		} else {
-			let dd = denominations.indexOf(usableDenoms[this.state.denom]);
+			let dd = denominations.indexOf(usableDenoms[sd]);
 			s = {
 				base: v.div(new BigNumber(1000).pow(dd)),
 				denom: dd
@@ -99,7 +104,7 @@ export class InlineBalance extends ReactiveComponent {
 						color: 'fore',
 						fontSize: '85%',
 						verticalAlign: 'baseline',
-						fontWeight: this.state.denom === -1 ? 'normal' : 'bold'
+						fontWeight: sd === -1 ? 'normal' : 'bold'
 					}}>
 						{d}
 					</span>
