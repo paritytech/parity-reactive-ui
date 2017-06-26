@@ -5,19 +5,44 @@ A small library to provide oo7 (Joint Asynchronous Mapping Expression System)
 `Bond`-based Reactive components for Ethereum and Parity.
 
 The reactive components provided are:
-- `AccountIcon` (an identicon image for a given account);
-- `AccountLabel` (a full Semantic UI label for a given account);
-- `InlineAccount` (a simple display component for an account designed to flow in text);
-- `SigningButton` (a button which completes a message-signing operation when clicked and displays the progress to the user);
-- `SigningProgressLabel` (a full Semantic UI label for displaying the progress of a signing a message);
-- `TransactButton` (a button which posts a transaction when clicked and displays the progress to the user);
-- `TransactionProgressLabel` (a full Semantic UI label for displaying the progress of a transaction);
+#### Account
+- `AccountIcon` (an identicon image for a given account); <br />
+![Showcase AccountIcon](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Account/AccountIcon.png "Showcase AccountIcon")
+- `AccountLabel` (a full Semantic UI label for a given account); <br />
+![Showcase AccountLabel](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Account/AccountLabel.png "Showcase AccountLabel")
+- `InlineAccount` (a simple display component for an account designed to flow in text); <br />
+![Showcase InlineAccount](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Account/InlineAccount.png "Showcase InlineAccount")
+- `InlineBalance` (a simple display component for a given accounts balance to flow in text);
+#### Transaction
+- `SigningButton` (a button which completes a message-signing operation when clicked and displays the progress to the user); <br />
+![Showcase SigningButton](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Transaction/SigningButton.png "Showcase SigningButton")
+- `SigningProgressLabel` (a full Semantic UI label for displaying the progress of a signing a message); <br />
+![Showcase SigningProgressLabel](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Transaction/SigningProgressLabel.png "Showcase SigningProgressLabel")
+- `TransactButton` (a button which posts a transaction when clicked and displays the progress to the user); <br />
+![Showcase TransactButton](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Transaction/TransactButton/authorising.png "Showcase TransactButton")
+- `TransactionProgressLabel` (a full Semantic UI label for displaying the progress of a transaction); <br />
+![Showcase TransactButton](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Transaction/TransactionProgressLabel/finalising.png "Showcase TransactButton")
+- `Transaction` (a simple display of a given transaction with chosen properties); <br />
+![Showcase Transaction](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Transaction/Transaction.png "Showcase Transaction")
+#### Input
+- `BButton` (a Semantic UI derived `Button` that accepts Bonds for certain props); <br />
+![Showcase BButton](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Input/BButton.png "Showcase BButton")
+- `InputBond` (a Semantic UI derived `Input` component that accepts a Bond for its output); <br />
+![Showcase InputBond](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Input/InputBond.png "Showcase InputBond")
+- `AddressBond` (an `InputBond`-like component for addresses); <br />
+![Showcase AddressBond](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Input/AddressBond.png "Showcase AddressBond")
+- `HashBond` (an `InputBond`-like component for 32 byte hashes); <br />
+![Showcase HashBond](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Input/HashBond.png "Showcase HashBond")
+- `URLBond` (an `InputBond`-like component for URLs); <br />
+![Showcase URLBond](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Input/URLBond.png "Showcase URLBond")
+- `MultiInputBond` (an `InputBond`-like component supporting hashes, URLs or string as input type);
+- `DropdownBond` (an expendable Semantic UI dropdown search selection with bond support);
+- `BalanceBond` (an `InputBond`-like component for balances); <br />
+![Showcase BalanceBond](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Input/BalanceBond.png "Showcase BalanceBond")
+#### Others
+- `Block` (a simple display of a given block with chosen properties); <br />
+![Showcase Block](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/Input/Block.png "Showcase Block")
 
-- `BButton` (a Semantic UI derived `Button` that accepts Bonds for certain props);
-- `InputBond` (a Semantic UI derived `Input` component that accepts a Bond for its output);
-- `AddressInputBond` (an `InputBond`-like component for addresses);
-- `HashBond` (an `InputBond`-like component for 32 byte hashes);
-- `URLBond` (an `InputBond`-like component for URLs).
 
 ## Installation
 
@@ -45,6 +70,11 @@ The reactive components provided are:
 	  }
   }
 ```
+
+Further examples as example React Component [here](https://github.com/paritytech/parity-reactive-ui/blob/showcases/test/manual/example.jsx) .
+![Showcase Components](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/ExampleComponents.png "Showcase Components")
+
+
 
 ## Hacking
 
