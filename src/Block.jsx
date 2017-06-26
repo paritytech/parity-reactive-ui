@@ -1,13 +1,18 @@
 import React from 'react'
-import { Rspan, ReactiveComponent, Hash, Rdiv, Ra } from 'oo7-react';
+import { Rspan, ReactiveComponent, Hash} from 'oo7-react';
 import { bonds, formatBlockNumber} from 'oo7-parity';
 import { Bond } from 'oo7';
+import { InlineAccount } from 'parity-reactive-ui';
 import { Card, List, Icon} from 'semantic-ui-react'
 
 // Reactive Block view
 // properties: author/miner[default], minerRegistry,  difficulty, totalDifficulty , gasLimit, gasUsed, hash, parentHash, sh3Uncles, size, transactions, timestamp[default], blockNumber[default], extraData
 // not included: stateRoot, receiptsRoot (txns), step, transactionsRoot, uncles, logsBloom, sealFields, signature
 // planned to include: [nonce, blockReward, unclesReward]
+
+const digits = 6
+const formatDifficulty = d => d.toString(10).substring(0,digits-1) + 'e^' + (d.toString(10).length - (digits-1))
+
 export class Block extends ReactiveComponent {
   constructor() {
     super(['block']);
@@ -15,7 +20,7 @@ export class Block extends ReactiveComponent {
 	render() {
     if (this.state.block === null || this.state.block === undefined){
       return (
-        <Card>
+        <Card fluid>
           <Card.Content>
             <Card.Description>
               <Icon name='warning circle' style={{height: '100%'}} />
@@ -26,7 +31,7 @@ export class Block extends ReactiveComponent {
       )
     } else {
       return (
-            <Card>
+            <Card fluid>
               <Card.Content>
                 <Card.Description>
                   <List divided verticalAlign='middle'>
@@ -51,7 +56,7 @@ export class Block extends ReactiveComponent {
                         Transactions
                       </List.Content>
                       <List.Content floated='right'>
-                        <Ra>{this.state.block.transactions.length}</Ra> txns
+                        <Rspan>{this.state.block.transactions.length}</Rspan> txns
                       </List.Content>
                     </List.Item> : "" }
                     {this.props.hash ?  <List.Item>
@@ -80,7 +85,7 @@ export class Block extends ReactiveComponent {
                     </List.Item> : "" }
                     {(this.props.author || this.props.miner) ?  <List.Item>
                       <List.Content floated='right'>
-                        <Hash value={this.state.block.author}></Hash>
+                        <InlineAccount address={this.state.block.author}></InlineAccount>
                       </List.Content>
                       <List.Content>
                         Mined by
@@ -88,19 +93,18 @@ export class Block extends ReactiveComponent {
                     </List.Item> : "" }
                     {this.props.minerRegistry ? <List.Item>
                       <List.Content floated='right'>
-                        <Ra>{bonds.registry.canReverse(this.state.block.author).map(b => b? bonds.registry.reverse(this.state.block.author) : "NaN")}</Ra>
+                        <Rspan>{bonds.registry.canReverse(this.state.block.author).map(b => b? bonds.registry.reverse(this.state.block.author) : "NaN")}</Rspan>
                       </List.Content>
                       <List.Content>
                         Miners Registry
                       </List.Content>
                     </List.Item> : ""  }
-                    {/* TODO: FORMAT Block difficulty & totalDifficulty */}
                     {this.props.difficulty ?  <List.Item>
                       <List.Content>
                         Difficulty
                       </List.Content>
                       <List.Content floated='right'>
-                        <Rspan style={{fontSize:'x-small'}}>{this.state.block.difficulty.toString(10)}</Rspan>
+                        <Rspan>{formatDifficulty(this.state.block.difficulty)}</Rspan>
                       </List.Content>
                     </List.Item> : "" }
                     {this.props.totalDifficulty ?  <List.Item>
@@ -108,7 +112,7 @@ export class Block extends ReactiveComponent {
                         Total Difficulty
                       </List.Content>
                       <List.Content floated='right'>
-                        <Rspan style={{fontSize:'x-small'}}>{this.state.block.totalDifficulty.toString(10)}</Rspan>
+                        <Rspan>{formatDifficulty(this.state.block.totalDifficulty)}</Rspan>
                       </List.Content>
                     </List.Item> : "" }
                     {this.props.size ?  <List.Item>
@@ -141,7 +145,7 @@ export class Block extends ReactiveComponent {
                         Extra Data
                       </List.Content>
                       <List.Content floated='right'>
-                        <Hash value={this.state.block.extraData}></Hash>
+                        <Hash value={this.state.block.extraData.toString(16)}></Hash>
                       </List.Content>
                     </List.Item> : "" }
                   </List>
