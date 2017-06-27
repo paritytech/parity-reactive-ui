@@ -1,3 +1,4 @@
+import React from 'react';
 import {ReactiveComponent} from 'oo7-react';
 import {AddressBond} from './AddressBond';
 import {HashBond} from './HashBond';
@@ -32,5 +33,6 @@ export class MultiInputBond extends ReactiveComponent {
 }
 MultiInputBond.defaultProps = {
 	defaultValue: '',
-	disabled: false
+	disabled: false,
+	enabled: true
 };

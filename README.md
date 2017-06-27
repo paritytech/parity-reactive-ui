@@ -8,18 +8,18 @@ The reactive components provided are:
 #### Account
 - `AccountIcon` (an identicon image for a given account);
 - `AccountLabel` (a full Semantic UI label for a given account);
-- `InlineAccount` (a simple display component for an account designed to flow in text); 
+- `InlineAccount` (a simple display component for an account designed to flow in text);
 - `InlineBalance` (a simple display component for a given accounts balance to flow in text);
 #### Transaction
 - `SigningButton` (a button which completes a message-signing operation when clicked and displays the progress to the user);
 - `SigningProgressLabel` (a full Semantic UI label for displaying the progress of a signing a message);
-- `TransactButton` (a button which posts a transaction when clicked and displays the progress to the user); 
-- `TransactionProgressLabel` (a full Semantic UI label for displaying the progress of a transaction); 
-- `Transaction` (a simple display of a given transaction with chosen properties); 
+- `TransactButton` (a button which posts a transaction when clicked and displays the progress to the user);
+- `TransactionProgressLabel` (a full Semantic UI label for displaying the progress of a transaction);
+- `Transaction` (a simple display of a given transaction with chosen properties);
 #### Input
 - `BButton` (a Semantic UI derived `Button` that accepts Bonds for certain props);
 - `InputBond` (a Semantic UI derived `Input` component that accepts a Bond for its output);
-- `AddressBond` (an `InputBond`-like component for addresses); 
+- `AddressBond` (an `InputBond`-like component for addresses);
 - `HashBond` (an `InputBond`-like component for 32 byte hashes);
 - `URLBond` (an `InputBond`-like component for URLs);
 - `MultiInputBond` (an `InputBond`-like component supporting hashes, URLs or string as input type);
@@ -56,7 +56,7 @@ The reactive components provided are:
   }
 ```
 
-Further examples as example React Component [here](https://github.com/paritytech/parity-reactive-ui/blob/showcases/test/manual/example.jsx) .
+Further examples as a react component can be found [here](https://github.com/paritytech/parity-reactive-ui/blob/showcases/test/manual/example.jsx) .
 ![Showcase Components](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/ExampleComponents.png "Showcase Components")
 
 

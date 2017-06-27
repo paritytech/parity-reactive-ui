@@ -7,7 +7,9 @@ export class DropdownBond extends ReactiveComponent {
 	constructor () {
 		super(['disabled', 'enabled']);
 	}
+
 	componentWillMount() {
+		super.componentWillMount();
 		this.setState({options: this.props.options});
 		this.handleChange(null, {value: this.props.defaultValue || this.props.options[0].value});
 	}
@@ -30,7 +32,7 @@ export class DropdownBond extends ReactiveComponent {
 	}
 
 	render () {
-		const { currentValue } = this.state
+		const { currentValue } = this.state;
 
 		return (
 			<Dropdown
@@ -57,5 +59,6 @@ DropdownBond.defaultProps = {
 	allowAdditions: true,
 	defaultValue: '',
 	disabled: false,
+	enabled: true,
 	options: [{text: 'Unknown', value: ''}]
-}
+};

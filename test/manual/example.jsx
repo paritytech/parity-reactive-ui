@@ -4,7 +4,6 @@ import { bonds } from 'oo7-parity';
 import { Rspan, Hash } from 'oo7-react';
 import { AccountDropdown, AddressBond, AccountIcon, AccountLabel, InlineAccount, SigningButton, SigningProgressLabel, TransactButton, TransactionProgressLabel,
  				 Transaction, BButton, InputBond, HashBond, URLBond, MultiInputBond, DropdownBond, BalanceBond, Block, InlineBalance } from '../../src';
-
 import { Button, Divider, Card } from 'semantic-ui-react';
 
 
@@ -18,6 +17,7 @@ export class Example extends React.Component {
     this.url = new Bond();
     this.btnLabel = new Bond();
     this.multi = new Bond();
+    this.options = new Bond();
 
     // Output
     this.me = bonds.me;
@@ -122,7 +122,7 @@ export class Example extends React.Component {
              </Card.Description>
            </Card.Content>
            <Card.Content extra>
-             <SigningButton content='Sign' message='MessageToSign' onSigned={v => this.message.changed(v)} />
+             <SigningButton content='Sign' message='MessageToSign' from={bonds.me} onSigned={v => console.log(v)} />
            </Card.Content>
           </Card>
 
@@ -319,7 +319,7 @@ export class Example extends React.Component {
          </Card.Content>
          <Card.Content extra>
            <div className='ui two'>
-             <MultiInputBond bond={this.multi} type='address' defaultValue='Type can be defined'/>
+             <MultiInputBond bond={this.multi} type='string' />
              <Rspan>{this.multi}</Rspan>
            </div>
          </Card.Content>
@@ -338,8 +338,9 @@ export class Example extends React.Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <DropdownBond bond={this.message} options={[{value:'exampleOption1'}, {value:'exampleOption2'}]}/>
-            <Rspan>{this.message}</Rspan>
+            <DropdownBond bond={this.options} options={[{text:'account1', value:'0x00DF5816530400f292CA8d99D2e183C2EF8607c9'},
+                                                        {text:'account2', value:'0x00498Cb0BfA2Eb0024fE7c1b93FfEf6bf6A22a0B'}]} />
+            <Rspan>{this.options}</Rspan>
           </Card.Content>
         </Card>
 
@@ -362,7 +363,7 @@ export class Example extends React.Component {
       </Card.Group>
 
       <Divider />
-      <h1>Others</h1>
+      <h1> # Others</h1>
       <Card.Group itemsPerRow={3}>
         <Card>
          <Card.Content>
@@ -382,7 +383,6 @@ export class Example extends React.Component {
        </Card>
       </Card.Group>
       </div>
-        // </Card.Group>
     )
   }
 }
