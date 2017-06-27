@@ -10,7 +10,7 @@
     "test": "npm run compile && mocha --compilers js:babel-core/register  --reporter spec",
     "dev": "webpack-dev-server --config=config/webpack.config.dev.js",
     "watch": "webpack --watch --config=config/webpack.config.dist.js",
-		"watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
+    "watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
     "compile": "webpack --config=config/webpack.config.dist.js",
     "prepublish": "npm run compile"
   },
@@ -41,7 +41,8 @@
     "react": "^15.5.4",
     "react-dom": "^15.4.2",
     "semantic-ui-css": "^2.2.10",
-    "semantic-ui-react": "^0.68.3"
+    "semantic-ui-react": "^0.68.3",
+    "copy-to-clipboard": "^3.0.6"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",

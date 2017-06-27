@@ -20,3 +20,4 @@ export {BalanceBond} from './BalanceBond';
 export {InlineBalance} from './InlineBalance';
 export {Block} from './Block';
 export {Transaction} from './Transaction';
+export {Hash} from './Hash';
