@@ -1,9 +1,9 @@
 import React from 'react';
 import { Bond } from 'oo7';
 import { bonds } from 'oo7-parity';
-import { Rspan, Hash } from 'oo7-react';
+import { Rspan } from 'oo7-react';
 import { AccountDropdown, AddressBond, AccountIcon, AccountLabel, InlineAccount, SigningButton, SigningProgressLabel, TransactButton, TransactionProgressLabel,
- 				 Transaction, BButton, InputBond, HashBond, URLBond, MultiInputBond, DropdownBond, BalanceBond, Block, InlineBalance } from '../../src';
+ 				 Transaction, BButton, InputBond, HashBond, URLBond, MultiInputBond, DropdownBond, BalanceBond, Block, InlineBalance, Hash} from '../../src';
 import { Button, Divider, Card } from 'semantic-ui-react';
 
 
@@ -139,10 +139,11 @@ export class Example extends React.Component {
               </Card.Description>
             </Card.Content>
             <Card.Content extra>
-              <div className='ui two'>
-                <Button content='Show label' onClick={() => this.setState({sign:bonds.sign('MessageToSign', bonds.me)})} />
+                <Button
+                  content='Show label'
+                  onClick={() => this.setState({sign:bonds.sign('MessageToSign', bonds.me)})}
+                  style={{marginRight:'15px'}} />
                 <SigningProgressLabel value={this.state.sign}></SigningProgressLabel>
-              </div>
             </Card.Content>
           </Card>
 
@@ -176,10 +177,11 @@ export class Example extends React.Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <div className='ui two'>
-              <Button content='Show label' onClick={() => this.setState({tnx:bonds.post({to: this.address, value: 100 * 1e15})})} />
-              <TransactionProgressLabel value={this.state.tnx}/>
-            </div>
+            <Button
+              content='Show label'
+              onClick={() => this.setState({tnx:bonds.post({to: this.address, value: 100 * 1e15})})}
+              style={{marginRight:'15px'}}/>
+            <TransactionProgressLabel value={this.state.tnx} />
           </Card.Content>
         </Card>
 
@@ -218,10 +220,8 @@ export class Example extends React.Component {
            </Card.Description>
          </Card.Content>
          <Card.Content extra>
-           <div className='ui two'>
-             <InputBond bond={this.message} />
-             <Rspan>{this.message}</Rspan>
-           </div>
+           <InputBond bond={this.message} style={{marginRight:'15px'}} />
+           <Rspan>{this.message}</Rspan>
          </Card.Content>
        </Card>
 
@@ -238,10 +238,8 @@ export class Example extends React.Component {
            </Card.Description>
          </Card.Content>
          <Card.Content extra>
-           <div className='ui two'>
-             <InputBond bond={this.btnLabel} placeholder='Buttons label' />
-             <BButton label={this.btnLabel} content='BoundLabel'/>
-           </div>
+           <InputBond bond={this.btnLabel} placeholder='Buttons label' style={{marginRight:'15px'}} />
+           <BButton label={this.btnLabel} content='BoundLabel'/>
          </Card.Content>
         </Card>
 
@@ -258,10 +256,11 @@ export class Example extends React.Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <div className='ui two'>
-              <AddressBond fluid bond={this.address} defaultValue='0x00498Cb0BfA2Eb0024fE7c1b93FfEf6bf6A22a0B'/>
-              <Rspan>{this.address}</Rspan>
-            </div>
+            <AddressBond fluid
+              bond={this.address}
+              defaultValue='0x00498Cb0BfA2Eb0024fE7c1b93FfEf6bf6A22a0B'
+              style={{marginRight:'15px'}} />
+            <Rspan>{this.address}</Rspan>
           </Card.Content>
         </Card>
 
@@ -278,10 +277,11 @@ export class Example extends React.Component {
            </Card.Description>
          </Card.Content>
          <Card.Content extra>
-           <div className='ui two'>
-             <HashBond bond={this.hash} defaultValue='0xc1d39f83fdda25c23600fafa7f10cbed83ad0eea46229c19bf8b9b81a56f0ac8'/>
-             <Hash value={this.hash} />
-           </div>
+           <HashBond
+             bond={this.hash}
+             defaultValue='0xc1d39f83fdda25c23600fafa7f10cbed83ad0eea46229c19bf8b9b81a56f0ac8'
+             style={{marginRight:'15px'}} />
+           <Hash value={this.hash} />
          </Card.Content>
        </Card>
 
@@ -298,10 +298,11 @@ export class Example extends React.Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <div className='ui two'>
-              <URLBond bond={this.url} defaultValue='https://parity.io/' />
-              <Rspan>{this.url}</Rspan>
-            </div>
+            <URLBond
+              bond={this.url}
+              defaultValue='https://parity.io/'
+              style={{marginRight:'15px'}} />
+            <Rspan>{this.url}</Rspan>
           </Card.Content>
         </Card>
 
@@ -318,10 +319,8 @@ export class Example extends React.Component {
            </Card.Description>
          </Card.Content>
          <Card.Content extra>
-           <div className='ui two'>
-             <MultiInputBond bond={this.multi} type='string' />
-             <Rspan>{this.multi}</Rspan>
-           </div>
+           <MultiInputBond bond={this.multi} type='string' style={{marginRight:'15px'}} />
+           <Rspan>{this.multi}</Rspan>
          </Card.Content>
        </Card>
 
