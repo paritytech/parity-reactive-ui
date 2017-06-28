@@ -2,7 +2,7 @@ import React from 'react';
 import { Bond } from 'oo7';
 import { bonds } from 'oo7-parity';
 import { Rspan } from 'oo7-react';
-import { AccountDropdown, AddressBond, AccountIcon, AccountLabel, InlineAccount, SigningButton, SigningProgressLabel, TransactButton, TransactionProgressLabel,
+import { AccountCard, AddressBond, AccountIcon, AccountLabel, InlineAccount, SigningButton, SigningProgressLabel, TransactButton, TransactionProgressLabel,
  				 Transaction, BButton, InputBond, HashBond, URLBond, MultiInputBond, DropdownBond, BalanceBond, Block, InlineBalance, Hash} from '../../src';
 import { Button, Divider, Card } from 'semantic-ui-react';
 
@@ -24,6 +24,7 @@ export class Example extends React.Component {
     this.txn = bonds.transaction('2310525', 0);
     this.block = bonds.blocks['2310525'];
     this.balance = bonds.balance(this.me);
+    this.accName = bonds.accountsInfo;
 
     this.state = {
       tnx: null,
@@ -39,6 +40,26 @@ export class Example extends React.Component {
           <Card>
            <Card.Content>
              <Card.Header>
+               AccountCard
+             </Card.Header>
+             <Card.Meta>
+               A full semantic UI card to display a given account.
+             </Card.Meta>
+             <Card.Description>
+               {/* define props */}
+             </Card.Description>
+           </Card.Content>
+           <Card.Content extra>
+             <AccountCard account={{address:'0x00DF5816530400f292CA8d99D2e183C2EF8607c9',
+   																 meta:{description:"description", passwordHint: "parity", timestamp:1496745328574, tags:['Tag1', 'Tag2']},
+   															 	 name:'kaikun213',
+   															 	 uuid:'f59f6ae4-a2ef-8fd2-81d5-00aff205c53c'}} />
+           </Card.Content>
+          </Card>
+
+          <Card>
+           <Card.Content>
+             <Card.Header>
                AccountIcon
              </Card.Header>
              <Card.Meta>
@@ -51,9 +72,9 @@ export class Example extends React.Component {
            <Card.Content extra>
              <AccountIcon address={this.me} />
            </Card.Content>
-         </Card>
+          </Card>
 
-           <Card>
+          <Card>
             <Card.Content>
               <Card.Header>
                 AccountLabel
@@ -85,24 +106,24 @@ export class Example extends React.Component {
            <Card.Content extra>
              <InlineAccount address={this.me} />
            </Card.Content>
-         </Card>
+          </Card>
 
-         <Card>
-          <Card.Content>
-            <Card.Header>
-              InlineBalance
-            </Card.Header>
-            <Card.Meta>
-              A simple display component for a given accounts balance to flow in text
-            </Card.Meta>
-            <Card.Description>
-              {/* define props */}
-            </Card.Description>
-          </Card.Content>
-          <Card.Content extra>
-            <InlineBalance value={this.balance} />
-          </Card.Content>
-        </Card>
+          <Card>
+            <Card.Content>
+              <Card.Header>
+                InlineBalance
+              </Card.Header>
+              <Card.Meta>
+                A simple display component for a given accounts balance to flow in text
+              </Card.Meta>
+              <Card.Description>
+                {/* define props */}
+              </Card.Description>
+            </Card.Content>
+            <Card.Content extra>
+              <InlineBalance value={this.balance} />
+            </Card.Content>
+          </Card>
         </Card.Group>
 
         <Divider />
@@ -381,7 +402,7 @@ export class Example extends React.Component {
          </Card.Content>
        </Card>
       </Card.Group>
-      </div>
+  </div>
     )
   }
 }

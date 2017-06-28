@@ -8,6 +8,7 @@ The reactive components provided are:
 #### Account
 - `AccountIcon` (an identicon image for a given account);
 - `AccountLabel` (a full Semantic UI label for a given account);
+- `AccountCard` (a full semantic UI card to display a given account);
 - `InlineAccount` (a simple display component for an account designed to flow in text);
 - `InlineBalance` (a simple display component for a given accounts balance to flow in text);
 #### Transaction
@@ -27,6 +28,7 @@ The reactive components provided are:
 - `BalanceBond` (an `InputBond`-like component for balances);
 #### Others
 - `Block` (a simple display of a given block with chosen properties);
+- `QrCode` (a component generating a QrCode for a given value (e.g. AccountAddress))
 
 
 ## Installation
