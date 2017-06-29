@@ -6,6 +6,9 @@ import {ReactiveComponent} from 'oo7-react';
 export class DropdownBond extends ReactiveComponent {
 	constructor () {
 		super(['disabled', 'enabled']);
+		this.state = {
+			ok: true,
+		}
 	}
 
 	componentWillMount() {
@@ -15,9 +18,26 @@ export class DropdownBond extends ReactiveComponent {
 	}
 
 	handleAddition (e, { value }) {
-		this.setState({
-			options: [{ text: `${value} - Custom value`, value }, ...this.props.options],
-		})
+		if (this.validateInput(value)) {
+			this.setState({
+				options: [{ text: `${value} - Custom value`, value }, ...this.props.options],
+			})
+		} else {
+			let that = this;
+			setTimeout(() => that.setState({ ok: true }), 1000);
+		}
+	}
+
+	handleInputChange (e, value) {
+		if (this.validateInput(value)) {
+			this.setState({
+				ok: true,
+			});
+		} else {
+			this.setState({
+				ok: false,
+			});
+		}
 	}
 
 	handleChange (e, { value }) {
@@ -29,6 +49,17 @@ export class DropdownBond extends ReactiveComponent {
 				this.props.bond.changed(value);
 			}
 		}
+	}
+
+	validateInput (value) {
+		console.log(this.props.validatorType);
+		if (this.props.validatorType === 'address') {
+			return /^(0x)?([a-fA-F0-9]{40})$/.test(value);	// TODO: Import validator functions from oo7-parity when on npm
+		}
+		if (this.props.validatorType === 'hash') {
+			return /^(0x)?([a-fA-F0-9]{64})$/.test(value);
+		}
+		return true;
 	}
 
 	render () {
@@ -45,6 +76,8 @@ export class DropdownBond extends ReactiveComponent {
 				value={currentValue}
 				onAddItem={this.handleAddition.bind(this)}
 				onChange={this.handleChange.bind(this)}
+				onSearchChange={this.handleInputChange.bind(this)}
+				error={!this.state.ok}
 				style={this.props.style}
 				disabled={this.state.disabled || !this.state.enabled}
 			/>
@@ -57,6 +90,7 @@ DropdownBond.defaultProps = {
 	search: true,
 	selection: true,
 	allowAdditions: true,
+	validatorType: 'string',
 	defaultValue: '',
 	disabled: false,
 	enabled: true,
