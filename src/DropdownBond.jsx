@@ -2,6 +2,7 @@ import React from 'react';
 import {Dropdown} from 'semantic-ui-react';
 import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
+import {AccountIcon} from './';
 
 export class DropdownBond extends ReactiveComponent {
 	constructor () {
@@ -13,12 +14,12 @@ export class DropdownBond extends ReactiveComponent {
 
 	componentWillMount() {
 		super.componentWillMount();
-		this.setState({options: this.props.options});
+		this.setState({options: this.props.options.map(option => ({label:this.makeIcon(option.value), ...option}))});
 		this.handleChange(null, {value: this.props.defaultValue || this.props.options[0].value});
 	}
 
 	handleAddition (e, { value }) {
-		if (this.validateInput(value)) {
+		if (this.validateInput(value, this.props.validatorType)) {
 			this.setState({
 				options: [{ text: `${value} - Custom value`, value }, ...this.props.options],
 			})
@@ -29,7 +30,7 @@ export class DropdownBond extends ReactiveComponent {
 	}
 
 	handleInputChange (e, value) {
-		if (this.validateInput(value)) {
+		if (this.validateInput(value, this.props.validatorType)) {
 			this.setState({
 				ok: true,
 			});
@@ -51,18 +52,26 @@ export class DropdownBond extends ReactiveComponent {
 		}
 	}
 
-	validateInput (value) {
-		console.log(this.props.validatorType);
-		if (this.props.validatorType === 'address') {
-			return /^(0x)?([a-fA-F0-9]{40})$/.test(value);	// TODO: Import validator functions from oo7-parity when on npm
+	makeIcon (address) {
+		return this.validateInput(address, 'address')
+				? <AccountIcon address={address} />
+				: undefined;
+	}
+
+	// TODO: Import validator functions from oo7-parity when on npm
+	validateInput (value, validationType) {
+		if (validationType === 'address') {
+			return /^(0x)?([a-fA-F0-9]{40})$/.test(value);
 		}
-		if (this.props.validatorType === 'hash') {
+		if (validationType === 'hash') {
 			return /^(0x)?([a-fA-F0-9]{64})$/.test(value);
 		}
 		return true;
 	}
 
 	render () {
+		console.log(this.state);
+		console.log(this.state.options);
 		const { currentValue } = this.state;
 
 		return (
@@ -80,6 +89,7 @@ export class DropdownBond extends ReactiveComponent {
 				error={!this.state.ok}
 				style={this.props.style}
 				disabled={this.state.disabled || !this.state.enabled}
+				fluid={this.props.fluid}
 			/>
 		)
 	}
@@ -94,5 +104,6 @@ DropdownBond.defaultProps = {
 	defaultValue: '',
 	disabled: false,
 	enabled: true,
-	options: [{text: 'Unknown', value: ''}]
+	options: [{text: 'Unknown', value: ''}],
+	fluid: false,
 };
