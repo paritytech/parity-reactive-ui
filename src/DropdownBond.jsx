@@ -15,7 +15,13 @@ export class DropdownBond extends ReactiveComponent {
 	componentWillMount() {
 		super.componentWillMount();
 		this.setState({options: this.props.options.map(option => ({label:this.makeIcon(option.value), ...option}))});
-		this.handleChange(null, {value: this.props.defaultValue || this.props.options[0].value});
+
+		let value = this.props.defaultValue || this.props.options[0].value;
+		if (this.props.multiple) {
+			this.handleChange(null, {value: [value]});
+		} else {
+			this.handleChange(null, {value});
+		}
 	}
 
 	handleAddition (e, { value }) {
@@ -70,8 +76,6 @@ export class DropdownBond extends ReactiveComponent {
 	}
 
 	render () {
-		console.log(this.state);
-		console.log(this.state.options);
 		const { currentValue } = this.state;
 
 		return (
@@ -90,6 +94,7 @@ export class DropdownBond extends ReactiveComponent {
 				style={this.props.style}
 				disabled={this.state.disabled || !this.state.enabled}
 				fluid={this.props.fluid}
+				multiple={this.props.multiple}
 			/>
 		)
 	}
@@ -106,4 +111,5 @@ DropdownBond.defaultProps = {
 	enabled: true,
 	options: [{text: 'Unknown', value: ''}],
 	fluid: false,
+	multiple: false,
 };
