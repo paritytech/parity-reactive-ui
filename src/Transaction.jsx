@@ -2,7 +2,7 @@ import React from 'react';
 import { ReactiveComponent, Rspan, Hash } from 'oo7-react';
 import { Card, List, Icon} from 'semantic-ui-react';
 import { formatBlockNumber, formatBalance } from 'oo7-parity';
-import { InlineAccount, InlineBalance } from 'parity-reactive-ui';
+import { InlineAccount, InlineBalance } from './';
 
 // supports:
 // gas: true,
