@@ -10,7 +10,7 @@ const accOptionsBond = bonds.accounts.map(accs => accs.map(v => ({text:v,  value
 
 import styles from './recorder.css';
 
-export class Recorder extends ReactiveComponent {
+export default class Recorder extends ReactiveComponent {
   constructor () {
     super([], {me:bonds.me, accountOptions:accOptionsBond });
 
@@ -27,8 +27,6 @@ export class Recorder extends ReactiveComponent {
   }
 
   render () {
-    console.log(this.state.accountOptions);
-    this.state.accountOptions.log();
     return (
       <Grid celled >
         <Grid.Row centered columns={2}>
@@ -36,7 +34,7 @@ export class Recorder extends ReactiveComponent {
             <List>
               <List.Item>
                 <List.Content floated='right'>
-                  {this.state.accountOptions.isReady() ? <DropdownBond bond={this.from} options={this.state.accountOptions} fluid /> : null} <br />
+                  {this.state.accountOptions ? <DropdownBond bond={this.from} options={this.state.accountOptions} fluid /> : null} <br />
                 </List.Content>
                 <List.Content>
                   From:
@@ -44,7 +42,7 @@ export class Recorder extends ReactiveComponent {
               </List.Item>
               <List.Item>
                 <List.Content floated='right'>
-                  {this.state.accountOptions.isReady() ? <DropdownBond bond={this.to} options={this.state.accountOptions} fluid /> : null} <br />
+                  {this.state.accountOptions ? <DropdownBond bond={this.to} options={this.state.accountOptions} fluid /> : null} <br />
                 </List.Content>
                 <List.Content>
                   To:

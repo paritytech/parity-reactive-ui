@@ -11,7 +11,7 @@ const stateToList = s => Object.keys(s).map((key, i) => ({ key:i, content: <div>
 const propDiff = p => <List items={Object.keys(p).map((key, i) => ({key: i, content: `${key}: ${JSON.stringify(p[key])}`}))} />
 
 
-export class StateDiff extends ReactiveComponent {
+export default class StateDiff extends ReactiveComponent {
   constructor () {
     super(['stateDiff']);
   }

@@ -11,7 +11,7 @@ const txToList = tx => Object.keys(tx).map((key,i) => /^to|from$/.test(key)
                                                           ? ({key:i, children:<InlineBalance value={tx[key]} />})
                                                           :({ key:i, content: `${key}: ${tx[key]}`}));
 
-export class TxTrace extends ReactiveComponent {
+export default class TxTrace extends ReactiveComponent {
   constructor () {
     super(['txTrace']);
   }

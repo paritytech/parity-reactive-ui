@@ -4,7 +4,7 @@ import { ReactiveComponent } from 'oo7-react';
 
 import { Icon, Step, Segment, Grid, Label } from 'semantic-ui-react';
 
-export class VmTrace extends ReactiveComponent {
+export default class VmTrace extends ReactiveComponent {
   constructor () {
     super(['vmTrace']);
     this.steps = [];

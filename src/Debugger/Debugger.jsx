@@ -8,7 +8,7 @@ import { TxTrace, VmTrace, Recorder, StateDiff } from './';
 
 import { List, Segment } from 'semantic-ui-react';
 
-export class Debugger extends ReactiveComponent {
+export default class Debugger extends ReactiveComponent {
   constructor () {
     super();
     this.state = {
