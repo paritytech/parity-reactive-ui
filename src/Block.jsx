@@ -2,7 +2,7 @@ import React from 'react'
 import { Rspan, ReactiveComponent, Hash} from 'oo7-react';
 import { bonds, formatBlockNumber} from 'oo7-parity';
 import { Bond } from 'oo7';
-import { InlineAccount } from 'parity-reactive-ui';
+import { InlineAccount } from './';
 import { Card, List, Icon} from 'semantic-ui-react'
 
 // Reactive Block view

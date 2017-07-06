@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactiveComponent, Rdiv } from 'oo7-react';
-import { BButton } from 'parity-reactive-ui';
+import { BButton } from './';
 
 export class Spoiler extends ReactiveComponent {
   constructor () {
