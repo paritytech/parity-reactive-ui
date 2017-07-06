@@ -23,4 +23,5 @@ export {Transaction} from './Transaction';
 export {Hash} from './Hash';
 export {AccountCard} from './AccountCard';
 export {QrCode} from './QrCode/QrCode';
+export {Debugger} from './Debugger';
 export {Spoiler} from './Spoiler';
