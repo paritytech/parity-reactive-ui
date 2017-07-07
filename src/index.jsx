@@ -25,3 +25,5 @@ export {AccountCard} from './AccountCard';
 export {QrCode} from './QrCode/QrCode';
 export {Debugger} from './Debugger';
 export {Spoiler} from './Spoiler';
+export {TextAreaBond} from './TextAreaBond';
+export {SolidityAreaBond} from './SolidityAreaBond';

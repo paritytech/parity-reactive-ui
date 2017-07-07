@@ -27,13 +27,18 @@ export default class VmTrace extends ReactiveComponent {
 
   render () {
     const id = this.state.currentStep;
-    const opToStep = (op,i) => ({  active:id === i,
+    const opToStep = (op,i) => ({  key: i,
+                                   active:id === i,
                                    completed: (id>=i),
                                    icon:'checkmark',
                                    onClick:(e, { active }) => !active ? this.setState({currentStep: i}) : null,
-                                   title:'OpCode',
+                                   title:`PC ${op.pc}`,
                                    ref: v => this.steps[i] = v,
-                                   description: `${op.pc} PUSH ${op.ex.push.toString(16)}`});
+                                   description: <div>
+                                     <div>{`Cost: ${op.cost}`}</div>
+                                     <div>{`Sub: ${JSON.stringify(op.sub)}`}</div>
+                                     <div>{`Ex: ${JSON.stringify(op.ex)}`}</div>
+                                   </div>});
 
     return (
       <Segment padded>
