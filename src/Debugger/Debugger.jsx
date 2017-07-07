@@ -4,7 +4,7 @@ import { bonds } from 'oo7-parity';
 import { Bond } from 'oo7';
 import { Spoiler } from '../Spoiler';
 
-import { TxTrace, VmTrace, Recorder, StateDiff } from './';
+import { TxTrace, VmTrace, Recorder, StateDiff, Editor } from './';
 
 import { List, Segment } from 'semantic-ui-react';
 
@@ -14,18 +14,31 @@ export default class Debugger extends ReactiveComponent {
     this.state = {
       txBond: new Bond().subscriptable(),
     }
-    this.state.txBond.tie(_ => this.setState({txObj: _}));
+    this.state.txBond.tie(_ => {
+      console.log('setState');
+      this.setState({txObj: _});
+    });
+
   }
 
   // Test purpose
-  componentWillMount () {
+  componentWillReceiveProps () {
+    console.log('receiveProps');
+    super.componentWillReceiveProps();
     this.state.txBond.changed(this.props.txObj);
   }
 
   render () {
+    console.log('TXOBJ');
+    console.log(this.props.txObj);
     return (
       <div>
-        <Spoiler content='Recorder' active>
+        <Spoiler content='Editor' active>
+          <Segment>
+            <Editor trace={this.state.txBond} />
+          </Segment>
+        </Spoiler>
+        <Spoiler content='Recorder'>
           <Segment padded>
             <Recorder trace={this.state.txBond}/>
           </Segment>
