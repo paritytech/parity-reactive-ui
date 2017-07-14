@@ -27,3 +27,4 @@ export {Debugger} from './Debugger';
 export {Spoiler} from './Spoiler';
 export {TextAreaBond} from './TextAreaBond';
 export {SolidityAreaBond} from './SolidityAreaBond';
+export {Recognizer} from './Recognizer';

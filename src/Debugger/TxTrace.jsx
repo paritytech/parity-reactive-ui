@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactiveComponent } from 'oo7-react';
-import { InlineAccount, InlineBalance } from 'parity-reactive-ui';
+import { InlineAccount, InlineBalance } from '../';
 
 import { Segment, List } from 'semantic-ui-react';
 
