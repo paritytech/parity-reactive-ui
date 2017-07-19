@@ -1,5 +1,4 @@
 import React from 'react';
-import {Api} from '@parity/parity.js';
 import {bonds} from 'oo7-parity';
 import {ReactiveComponent, Rimg} from 'oo7-react';
 import {isNullData} from 'oo7-parity';
@@ -41,7 +40,7 @@ export class AccountLabel extends ReactiveComponent {
 				Null
 			</Label>);
 		} else {
-			let a = Api.util.toChecksumAddress(this.state.address);
+			let a = parity.api.util.toChecksumAddress(this.state.address);
 			return (<AccountLabelAux
 				address={a}
 				names={bonds.namesOf(a)}
