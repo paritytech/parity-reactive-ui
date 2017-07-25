@@ -13,9 +13,27 @@ export class InputBond extends React.Component {
 			extra: {},
 			onlyDefault: true
 		};
+		this.editLock = false;
+	}
+
+	componentDidMount () {
+		if (this.props.bond && this.props.reversible) {
+			this.tieKey = this.props.bond.tie(v => {
+				this.handleEdit(v);
+			});
+		}
+	}
+
+	componentWillUnmount () {
+		if (this.props.bond && this.props.reversible && this.tieKey) {
+			this.props.bond.untie(this.tieKey);
+		}
 	}
 
 	handleEdit(v, onlyDefault = false) {
+		if (this.editLock)
+			return;
+
 		this.resetDefaultValueUpdate();
 
 		let f = function (b) {
@@ -45,7 +63,9 @@ export class InputBond extends React.Component {
 				if (b === null) {
 					this.props.bond.reset();
 				} else {
+					this.editLock = true;
 					this.props.bond.changed(b && b.hasOwnProperty('external') ? b.external : b && b.hasOwnProperty('internal') ? b.internal : this.state.internal);
+					this.editLock = false;
 				}
 			}
 		}.bind(this);
@@ -110,5 +130,6 @@ export class InputBond extends React.Component {
 }
 InputBond.defaultProps = {
 	placeholder: '',
-	defaultValue: ''
+	defaultValue: '',
+	reversible: false
 };

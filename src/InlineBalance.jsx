@@ -8,12 +8,17 @@ export class InlineBalance extends ReactiveComponent {
 	constructor () {
 		super(['value']);
 		this.state = {
-			precise: false,
+			precise: null,
 			denom: null
 		};
 	}
 
-	toggleViewAll () {
+	precise () {
+		let s = this.state;
+		return s.precise === null ? this.props.precise : s.precise;
+	}
+
+	togglePrecise () {
 		let s = this.state;
 		s.precise = !s.precise;
 		this.setState(s);
@@ -21,7 +26,7 @@ export class InlineBalance extends ReactiveComponent {
 
 	denom () {
 		let s = this.state;
-		return s.denom === null ? usableDenoms.indexOf(this.props.defaultDenom) : s.denom;
+		return s.denom === null ? usableDenoms.indexOf(this.props.units) : s.denom;
 	}
 
 	cycleDenom () {
@@ -45,7 +50,7 @@ export class InlineBalance extends ReactiveComponent {
 		}
 		let same = true;
 		let units = s.base;
-		if (!this.state.precise) {
+		if (!this.precise()) {
 			units = units.mul(1000).round().div(1000);
 			same = units.eq(s.base);
 		}
@@ -77,7 +82,7 @@ export class InlineBalance extends ReactiveComponent {
 					fontWeight: 'bold',
 					cursor: 'pointer'
 				}}
-					onClick={() => this.toggleViewAll()}
+					onClick={() => this.props.inert ? null : this.togglePrecise()}
 				>
 					{isNeg ? '-' : this.props.forceSign ? '+' : ''}
 					{units}
@@ -94,7 +99,7 @@ export class InlineBalance extends ReactiveComponent {
 					backgroundColor: back,
 					cursor: 'pointer'
 				}}
-					onClick={() => this.cycleDenom()}
+					onClick={() => this.props.inert ? null : this.cycleDenom()}
 				>
 					<span style={{
 						borderRadius: '0.2em',
