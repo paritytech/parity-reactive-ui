@@ -118,6 +118,7 @@ export class InputBond extends React.Component {
 			type='text'
 			value={this.state.display == null ? this.props.defaultValue : this.state.display}
 			error={!this.state.ok}
+			onKeyDown={this.props.onKeyDown}
 			onChange={(e, v) => this.handleEdit(v.value)}
 			onBlur={() => this.handleBlur()}
 			action={this.makeAction ? this.makeAction() : this.props.action}
