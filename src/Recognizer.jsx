@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Bond} from 'oo7';
 import { ReactiveComponent } from 'oo7-react';
 import { formatToExponential } from 'oo7-parity';
 import { InlineBalance, InlineAccount, Hash } from './';
@@ -51,14 +53,6 @@ export class Recognizer extends ReactiveComponent {
   }
 
   static Group = getRecognizerGroup;
-}
-
-Recognizer.defaultProps = {
-  color: 'olive',
-  detailedView: false,
-  iconButton: false,
-  button: false,
-  hints: [],
 }
 
 function getRecognizerGroup (props) {
@@ -126,4 +120,24 @@ export function recognize (v, hints) {
     // return `${/0x/.test(v) ? parseInt(v.substr(2,4),16) : v.substr(0,4)} e^${/0x/.test(v) ? v.length-6 : v.length-4}`
   }
   return v; // `Could not interpret the value: ${v} !` ~> String
+}
+
+
+Recognizer.defaultProps = {
+  color: 'olive',
+  detailedView: false,
+  iconButton: false,
+  button: false,
+  hints: [],
+}
+
+Recognizer.propTypes = {
+  value: PropTypes.instanceof(Bond) || PropTypes.string,
+  detailedView: PropTypes.bool,
+  basic: PropTypes.bool,
+  size: PropTypes.string,
+  button: PropTypes.bool,
+  color: PropTypes.string,
+  hints: PropTypes.array,
+  iconButton: PropTypes.bool
 }

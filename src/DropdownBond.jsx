@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Dropdown} from 'semantic-ui-react';
 import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
@@ -113,3 +114,20 @@ DropdownBond.defaultProps = {
 	fluid: false,
 	multiple: false,
 };
+
+DropdownBond.propTypes = {
+	options: PropTypes.instanceof(Bond) || PropTypes.array,
+	disabled: PropTypes.instanceof(Bond) || PropTypes.bool,
+	enabled: PropTypes.instanceof(Bond) || PropTypes.bool,
+	placeholder: PropTypes.string,
+	additionLabel: PropTypes.node,
+	search: PropTypes.bool,
+	selection: PropTypes.bool,
+	allowAdditions: PropTypes.bool,
+	validatorType: PropTypes.string,
+	defaultValue: PropTypes.string,
+	disabled: PropTypes.bool,
+	enabled: PropTypes.bool,
+	fluid: PropTypes.bool,
+	multiple: PropTypes.bool,
+}

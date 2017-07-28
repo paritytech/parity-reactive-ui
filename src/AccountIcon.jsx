@@ -1,5 +1,7 @@
-import blockies from 'blockies';
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Bond} from 'oo7';
+import blockies from 'blockies';
 import {Image} from 'semantic-ui-react';
 import {ReactiveComponent} from 'oo7-react';
 
@@ -40,4 +42,10 @@ AccountIcon.defaultProps = {
 	undefClassName: '_accountIcon _undefined',
 	undefContent: '',
 	id: null
+}
+
+AccountIcon.propTypes = {
+	address: PropTypes.instanceof(Bond) || PropTypes.string,
+	className: PropTypes.instanceof(Bond) || PropTypes.string,
+	style: PropTypes.instanceof(Bond) || PropTypes.object
 }

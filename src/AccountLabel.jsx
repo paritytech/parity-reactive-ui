@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Bond} from 'oo7';
 import {bonds} from 'oo7-parity';
 import {ReactiveComponent, Rimg} from 'oo7-react';
 import {isNullData} from 'oo7-parity';
@@ -108,4 +110,9 @@ class AccountLabelAux extends ReactiveComponent {
 		    </Label>
 		);
 	}
+}
+
+AccountLabel.propTypes = {
+	address: PropTypes.instanceof(Bond) || PropTypes.string,
+	noicon: PropTypes.bool
 }

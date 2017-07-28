@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Bond} from 'oo7';
 import {BigNumber} from 'bignumber.js';
 import {ReactiveComponent} from 'oo7-react';
 import {splitValue, denominations} from 'oo7-parity';
@@ -107,4 +109,9 @@ export class InlineBalance extends ReactiveComponent {
 		    </span>
 		);
 	}
+}
+
+InlineBalance.propTypes = {
+	value: PropTypes.instanceof(Bond) || PropTypes.number || PropTypes.string,
+	forceSign: PropTypes.bool
 }

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
 import {Label, Icon} from 'semantic-ui-react';
 
@@ -37,3 +39,12 @@ SigningProgressLabel.defaultProps = {
 	showIcon: true,
 	basic: null
 };
+
+SigningProgressLabel.propTypes = {
+	value: PropTypes.instanceof(Bond) || PropTypes.object,
+	pointing: PropTypes.bool,
+	showIcon: PropTypes.bool,
+	color: PropTypes.string,
+	basic: PropTypes.bool,
+	showContent: PropTypes.bool,
+}

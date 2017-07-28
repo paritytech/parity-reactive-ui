@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Input} from 'semantic-ui-react';
 import {Bond} from 'oo7';
 
@@ -112,3 +113,25 @@ InputBond.defaultProps = {
 	placeholder: '',
 	defaultValue: ''
 };
+
+InputBond.propTypes = {
+	bond: PropTypes.instanceof(Bond),
+	validatior: PropTypes.function,
+	className: PropTypes.string,
+	style: PropTypes.string,
+	name: PropTypes.string,
+	children: PropTypes.node,
+	disabled: PropTypes.bool,
+	fluid: PropTypes.bool,
+	placeholder: PropTypes.string,
+	inverted: PropTypes.bool,
+	loading: PropTypes.loading,
+	size: PropTypes.string,
+	transparent: PropTypes.bool,
+	defaultValue: PropTypes.string,
+	action: PropTypes.any,
+	label: PropTypes.node,
+	labelPosition: PropTypes.string,
+	icon: PropTypes.node,
+	iconPosition: PropTypes.string
+}

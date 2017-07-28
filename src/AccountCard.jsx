@@ -9,7 +9,7 @@ import { Card, List, Divider, Container, Label } from 'semantic-ui-react';
 
 export class AccountCard extends ReactiveComponent {
   constructor () {
-    super(['account', 'children', 'className', 'disabled', 'hideName', 'isContract']);
+    super(['account', 'className', 'disabled', 'hideName']);
   }
 
   componentWillMount () {
@@ -19,7 +19,7 @@ export class AccountCard extends ReactiveComponent {
   }
 
   render () {
-    const { account, children, className, disabled, hideName, isContract } = this.state;
+    const { account, className, disabled, hideName } = this.state;
 
     if (!account) {
       return null;
@@ -79,18 +79,14 @@ export class AccountCard extends ReactiveComponent {
 }
 
 AccountCard.propTypes = {
-  account: PropTypes.object,
-  children: PropTypes.node,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  hideName: PropTypes.bool,
-  isContract: PropTypes.bool
+  account: PropTypes.instanceof(Bond) || PropTypes.object,
+  className: PropTypes.instanceof(Bond) || PropTypes.string,
+  disabled: PropTypes.instanceof(Bond) || PropTypes.bool,
+  hideName: PropTypes.instanceof(Bond) || PropTypes.bool,
 };
 
 AccountCard.defaultProps = {
-  children: null,
   className: '',
   hideName: false,
-  isContract: false,
   disabled: false
 };

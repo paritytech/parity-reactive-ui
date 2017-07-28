@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {TextArea} from 'semantic-ui-react';
 import {Bond} from 'oo7';
 
@@ -71,6 +72,16 @@ export class TextAreaBond extends React.Component {
 		/>);
 	}
 }
+
 TextAreaBond.defaultProps = {
 	defaultValue:'',
 };
+
+TextAreaBond.propTypes = {
+	validator: PropTypes.function,
+	style: PropTypes.string,
+	defaultValue: PropTypes.string,
+	autoHeight: PropTypes.bool,
+	rows: PropTypes.string || PropTypes.number,
+	bond: PropTypes.instanceof(Bond),
+}

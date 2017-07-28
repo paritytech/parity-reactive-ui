@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {ReactiveComponent} from 'oo7-react';
 import {bonds} from 'oo7-parity';
 import {Button} from 'semantic-ui-react';
@@ -42,6 +43,19 @@ SigningButton.defaultProps = {
 	statusIcon: true,
 	colorPolicy: 'button'
 };
+
+SigningButton.PropTypes = {
+	icon: PropTypes.node,
+	primary: PropTypes.bool,
+	secondary: PropTypes.bool,
+	content: PropTypes.node,
+	color: PropTypes.string,
+	onSigned: PropTypes.function,
+	statusText: PropTypes.bool,
+	statusIcon: PropTypes.bool,
+	colorPolicy: PropTypes.string,
+	disabled: PropTypes.bool,
+}
 
 class SigningButtonAux extends ReactiveComponent {
 	constructor() {

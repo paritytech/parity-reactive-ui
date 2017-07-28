@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
 import {bonds} from 'oo7-parity';
 import {Button} from 'semantic-ui-react';
@@ -83,6 +85,31 @@ TransactButton.defaultProps = {
 	order: true,
 	causal: true
 };
+
+TransactButton.propTypes = {
+	tx: PropTypes.instanceof(Bond),
+	content: PropTypes.instanceof(Bond) || PropTypes.node,
+	disabled: PropTypes.instanceof(Bond) || PropTypes.bool,
+	enabled: PropTypes.instanceof(Bond) || PropTypes.bool,
+	positive: PropTypes.instanceof(Bond) || PropTypes.bool,
+	negative: PropTypes.instanceof(Bond) || PropTypes.bool,
+	active: PropTypes.instanceof(Bond) || PropTypes.bool,
+	icon: PropTypes.any,
+	size: PropTypes.string,
+	floated: PropTypes.string,
+	compact: PropTypes.bool,
+	circular: PropTypes.bool,
+	basic: PropTypes.bool,
+	attached: PropTypes.string,
+	fluid: PropTypes.bool,
+	primary: PropTypes.bool,
+	secondary: PropTypes.bool,
+	color: PropTypes.string,
+	statusText: PropTypes.bool,
+	statusIcon: PropTypes.bool,
+	colorPolicy: PropTypes.string,
+}
+
 
 class TransactButtonAux extends ReactiveComponent {
 	constructor() {

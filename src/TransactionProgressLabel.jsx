@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
 import {Label, Icon} from 'semantic-ui-react';
 
@@ -42,6 +44,7 @@ export class TransactionProgressLabel extends ReactiveComponent {
 		</Label>);
 	}
 }
+
 TransactionProgressLabel.defaultProps = {
 	showContent: true,
 	showIcon: true,
@@ -49,3 +52,14 @@ TransactionProgressLabel.defaultProps = {
 	current: 0,
 	total: 0
 };
+
+TransactionProgressLabel.propTypes = {
+	value: PropTypes.instanceof(Bond) || PropTypes.object,
+	pointing: PropTypes.bool,
+	color: PropTypes.string,
+	showIcon: PropTypes.bool,
+	basic: PropTypes.bool,
+	showContent: PropTypes.bool,
+	total: PropTypes.number,
+	current: PropTypes.number
+}

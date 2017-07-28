@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Rspan, ReactiveComponent, Hash} from 'oo7-react';
 import { bonds, formatBlockNumber} from 'oo7-parity';
 import { Bond } from 'oo7';
@@ -162,3 +163,22 @@ Block.defaultProps = {
   blockNumber: true,
   timestamp: true,
 };
+
+Block.propTypes = {
+  block: PropTypes.instanceof(Bond) || PropTypes.object,
+  extraData: PropTypes.bool,
+  gasUsed: PropTypes.bool,
+  gasLimit: PropTypes.bool,
+  size: PropTypes.bool,
+  totalDifficulty: PropTypes.bool,
+  difficulty: PropTypes.bool,
+  minerRegistry: PropTypes.bool,
+  author: PropTypes.bool,
+  miner: PropTypes.bool,
+  sha3Uncles: PropTypes.bool,
+  parentHash: PropTypes.bool,
+  hash: PropTypes.bool,
+  transactions: PropTypes.bool,
+  timestamp: PropTypes.bool,
+  blockNumber: PropTypes.bool
+}

@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Bond} from 'oo7';
 import {bonds, isNullData, toChecksumAddress} from 'oo7-parity';
 import {ReactiveComponent, Rimg} from 'oo7-react';
 import {Icon} from 'semantic-ui-react';
@@ -74,4 +76,8 @@ export class InlineAccountAux extends ReactiveComponent {
 		    </span>
 		);
 	}
+}
+
+InlineAccount.propTypes = {
+	address: PropTypes.instanceof(Bond) || PropTypes.string
 }
