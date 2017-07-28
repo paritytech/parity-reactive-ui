@@ -22,7 +22,7 @@ export default class Debugger extends ReactiveComponent {
     });
     // stack, memory and storage details
     this.vmTrace = new TransformBond(x => processVMTrace(x.vmTrace), [this.props.txBond], []).subscriptable(2);
-    this.currentStep = new TransformBond((i, vmTrace) => ({id:i, op:vmTrace.ops[i], info: Instructions[vmTrace.code[vmTrace.ops[i].pc]]}), [this.currentIndex, this.vmTrace], []);
+    this.currentStep = new TransformBond((i, vmTrace) => vmTrace ? ({id:i, op:vmTrace.ops[i], info: Instructions[vmTrace.code[vmTrace.ops[i].pc]]}) : null, [this.currentIndex, this.vmTrace], []);
   }
 
   render () {
@@ -33,7 +33,7 @@ export default class Debugger extends ReactiveComponent {
           <Spoiler content='Transaction' disabled={!this.state.txBond.trace}>
             <TxTrace txTrace={this.state.txBond.trace} />
           </Spoiler>
-          <Slider currentIndex={this.currentIndex} max={this.vmTrace.ops.length.map(v => v -1)} label='Step'/>
+          {this.vmTrace ? <Slider currentIndex={this.currentIndex} max={this.vmTrace.ops.length.map(v => v -1)} label='Step'/> : null}
           <Spoiler content='Instructions' disabled={!this.state.txBond}>
             <Instruction vmTrace={this.vmTrace} currentIndex={this.currentIndex} />
           </Spoiler>
@@ -78,33 +78,35 @@ function preProcess(code) {
 }
 
 export function processVMTrace(trace) {
-  trace.code = preProcess(trace.code);
-	var c = trace.code;
-	var stack = [];
-	var memory = [];
-	var storage = {};
-	trace.ops = trace.ops.map(function(o) {
-		var i = get_info(c[o.pc]);
-    if (i) {
-      o.pop = stack.splice(-i.args, i.args);
-      o.stack = stack.slice();
-  		if (o.ex !== null) {
-  			o.ex.push.forEach(function(x){ stack.push(x); });
-  			if (o.ex.mem !== null) {
-  				memory = memory.slice();
-  				memory.spliceArray(o.ex.mem.off, o.ex.mem.data.length, o.ex.mem.data);
-  			}
-  			if (o.ex.store !== null) {
-  				storage = Object.assign({}, storage);
-  				storage[o.ex.store.key] = o.ex.store.val;
-  			}
-  		}
-  		o.memory = memory;
-  		o.storage = storage;
-  		return o;
-    } else {
-      return o;
-    }
-	});
+  if (trace) {
+    trace.code = preProcess(trace.code);
+  	var c = trace.code;
+  	var stack = [];
+  	var memory = [];
+  	var storage = {};
+  	trace.ops = trace.ops.map(function(o) {
+  		var i = get_info(c[o.pc]);
+      if (i) {
+        o.pop = stack.splice(-i.args, i.args);
+        o.stack = stack.slice();
+    		if (o.ex !== null) {
+    			o.ex.push.forEach(function(x){ stack.push(x); });
+    			if (o.ex.mem !== null) {
+    				memory = memory.slice();
+    				memory.spliceArray(o.ex.mem.off, o.ex.mem.data.length, o.ex.mem.data);
+    			}
+    			if (o.ex.store !== null) {
+    				storage = Object.assign({}, storage);
+    				storage[o.ex.store.key] = o.ex.store.val;
+    			}
+    		}
+    		o.memory = memory;
+    		o.storage = storage;
+    		return o;
+      } else {
+        return o;
+      }
+  	});
+  }
 	return trace;
 }

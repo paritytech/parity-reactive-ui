@@ -37,10 +37,10 @@ export default class VmTrace extends ReactiveComponent {
         {this.state.currentStep ?
           <Grid padded divided>
             <Grid.Row columns={2}>
-              <Grid.Column width={3}>
+              <Grid.Column>
                 <List relaxed='very' items={stepToDetails(this.state.currentStep, 0)} />
               </Grid.Column>
-              <Grid.Column width={3}>
+              <Grid.Column>
                 <List relaxed='very' items={stepToDetails(this.state.currentStep, 1)} />
               </Grid.Column>
             </Grid.Row>
