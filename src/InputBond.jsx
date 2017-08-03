@@ -99,6 +99,7 @@ export class InputBond extends ReactiveComponent {
 			type='text'
 			value={this.state.display || this.props.defaultValue}
 			error={!this.state.ok}
+			onKeyDown={this.props.onKeyDown}
 			onChange={(e, v) => this.handleEdit(v.value)}
 			onBlur={() => this.handleBlur()}
 			action={this.makeAction ? this.makeAction() : this.props.action}
