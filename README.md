@@ -5,19 +5,33 @@ A small library to provide oo7 (Joint Asynchronous Mapping Expression System)
 `Bond`-based Reactive components for Ethereum and Parity.
 
 The reactive components provided are:
+#### Account
 - `AccountIcon` (an identicon image for a given account);
 - `AccountLabel` (a full Semantic UI label for a given account);
+- `AccountCard` (a full semantic UI card to display a given account);
 - `InlineAccount` (a simple display component for an account designed to flow in text);
+- `InlineBalance` (a simple display component for a given accounts balance to flow in text);
+#### Transaction
 - `SigningButton` (a button which completes a message-signing operation when clicked and displays the progress to the user);
 - `SigningProgressLabel` (a full Semantic UI label for displaying the progress of a signing a message);
 - `TransactButton` (a button which posts a transaction when clicked and displays the progress to the user);
 - `TransactionProgressLabel` (a full Semantic UI label for displaying the progress of a transaction);
-
+- `Transaction` (a simple display of a given transaction with chosen properties);
+#### Input
 - `BButton` (a Semantic UI derived `Button` that accepts Bonds for certain props);
 - `InputBond` (a Semantic UI derived `Input` component that accepts a Bond for its output);
-- `AddressInputBond` (an `InputBond`-like component for addresses);
+- `AddressBond` (an `InputBond`-like component for addresses);
 - `HashBond` (an `InputBond`-like component for 32 byte hashes);
-- `URLBond` (an `InputBond`-like component for URLs).
+- `URLBond` (an `InputBond`-like component for URLs);
+- `MultiInputBond` (an `InputBond`-like component supporting hashes, URLs or string as input type);
+- `DropdownBond` (an expendable Semantic UI dropdown search selection with bond support);
+- `BalanceBond` (an `InputBond`-like component for balances);
+#### Others
+- `Block` (a simple display of a given block with chosen properties);
+- `QrCode` (a component generating a QrCode for a given value (e.g. AccountAddress))
+- `Recognizer` (a component which tries to interpret the given hex-value (decimal, ether value, timestamp address, hash, unkown))
+- `Spoiler` (a component to hide/show child components)
+
 
 ## Installation
 
@@ -45,6 +59,11 @@ The reactive components provided are:
 	  }
   }
 ```
+
+Further examples as a react component can be found [here](https://github.com/paritytech/parity-reactive-ui/blob/showcases/test/manual/example.jsx) .
+![Showcase Components](https://github.com/paritytech/parity-reactive-ui/blob/showcases/showcases/ExampleComponents.png "Showcase Components")
+
+
 
 ## Hacking
 

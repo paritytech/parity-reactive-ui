@@ -1,5 +1,5 @@
 import React from 'react';
-import {Api} from '@parity/parity.js';
+import PropTypes from 'prop-types';
 import {Bond} from 'oo7';
 import {ReactiveComponent, Rimg} from 'oo7-react';
 import {bonds, isNullData} from 'oo7-parity';
@@ -71,3 +71,7 @@ AddressBond.defaultProps = {
 	},
 	defaultValue: ''
 };
+
+AddressBond.propTypes = {
+	labelZIndex: PropTypes.number
+}
