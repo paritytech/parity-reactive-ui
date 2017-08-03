@@ -18,7 +18,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ReactiveComponent } from 'oo7-react';
 import qrcode from 'qrcode-generator/js/qrcode';
-
+import {Bond} from 'oo7';
 
 import { calculateType } from './qrSize';
 
@@ -40,19 +40,23 @@ export class QrCode extends ReactiveComponent {
   }
 
   render () {
-    this.generateCode();
+    const { image, className, value } = this.state;
 
-    const { className } = this.props;
-    const { image } = this.state;
+    if (value) {
+      this.generateCode();
 
-    return (
-      <div
-        className={ [styles.qr, className].join(' ') }
-        dangerouslySetInnerHTML={ {
-          __html: image
-        } }
-      />
-    );
+      return (
+        <div
+          className={ [styles.qr, className].join(' ') }
+          dangerouslySetInnerHTML={ {
+            __html: image
+          } }
+        />
+      );
+    } else {
+      return (<div />)
+    }
+
   }
 
   generateCode () {
@@ -68,10 +72,10 @@ export class QrCode extends ReactiveComponent {
 }
 
 QrCode.propTypes = {
-  className: PropTypes.string,
-  margin: PropTypes.number,
-  size: PropTypes.number,
-  value: PropTypes.string.isRequired
+  className: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+  margin: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.number]),
+  size: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string.isRequired])
 };
 
 QrCode.defaultProps = {

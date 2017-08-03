@@ -29,6 +29,8 @@ The reactive components provided are:
 #### Others
 - `Block` (a simple display of a given block with chosen properties);
 - `QrCode` (a component generating a QrCode for a given value (e.g. AccountAddress))
+- `Recognizer` (a component which tries to interpret the given hex-value (decimal, ether value, timestamp address, hash, unkown))
+- `Spoiler` (a component to hide/show child components)
 
 
 ## Installation

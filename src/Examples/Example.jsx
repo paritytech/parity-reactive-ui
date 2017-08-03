@@ -3,7 +3,7 @@ import { Bond } from 'oo7';
 import { bonds } from 'oo7-parity';
 import { Rspan } from 'oo7-react';
 import { AccountCard, AccountIcon, AccountLabel, AddressBond, BalanceBond, Block, InlineAccount, SigningButton, SigningProgressLabel, TransactButton, TransactionProgressLabel,
- 				 Transaction, BButton, InputBond, HashBond, URLBond, MultiInputBond, DropdownBond, InlineBalance, Hash, Spoiler, Recognizer} from '../';
+ 				 Transaction, BButton, InputBond, HashBond, URLBond, MultiInputBond, DropdownBond, InlineBalance, Hash, Spoiler, Recognizer, QrCode} from '../';
 import { Button, Divider, Card, Table } from 'semantic-ui-react';
 
 
@@ -19,6 +19,7 @@ export class Example extends React.Component {
     this.multi = new Bond();
     this.options = new Bond();
     this.recognize = new Bond();
+    this.qrAddress = new Bond();
 
     // Output
     this.me = bonds.me;
@@ -683,6 +684,30 @@ export class Example extends React.Component {
            <Recognizer value={this.recognize.ready() ? this.recognize : '0x81230efeadfb21312213'} />
          </Card.Content>
        </Card>
+       <Card>
+        <Card.Content>
+          <Card.Header>
+            QrCode
+          </Card.Header>
+          <Card.Meta>
+            A component generating a QrCode for a given value (e.g. AccountAddress)
+          </Card.Meta>
+          <Card.Description>
+            <h1>Props</h1>
+            {renderTable([{name:'className',type:'Bond | String', description:'Additional classes.'},
+                          {name:'margin',type:'Bond | Number', description:'Margin of the QR-Field as int.'},
+                          {name:'size',type:'Bond | Number', description:'Size of the QR-Field as int.'},
+                          {name:'value',type:'Bond | String', description:'String to generate the QR-Code from.'}])}
+        </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+          <h1>Example</h1>
+          <AddressBond fluid
+            bond={this.qrAddress}
+            style={{marginRight:'15px'}} />
+          <QrCode value={this.qrAddress}></QrCode>
+        </Card.Content>
+      </Card>
         </Card.Group>
       </Spoiler>
   </div>
