@@ -87,14 +87,14 @@ TransactButton.defaultProps = {
 };
 
 TransactButton.propTypes = {
-	tx: PropTypes.instanceof(Bond),
-	content: PropTypes.instanceof(Bond) || PropTypes.node,
-	disabled: PropTypes.instanceof(Bond) || PropTypes.bool,
-	enabled: PropTypes.instanceof(Bond) || PropTypes.bool,
-	positive: PropTypes.instanceof(Bond) || PropTypes.bool,
-	negative: PropTypes.instanceof(Bond) || PropTypes.bool,
-	active: PropTypes.instanceof(Bond) || PropTypes.bool,
-	icon: PropTypes.any,
+	tx: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object]),
+	content: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.node]),
+	disabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	enabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	positive: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	negative: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	active: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	icon: PropTypes.node,
 	size: PropTypes.string,
 	floated: PropTypes.string,
 	compact: PropTypes.bool,

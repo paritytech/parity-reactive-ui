@@ -78,10 +78,10 @@ TextAreaBond.defaultProps = {
 };
 
 TextAreaBond.propTypes = {
-	validator: PropTypes.function,
-	style: PropTypes.string,
+	validator: PropTypes.func,
+	style: PropTypes.object,
 	defaultValue: PropTypes.string,
 	autoHeight: PropTypes.bool,
-	rows: PropTypes.string || PropTypes.number,
-	bond: PropTypes.instanceof(Bond),
+	rows: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	bond: PropTypes.instanceOf(Bond),
 }

@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Input} from 'semantic-ui-react';
 import {Bond} from 'oo7';
+import {ReactiveComponent} from 'oo7-react';
 
-export class InputBond extends React.Component {
+export class InputBond extends ReactiveComponent {
 	constructor () {
-		super();
+		super(['style', 'className', 'disabled']);
 		this.state = {
 			display: null,
 			internal: null,
@@ -85,11 +86,10 @@ export class InputBond extends React.Component {
 			this.lastDefaultValueUpdate = window.setTimeout(() => { this.handleEdit(this.props.defaultValue, true); }, 0);
 		}
 		return (<Input
-			className={this.props.className}
-			style={this.props.style}
-			name={this.props.name}
+			className={this.state.className}
+			style={this.state.style}
 			children={this.props.children}
-			disabled={this.props.disabled}
+			disabled={this.state.disabled}
 			fluid={this.props.fluid}
 			placeholder={this.props.placeholder}
 			inverted={this.props.inverted}
@@ -115,17 +115,16 @@ InputBond.defaultProps = {
 };
 
 InputBond.propTypes = {
-	bond: PropTypes.instanceof(Bond),
-	validatior: PropTypes.function,
-	className: PropTypes.string,
-	style: PropTypes.string,
-	name: PropTypes.string,
+	bond: PropTypes.instanceOf(Bond),
+	validator: PropTypes.func,
+	className: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Bond)]),
+	style: PropTypes.oneOfType([PropTypes.object, PropTypes.instanceOf(Bond)]),
 	children: PropTypes.node,
-	disabled: PropTypes.bool,
+	disabled: PropTypes.oneOfType([PropTypes.bool, PropTypes.instanceOf(Bond)]),
 	fluid: PropTypes.bool,
 	placeholder: PropTypes.string,
 	inverted: PropTypes.bool,
-	loading: PropTypes.loading,
+	loading: PropTypes.func,
 	size: PropTypes.string,
 	transparent: PropTypes.bool,
 	defaultValue: PropTypes.string,

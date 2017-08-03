@@ -116,18 +116,16 @@ DropdownBond.defaultProps = {
 };
 
 DropdownBond.propTypes = {
-	options: PropTypes.instanceof(Bond) || PropTypes.array,
-	disabled: PropTypes.instanceof(Bond) || PropTypes.bool,
-	enabled: PropTypes.instanceof(Bond) || PropTypes.bool,
+	options: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.array]),
+	disabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	enabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
 	placeholder: PropTypes.string,
-	additionLabel: PropTypes.node,
-	search: PropTypes.bool,
+	additionLabel: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+	search: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
 	selection: PropTypes.bool,
 	allowAdditions: PropTypes.bool,
 	validatorType: PropTypes.string,
 	defaultValue: PropTypes.string,
-	disabled: PropTypes.bool,
-	enabled: PropTypes.bool,
 	fluid: PropTypes.bool,
 	multiple: PropTypes.bool,
 }

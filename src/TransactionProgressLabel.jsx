@@ -54,7 +54,7 @@ TransactionProgressLabel.defaultProps = {
 };
 
 TransactionProgressLabel.propTypes = {
-	value: PropTypes.instanceof(Bond) || PropTypes.object,
+	value: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object]),
 	pointing: PropTypes.bool,
 	color: PropTypes.string,
 	showIcon: PropTypes.bool,

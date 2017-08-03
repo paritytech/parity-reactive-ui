@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ReactiveComponent, Rspan } from 'oo7-react';
 import { AccountIcon, Hash, InlineBalance, QrCode } from './';
 import { bonds } from 'oo7-parity';
+import { Bond } from 'oo7';
 
 import { Card, List, Divider, Container, Label } from 'semantic-ui-react';
 
@@ -79,14 +80,13 @@ export class AccountCard extends ReactiveComponent {
 }
 
 AccountCard.propTypes = {
-  account: PropTypes.instanceof(Bond) || PropTypes.object,
-  className: PropTypes.instanceof(Bond) || PropTypes.string,
-  disabled: PropTypes.instanceof(Bond) || PropTypes.bool,
-  hideName: PropTypes.instanceof(Bond) || PropTypes.bool,
+  account: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object]),
+  className: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+  disabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+  hideName: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool])
 };
 
 AccountCard.defaultProps = {
-  className: '',
   hideName: false,
   disabled: false
 };

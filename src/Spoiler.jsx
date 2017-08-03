@@ -22,9 +22,9 @@ Spoiler.defaultProps = {
 }
 
 Spoiler.propTypes = {
-  active: PropTypes.bool || PropTypes.instanceof(Bond),
-  children: PropTypes.node || Proptypes.instanceof(Bond),
-  content: PropTypes.node,
-  label: PropTypes.node,
+  active: PropTypes.oneOfType([PropTypes.bool, PropTypes.instanceOf(Bond)]),
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.instanceOf(Bond)]),
+  content: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+  label: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   disabled: PropTypes.bool
 }

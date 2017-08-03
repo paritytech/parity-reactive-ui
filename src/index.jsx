@@ -28,3 +28,4 @@ export {Spoiler} from './Spoiler';
 export {TextAreaBond} from './TextAreaBond';
 export {SolidityAreaBond} from './SolidityAreaBond';
 export {Recognizer} from './Recognizer';
+export {Example} from './Examples';

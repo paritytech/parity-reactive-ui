@@ -80,8 +80,8 @@ class CopyIcon extends React.Component {
 }
 
 Hash.propTypes = {
-  name: PropTypes.string
-  value: PropTypes.instanceof(Bond) || PropTypes.string,
-  className: PropTypes.instanceof(Bond) || PropTypes.string,
-  style: PropTypes.instanceof(Bond) || PropTypes.string
+  name: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+  className: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+  style: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object])
 }

@@ -228,7 +228,7 @@ Transaction.defaultProps = {
 };
 
 Transaction.propTypes = {
-  transaction: PropTypes.instanceof(Bond) || PropTypes.object,
+  transaction: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object]),
   transactionIndex: PropTypes.bool,
   raw: PropTypes.bool,
   signature: PropTypes.bool,

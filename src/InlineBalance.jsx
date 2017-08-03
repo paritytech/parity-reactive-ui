@@ -112,6 +112,6 @@ export class InlineBalance extends ReactiveComponent {
 }
 
 InlineBalance.propTypes = {
-	value: PropTypes.instanceof(Bond) || PropTypes.number || PropTypes.string,
+	value: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.number, PropTypes.string, PropTypes.object]),
 	forceSign: PropTypes.bool
 }

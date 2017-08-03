@@ -165,7 +165,7 @@ Block.defaultProps = {
 };
 
 Block.propTypes = {
-  block: PropTypes.instanceof(Bond) || PropTypes.object,
+  block: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object]),
   extraData: PropTypes.bool,
   gasUsed: PropTypes.bool,
   gasLimit: PropTypes.bool,

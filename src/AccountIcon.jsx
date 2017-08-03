@@ -45,7 +45,7 @@ AccountIcon.defaultProps = {
 }
 
 AccountIcon.propTypes = {
-	address: PropTypes.instanceof(Bond) || PropTypes.string,
-	className: PropTypes.instanceof(Bond) || PropTypes.string,
-	style: PropTypes.instanceof(Bond) || PropTypes.object
+	address: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+	className: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+	style: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object])
 }

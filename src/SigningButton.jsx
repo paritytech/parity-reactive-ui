@@ -44,19 +44,6 @@ SigningButton.defaultProps = {
 	colorPolicy: 'button'
 };
 
-SigningButton.PropTypes = {
-	icon: PropTypes.node,
-	primary: PropTypes.bool,
-	secondary: PropTypes.bool,
-	content: PropTypes.node,
-	color: PropTypes.string,
-	onSigned: PropTypes.function,
-	statusText: PropTypes.bool,
-	statusIcon: PropTypes.bool,
-	colorPolicy: PropTypes.string,
-	disabled: PropTypes.bool,
-}
-
 class SigningButtonAux extends ReactiveComponent {
 	constructor() {
 		super(['status']);
@@ -84,4 +71,18 @@ class SigningButtonAux extends ReactiveComponent {
 			disabled={this.props.disabled || !clickable}
 		/>);
 	}
+}
+
+
+SigningButton.PropTypes = {
+	icon: PropTypes.node,
+	primary: PropTypes.bool,
+	secondary: PropTypes.bool,
+	content: PropTypes.node,
+	color: PropTypes.string,
+	onSigned: PropTypes.func,
+	statusText: PropTypes.bool,
+	statusIcon: PropTypes.bool,
+	colorPolicy: PropTypes.string,
+	disabled: PropTypes.bool,
 }

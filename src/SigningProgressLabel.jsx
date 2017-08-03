@@ -41,7 +41,7 @@ SigningProgressLabel.defaultProps = {
 };
 
 SigningProgressLabel.propTypes = {
-	value: PropTypes.instanceof(Bond) || PropTypes.object,
+	value: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object]),
 	pointing: PropTypes.bool,
 	showIcon: PropTypes.bool,
 	color: PropTypes.string,

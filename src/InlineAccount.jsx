@@ -79,5 +79,5 @@ export class InlineAccountAux extends ReactiveComponent {
 }
 
 InlineAccount.propTypes = {
-	address: PropTypes.instanceof(Bond) || PropTypes.string
+	address: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string])
 }

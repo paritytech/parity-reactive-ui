@@ -40,11 +40,11 @@ MultiInputBond.defaultProps = {
 };
 
 MultiInputBond.propTypes = {
-	type: PropTypes.instanceof(Bond) || PropTypes.string,
-	defaultValue: PropTypes.instanceof(Bond) || PropTypes.string,
-	disabled: PropTypes.instanceof(Bond) || PropTypes.bool,
-	enabled: PropTypes.instanceof(Bond) || PropTypes.bool,
-	bond: PropTypes.instanceof(Bond) || PropTypes.any,
+	type: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+	defaultValue: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+	disabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	enabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	bond: PropTypes.instanceOf(Bond),
 	action: PropTypes.any,
 	placeholder: PropTypes.string
 }

@@ -132,7 +132,7 @@ Recognizer.defaultProps = {
 }
 
 Recognizer.propTypes = {
-  value: PropTypes.instanceof(Bond) || PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
   detailedView: PropTypes.bool,
   basic: PropTypes.bool,
   size: PropTypes.string,
