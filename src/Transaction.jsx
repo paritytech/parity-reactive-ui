@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Bond} from 'oo7';
 import { ReactiveComponent, Rspan, Hash } from 'oo7-react';
 import { Card, List, Icon} from 'semantic-ui-react';
 import { formatBlockNumber, formatBalance } from 'oo7-parity';
@@ -224,3 +226,24 @@ Transaction.defaultProps = {
   to: true,
   ether: true,
 };
+
+Transaction.propTypes = {
+  transaction: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object]),
+  transactionIndex: PropTypes.bool,
+  raw: PropTypes.bool,
+  signature: PropTypes.bool,
+  publicKey: PropTypes.bool,
+  nonce: PropTypes.bool,
+  networkId: PropTypes.bool,
+  input: PropTypes.bool,
+  gasPrice: PropTypes.bool,
+  gas: PropTypes.bool,
+  creates: PropTypes.bool,
+  condition: PropTypes.bool,
+  ether: PropTypes.bool,
+  to: PropTypes.bool,
+  from: PropTypes.bool,
+  blockNumber: PropTypes.bool,
+  txHash: PropTypes.bool,
+  blockHash: PropTypes.bool
+}

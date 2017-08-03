@@ -3,23 +3,24 @@ import PropTypes from 'prop-types';
 import { ReactiveComponent, Rspan } from 'oo7-react';
 import { AccountIcon, Hash, InlineBalance, QrCode } from './';
 import { bonds } from 'oo7-parity';
+import { Bond } from 'oo7';
 
 import { Card, List, Divider, Container, Label } from 'semantic-ui-react';
 
 
 export class AccountCard extends ReactiveComponent {
   constructor () {
-    super(['account', 'children', 'className', 'disabled', 'hideName', 'isContract']);
+    super(['account', 'className', 'disabled', 'hideName']);
   }
 
   componentWillMount () {
     super.componentWillMount();
     this.balance = bonds.balance(this.props.account.address);
-    this.tnxCount = bonds.nonce(this.props.account.address);
+    this.txCount = bonds.nonce(this.props.account.address);
   }
 
   render () {
-    const { account, children, className, disabled, hideName, isContract } = this.state;
+    const { account, className, disabled, hideName } = this.state;
 
     if (!account) {
       return null;
@@ -29,7 +30,7 @@ export class AccountCard extends ReactiveComponent {
     const meta = account.meta || {};
 
     return (
-          <Card fluid className={className}>
+          <Card fluid className={className} color={disabled ? 'red' : null} link>
             <Card.Content>
               <Card.Description>
                 <List divided verticalAlign='middle'>
@@ -52,7 +53,7 @@ export class AccountCard extends ReactiveComponent {
                         </div>
                     </List.Content>
                     <List.Content>
-                      <Rspan>{this.tnxCount}</Rspan> outgoing transactions <br />
+                      <Rspan>{this.txCount.map(v => v.toString())}</Rspan> outgoing transactions <br />
                     </List.Content>
                   </List.Item>
                 </List>
@@ -65,9 +66,9 @@ export class AccountCard extends ReactiveComponent {
                     <InlineBalance value={this.balance} />
                   </List.Content>
                   <List.Content>
-                    {meta.tags.map((t,i) => {
+                    {meta.tags ? meta.tags.map((t,i) => {
                       return <Label key={i}>{t}</Label>
-                    })}
+                    }) : null}
                   </List.Content>
                 </List.Item>
               </List>
@@ -79,18 +80,13 @@ export class AccountCard extends ReactiveComponent {
 }
 
 AccountCard.propTypes = {
-  account: PropTypes.object,
-  children: PropTypes.node,
-  className: PropTypes.string,
-  disabled: PropTypes.bool,
-  hideName: PropTypes.bool,
-  isContract: PropTypes.bool
+  account: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object]),
+  className: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+  disabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+  hideName: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool])
 };
 
 AccountCard.defaultProps = {
-  children: null,
-  className: '',
   hideName: false,
-  isContract: false,
   disabled: false
 };

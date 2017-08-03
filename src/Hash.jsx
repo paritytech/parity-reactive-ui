@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import copyToClipboard from 'copy-to-clipboard';
 import { ReactiveComponent } from 'oo7-react';
+import { Bond } from 'oo7';
 import { Icon, Popup } from 'semantic-ui-react';
 
 export class Hash extends ReactiveComponent {
@@ -75,4 +77,11 @@ class CopyIcon extends React.Component {
       />
     )
   }
+}
+
+Hash.propTypes = {
+  name: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+  className: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+  style: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object])
 }

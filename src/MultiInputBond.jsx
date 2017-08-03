@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
 import {AddressBond} from './AddressBond';
 import {HashBond} from './HashBond';
@@ -36,3 +38,13 @@ MultiInputBond.defaultProps = {
 	disabled: false,
 	enabled: true
 };
+
+MultiInputBond.propTypes = {
+	type: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+	defaultValue: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.string]),
+	disabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	enabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	bond: PropTypes.instanceOf(Bond),
+	action: PropTypes.any,
+	placeholder: PropTypes.string
+}
