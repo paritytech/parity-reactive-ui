@@ -32,7 +32,7 @@ export class AddressBond extends InputBond {
 			zIndex: this.props.labelZIndex || 10
 		};
 		return (
-			<div>
+			<span>
 				{InputBond.prototype.render.call(this)}
 				<div>
 					{this.state.ok
@@ -41,7 +41,7 @@ export class AddressBond extends InputBond {
 							? (<Label pointing color='orange' basic content='No checksum' style={labelStyle} />)
 							: (<Label pointing basic content='Unknown/invalid address' style={labelStyle} />)}
 				</div>
-			</div>
+			</span>
 		);
 	}
 }

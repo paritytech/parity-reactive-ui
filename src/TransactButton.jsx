@@ -34,7 +34,7 @@ export class TransactButton extends ReactiveComponent {
 			let t = single ? this.props.tx : this.props.tx[s.index];
 			s.status = typeof(t) === 'function'
 				? t()
-				: bonds.post(t);
+				: bonds.post(t)
 			s.status.tie((x, i) => {
 				if (this.props.order ? this.props.causal ? x.confirmed : x.signed : x.requested) {
 					this.execNext();
@@ -87,7 +87,7 @@ TransactButton.defaultProps = {
 };
 
 TransactButton.propTypes = {
-	tx: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object]),
+	tx: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.func]),
 	content: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.node]),
 	disabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
 	enabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),

@@ -115,9 +115,8 @@ export function recognize (v, hints) {
       };
     }
   }
-  if (/(0x)?([0-9]+)/.test(v)) {
+  if (/(0x)?([0-9]+)/.test(v) && v.length > 8) { // long number which is not covered (e.g. 42-64)
     return formatToExponential(v,4);
-    // return `${/0x/.test(v) ? parseInt(v.substr(2,4),16) : v.substr(0,4)} e^${/0x/.test(v) ? v.length-6 : v.length-4}`
   }
   return v; // `Could not interpret the value: ${v} !` ~> String
 }

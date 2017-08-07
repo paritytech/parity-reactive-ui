@@ -220,7 +220,7 @@ export class Example extends React.Component {
                </Card.Meta>
                <Card.Description>
                  <h1>Props</h1>
-                 {renderTable([{name:'tx',type:'Bond | Object', description:'Transaction-Object. Simplest `{to:"0x..", value:100}`'},
+                 {renderTable([{name:'tx',type:'Bond | Func', description:'Function representing the transaction with its state.'},
                                {name:'content',type:'Bond | Node', description:'Shorthand for primary content.'},
                                {name:'disabled',type:'Bond | Boolean', description:'If `true` the Button is disabled.'},
                                {name:'enabled',type:'Bond | Boolean', description:'If `true` the Button is enabled.'},

@@ -1,0 +1,2 @@
+
+export Contract from './Contract';
