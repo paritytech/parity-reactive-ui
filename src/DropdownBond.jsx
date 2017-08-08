@@ -7,7 +7,7 @@ import {AccountIcon} from './';
 
 export class DropdownBond extends ReactiveComponent {
 	constructor () {
-		super(['disabled', 'enabled']);
+		super(['disabled', 'enabled', 'options']);
 		this.state = {
 			ok: true,
 		}
