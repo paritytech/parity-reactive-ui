@@ -13,33 +13,42 @@ const traceMode = new Bond();
 export default class TraceSelection extends ReactiveComponent {
   constructor () {
     super(['contracts', 'disabled', 'contractName']);
-
-    this.contractBond = new Bond();
   }
 
   componentDidMount () {
     this.debugDeploy = this.debugDeploy.bind(this);
-    this.contractBond.tie(this.debugDeploy);
+    if (this.props.contractName) {
+      this.props.contractName.tie(this.debugDeploy);
+    } else {
+      this.contractName = new Bond();
+      this.contractName.tie(contractName => this.setState({contractName}));
+      this.contractName.tie(this.debugDeploy);
+    }
   }
 
   render () {
-    const contractKeys = Object.keys(this.state.contracts);
-    const contractName = this.state.contractName || contractKeys[0];
-    const contract = this.state.contracts[contractName];
+    const contracts = this.state.contracts || this.props.contracts;
+    if (contracts && typeof(contracts) === 'object') {
+      const contractKeys = Object.keys(contracts);
+      const contractName = this.state.contractName || contractKeys[0];
+      const contract = contracts[contractName];
 
-    return (<div>
-      {!this.state.disabled ? <div>
-        TraceMode <DropdownBond bond={ traceMode } options={ traceOptions } fluid multiple allowAdditions={false} />
-        Contract <DropdownBond bond={ this.contractBond } options={ contractKeys.map((name, i) => ({text:name, value: name}))} fluid defaultValue={contractName} allowAdditions={false} />
-        {contract ?
-          <Contract
-            contract={ contract.deployed }
-            trace={ this.props.trace }
-            traceMode={ traceMode }
-            contractName={ `Contract ${contractName}` }
-          /> : <div>Select a contract ...</div>}
-      </div> : null}
-    </div>);
+      return (<div>
+        {!this.state.disabled ? <div>
+          TraceMode <DropdownBond bond={ traceMode } options={ traceOptions } fluid multiple allowAdditions={false} />
+          Contract <DropdownBond bond={ this.props.contractName } options={ contractKeys.map((name, i) => ({text:name, value: name}))} fluid defaultValue={contractName} allowAdditions={false} />
+          {contract && contract.deployed ?
+            <Contract
+              contract={ contract.deployed }
+              trace={ this.props.trace }
+              traceMode={ traceMode }
+              contractName={ `Contract ${contractName}` }
+            /> : <div>Select a contract (no interface)...</div>}
+        </div> : null}
+      </div>);
+    } else {
+      return <div>loading...</div>;
+    }
   }
 
   debugDeploy (contractName) {
@@ -48,7 +57,7 @@ export default class TraceSelection extends ReactiveComponent {
     const bytecode = contract.bytecode;
     const abi = contract.interface;
 
-    if (!contract.deployed) {
+    if (!contract.deployed && bytecode && abi) {
       let tx = bonds.deployContract(bytecode, JSON.parse(abi));
 
       tx.done(s => {
@@ -61,16 +70,15 @@ export default class TraceSelection extends ReactiveComponent {
 
         let contracts = this.state.contracts;
         contracts[contractName] = contract;
-        this.setState({contracts: contracts, contractName});
+        this.setState({contracts: contracts});
       });
-    } else {
-      this.setState({contractName});
     }
   }
 }
 
 TraceSelection.PropTypes = {
-  contracts: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.array]),
+  contracts: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.object]),
+  contractName: PropTypes.instanceOf(Bond),
   disabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
   trace: PropTypes.instanceOf(Bond)
 }
