@@ -52,7 +52,6 @@ export default class TraceSelection extends ReactiveComponent {
   }
 
   debugDeploy (contractName) {
-    console.log('debugDeploy contractName', contractName);
     const contract = this.state.contracts[contractName];
     const bytecode = contract.bytecode;
     const abi = contract.interface;
@@ -61,7 +60,6 @@ export default class TraceSelection extends ReactiveComponent {
       let tx = bonds.deployContract(bytecode, JSON.parse(abi));
 
       tx.done(s => {
-        console.log('txDone!');
         let address = s.deployed.address;
 
         contract.deployed = bonds.makeContract(address, JSON.parse(abi), [], true);

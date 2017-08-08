@@ -12,9 +12,14 @@ export default class Contract extends ReactiveComponent {
     this.functionBond = new Bond();
   }
 
+  componentWillReceiveProps (nextProps) {
+    super.componentWillReceiveProps(nextProps);
+    // reset functionBond for changed contract
+    this.functionBond.reset(); // TODO: reset does not blank <Rdiv> children (not_ready value should)
+  }
+
   render () {
     const c = this.state && this.state.contract;
-
     return (
       <Segment>
         {c
