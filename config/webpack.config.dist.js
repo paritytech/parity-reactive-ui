@@ -18,7 +18,8 @@ module.exports = Object.assign(base,{
     'react',
     'react-dom',
     'semantic-ui-react',
-    'semantic-ui-css/semantic.min.css'
+    'semantic-ui-css/semantic.min.css',
+    '@parity/ui'
   ],
   resolve: {
     extensions: ['.js', '.json', '.jsx'],

@@ -4,6 +4,7 @@ import { ReactiveComponent, Rspan } from 'oo7-react';
 import { AccountIcon, Hash, InlineBalance, QrCode } from './';
 import { bonds } from 'oo7-parity';
 import { Bond } from 'oo7';
+import { Certifications } from '@parity/ui';
 
 import { Card, List, Divider, Container, Label } from 'semantic-ui-react';
 
@@ -64,6 +65,7 @@ export class AccountCard extends ReactiveComponent {
                 <List.Item>
                   <List.Content floated='right'>
                     <InlineBalance value={this.balance} />
+                    <Certifications address={ address } />
                   </List.Content>
                   <List.Content>
                     {meta.tags ? meta.tags.map((t,i) => {

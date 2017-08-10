@@ -50,7 +50,8 @@
   "peerDependencies": {
     "oo7": ">=0.5",
     "oo7-parity": ">=0.6.1",
-    "oo7-react": ">=0.4.1"
+    "oo7-react": ">=0.4.1",
+    "@parity/ui": ">=1.99.99"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
