@@ -6,11 +6,15 @@
   "files": [
     "dist/*"
   ],
+  "napa": {
+    "qrcode-generator": "kazuhikoarase/qrcode-generator"
+  },
   "scripts": {
+    "install": "napa",
     "test": "npm run compile && mocha --compilers js:babel-core/register  --reporter spec",
     "dev": "webpack-dev-server --config=config/webpack.config.dev.js",
     "watch": "webpack --watch --config=config/webpack.config.dist.js",
-		"watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
+    "watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
     "compile": "webpack --config=config/webpack.config.dist.js",
     "prepublish": "npm run compile"
   },
@@ -34,14 +38,20 @@
   "dependencies": {
     "bignumber.js": "^4.0.0",
     "blockies": "0.0.2",
-    "oo7": "^0.5.1",
-    "oo7-parity": "^0.6.3",
-    "oo7-react": "^0.4.2",
-    "prop-types": "^15.5.9",
-    "react": "^15.5.4",
-    "react-dom": "^15.4.2",
-    "semantic-ui-css": "^2.2.10",
-    "semantic-ui-react": "^0.68.3"
+    "copy-to-clipboard": "^3.0.6",
+    "prop-types": "^15.5.10",
+    "qrcode-generator": "^1.3.1",
+    "react-intl": "2.1.5",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "semantic-ui-css": "^2.2.11",
+    "semantic-ui-react": "^0.71.1"
+  },
+  "peerDependencies": {
+    "oo7": ">=0.5",
+    "oo7-parity": ">=0.6.1",
+    "oo7-react": ">=0.4.1",
+    "@parity/ui": ">=1.99.99"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
@@ -49,14 +59,17 @@
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-0": "^6.24.1",
+    "babel-plugin-react-intl": "2.3.1",
     "chai": "^4.0.2",
     "css-loader": "^0.28.1",
     "file-loader": "^0.11.1",
     "mocha": "^3.2.0",
+    "napa": "^2.3.0",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.8",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5",
-    "webpack-stream": "^3.2.0"
+    "webpack-stream": "^3.2.0",
+    "react-intl-aggregate-webpack-plugin": "0.0.1"
   }
 }

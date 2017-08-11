@@ -11,5 +11,23 @@ module.exports = Object.assign(base,{
     publicPath: '/',
     libraryTarget: 'commonjs'
   },
-  externals: ['oo7', 'oo7-react', 'oo7-parity']
+  externals: [
+    'oo7',
+    'oo7-react',
+    'oo7-parity',
+    'react',
+    'react-dom',
+    'semantic-ui-react',
+    'semantic-ui-css/semantic.min.css',
+    '@parity/ui'
+  ],
+  resolve: {
+    extensions: ['.js', '.json', '.jsx'],
+    alias: {
+      // import local oo7-parity folder (not from node_modules)
+      //'oo7-parity':path.resolve(__dirname + '/../../', 'oo7-parity'),
+      //'oo7-react':path.resolve(__dirname + '/../../', 'oo7-react'),
+      //'oo7':path.resolve(__dirname + '/../../', 'oo7')
+    },
+  }
 });

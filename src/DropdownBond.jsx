@@ -1,21 +1,51 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Dropdown} from 'semantic-ui-react';
 import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
+import {AccountIcon} from './';
 
 export class DropdownBond extends ReactiveComponent {
 	constructor () {
-		super(['disabled', 'enabled']);
+		super(['disabled', 'enabled', 'options']);
+		this.state = {
+			ok: true,
+		}
 	}
+
 	componentWillMount() {
-		this.setState({options: this.props.options});
-		this.handleChange(null, {value: this.props.defaultValue || this.props.options[0].value});
+		super.componentWillMount();
+		this.setState({options: this.props.options.map(option => ({label:this.makeIcon(option.value), ...option}))});
+
+		let value = this.props.defaultValue || this.props.options[0].value;
+		if (this.props.multiple) {
+			this.handleChange(null, {value: [value]});
+		} else {
+			this.handleChange(null, {value});
+		}
 	}
 
 	handleAddition (e, { value }) {
-		this.setState({
-			options: [{ text: `${value} - Custom value`, value }, ...this.props.options],
-		})
+		if (this.validateInput(value, this.props.validatorType)) {
+			this.setState({
+				options: [{ text: `${value} - Custom value`, value }, ...this.props.options],
+			})
+		} else {
+			let that = this;
+			setTimeout(() => that.setState({ ok: true }), 1000);
+		}
+	}
+
+	handleInputChange (e, value) {
+		if (this.validateInput(value, this.props.validatorType)) {
+			this.setState({
+				ok: true,
+			});
+		} else {
+			this.setState({
+				ok: false,
+			});
+		}
 	}
 
 	handleChange (e, { value }) {
@@ -29,8 +59,25 @@ export class DropdownBond extends ReactiveComponent {
 		}
 	}
 
+	makeIcon (address) {
+		return this.validateInput(address, 'address')
+				? <AccountIcon address={address} />
+				: undefined;
+	}
+
+	// TODO: Import validator functions from oo7-parity when on npm
+	validateInput (value, validationType) {
+		if (validationType === 'address') {
+			return /^(0x)?([a-fA-F0-9]{40})$/.test(value);
+		}
+		if (validationType === 'hash') {
+			return /^(0x)?([a-fA-F0-9]{64})$/.test(value);
+		}
+		return true;
+	}
+
 	render () {
-		const { currentValue } = this.state
+		const { currentValue } = this.state;
 
 		return (
 			<Dropdown
@@ -43,8 +90,12 @@ export class DropdownBond extends ReactiveComponent {
 				value={currentValue}
 				onAddItem={this.handleAddition.bind(this)}
 				onChange={this.handleChange.bind(this)}
+				onSearchChange={this.handleInputChange.bind(this)}
+				error={!this.state.ok}
 				style={this.props.style}
 				disabled={this.state.disabled || !this.state.enabled}
+				fluid={this.props.fluid}
+				multiple={this.props.multiple}
 			/>
 		)
 	}
@@ -55,7 +106,26 @@ DropdownBond.defaultProps = {
 	search: true,
 	selection: true,
 	allowAdditions: true,
+	validatorType: 'string',
 	defaultValue: '',
 	disabled: false,
-	options: [{text: 'Unknown', value: ''}]
+	enabled: true,
+	options: [{text: 'Unknown', value: ''}],
+	fluid: false,
+	multiple: false,
+};
+
+DropdownBond.propTypes = {
+	options: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.array]),
+	disabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	enabled: PropTypes.oneOfType([PropTypes.instanceOf(Bond), PropTypes.bool]),
+	placeholder: PropTypes.string,
+	additionLabel: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
+	search: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+	selection: PropTypes.bool,
+	allowAdditions: PropTypes.bool,
+	validatorType: PropTypes.string,
+	defaultValue: PropTypes.string,
+	fluid: PropTypes.bool,
+	multiple: PropTypes.bool,
 }
