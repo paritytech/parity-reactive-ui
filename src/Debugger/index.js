@@ -1,8 +1,7 @@
 
 export Debugger from './Debugger';
 
-export {Editor, Contract} from './Editor'
-export {Recorder} from './Recorder';
+export Contract from './Contract'
 export StateDiff from './StateDiff';
 export TxTrace from './TxTrace';
 export TraceDisplay from './TraceDisplay';

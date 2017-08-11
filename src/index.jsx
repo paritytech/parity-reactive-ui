@@ -23,7 +23,7 @@ export {Transaction} from './Transaction';
 export {Hash} from './Hash';
 export {AccountCard} from './AccountCard';
 export {QrCode} from './QrCode/QrCode';
-export {Debugger, Editor, Recorder, Contract} from './Debugger';
+export {Debugger, Contract} from './Debugger';
 export {Spoiler} from './Spoiler';
 export {TextAreaBond} from './TextAreaBond';
 export {Recognizer} from './Recognizer';
