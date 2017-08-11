@@ -26,6 +26,5 @@ export {QrCode} from './QrCode/QrCode';
 export {Debugger, Editor, Recorder, Contract} from './Debugger';
 export {Spoiler} from './Spoiler';
 export {TextAreaBond} from './TextAreaBond';
-export {SolidityAreaBond} from './SolidityAreaBond';
 export {Recognizer} from './Recognizer';
 export {Example} from './Examples';
