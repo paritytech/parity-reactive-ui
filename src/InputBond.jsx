@@ -2,6 +2,10 @@ import React from 'react';
 import {Input} from 'semantic-ui-react';
 import {Bond} from 'oo7';
 
+function instanceOfBond(b) {
+	return typeof(b) === 'object' && typeof(b.reset) === 'function' && typeof(b.changed) === 'function';
+}
+
 export class InputBond extends React.Component {
 	constructor () {
 		super();
@@ -59,7 +63,9 @@ export class InputBond extends React.Component {
 					};
 				});
 			}
-			if (this.props.bond instanceof Bond) {
+			/// Horrible duck-typing, necessary since the specific Bond class instance here is different to the other libraries since it's
+			/// pre-webpacked in a separate preprocessing step.
+			if (instanceOfBond(this.props.bond)) {
 				if (b === null) {
 					this.props.bond.reset();
 				} else {
@@ -76,7 +82,7 @@ export class InputBond extends React.Component {
 			f(v);
 		} else {
 			let a = v !== undefined && this.props.validator(v, this.state);
-			if (a instanceof Promise || a instanceof Bond) {
+			if (a instanceof Promise || instanceOfBond(a)) {
 				a.then(f);
 			} else {
 				f(a);
