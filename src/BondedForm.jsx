@@ -15,7 +15,7 @@ export class BondedForm extends ReactiveComponent {
 	render () {
 		let p = {};
 		Object.keys(this.props)
-			.filter(k => !(instanceOfBond(this.props[k])))
+			.filter(k => !instanceOfBond(this.props[k]))
 			.forEach(k => p[k] = this.props[k]);
 		Object.assign(p, this.state);
 		return React.createElement(this.object, p);
