@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* eslint-disable react/prop-types */
+
 import React from 'react';
 import {ReactiveComponent} from 'oo7-react';
 import {bonds} from 'oo7-parity';
@@ -35,7 +37,7 @@ export class SigningButton extends React.Component {
 		this.setState(s);
 	}
 	render () {
-		return <SigningButtonAux
+		return (<SigningButtonAux
 			icon={this.props.icon}
 			primary={this.props.primary}
 			secondary={this.props.secondary}
@@ -48,8 +50,8 @@ export class SigningButton extends React.Component {
 			statusIcon={this.props.statusIcon}
 			colorPolicy={this.props.colorPolicy}
 			disabled={this.props.disabled}
-		/>
-	}//
+		/>);
+	}
 }
 SigningButton.defaultProps = {
 	statusText: false,
@@ -58,10 +60,11 @@ SigningButton.defaultProps = {
 };
 
 class SigningButtonAux extends ReactiveComponent {
-	constructor() {
+	constructor () {
 		super(['status']);
 	}
-	render() {
+
+	render () {
 		let clickable = !this.state.status || this.state.status.signed || this.state.status.failed;
 		let status = this.state.status && styleStatus(this.state.status);
 		let statusColor = status ? status.color : null;
@@ -79,7 +82,7 @@ class SigningButtonAux extends ReactiveComponent {
 				showContent={this.props.statusText}
 				showIcon={this.props.statusIcon}
 				color={labelColor}
-				basic={labelColor == buttonColor ? null : false}
+				basic={labelColor === buttonColor ? null : false}
 			/>) : null}
 			disabled={this.props.disabled || !clickable}
 		/>);

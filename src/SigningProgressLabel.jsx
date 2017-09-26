@@ -18,20 +18,24 @@ import {Label, Icon} from 'semantic-ui-react';
 
 export function styleStatus (value) {
 	return (
-		value.requested ? { text: 'authorising', icon: 'key', color: 'orange', basic: true } :
-		value.signed ? { text: 'signed', icon: 'check', color: 'green', basic: false } :
-		value.failed ? { text: 'rejected', icon: 'x', color: 'grey', basic: true } :
-		null
+		value.requested
+			? { text: 'authorising', icon: 'key', color: 'orange', basic: true }
+			: value.signed
+				? { text: 'signed', icon: 'check', color: 'green', basic: false }
+				: value.failed
+					? { text: 'rejected', icon: 'x', color: 'grey', basic: true }
+					: null
 	);
 }
 
 export class SigningProgressLabel extends ReactiveComponent {
-	constructor() {
+	constructor () {
 		super(['value']);
 	}
-	render() {
+
+	render () {
 		if (!this.state.value) {
-			return (<span/>);
+			return (<span />);
 		}
 		let status = styleStatus(this.state.value);
 		return (<Label

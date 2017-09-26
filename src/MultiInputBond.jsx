@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import React from 'react';
 import {ReactiveComponent} from 'oo7-react';
 import {AddressBond} from './AddressBond';
 import {HashBond} from './HashBond';
@@ -23,25 +24,29 @@ export class MultiInputBond extends ReactiveComponent {
 	}
 
 	readyRender () {
-		return this.state.type === 'address' ? (<AddressBond
+		return this.state.type === 'address'
+			? (<AddressBond
 				bond={this.props.bond}
 				placeholder={this.props.placeholder}
 				defaultValue={this.state.defaultValue}
 				action={this.props.action}
 				disabled={this.state.disabled || !this.state.enabled}
-			/>) : this.state.type === 'hash' ? (<HashBond
-				bond={this.props.bond}
-				placeholder={this.props.placeholder}
-				defaultValue={this.state.defaultValue}
-				action={this.props.action}
-				disabled={this.state.disabled || !this.state.enabled}
-			/>) : this.state.type === 'string' ? (<InputBond
-				bond={this.props.bond}
-				placeholder={this.props.placeholder}
-				defaultValue={this.state.defaultValue}
-				action={this.props.action}
-				disabled={this.state.disabled || !this.state.enabled}
-			/>) : (<span/>);
+			/>)
+			: this.state.type === 'hash'
+				? (<HashBond
+					bond={this.props.bond}
+					placeholder={this.props.placeholder}
+					defaultValue={this.state.defaultValue}
+					action={this.props.action}
+					disabled={this.state.disabled || !this.state.enabled}
+				/>)
+				: this.state.type === 'string' ? (<InputBond
+					bond={this.props.bond}
+					placeholder={this.props.placeholder}
+					defaultValue={this.state.defaultValue}
+					action={this.props.action}
+					disabled={this.state.disabled || !this.state.enabled}
+				/>) : (<span />);
 	}
 }
 MultiInputBond.defaultProps = {

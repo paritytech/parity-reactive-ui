@@ -60,7 +60,7 @@ export class InlineBalance extends ReactiveComponent {
 			s = {
 				base: v.div(new BigNumber(1000).pow(dd)),
 				denom: dd
-			}
+			};
 		}
 		let same = true;
 		let units = s.base;
@@ -75,11 +75,11 @@ export class InlineBalance extends ReactiveComponent {
 			units = m[1];
 			decimals = m[2];
 		}
-		units = units.replace(/(\d)(?=(\d{3})+$)/g, "$1,");
+		units = units.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
 
 		let d = denominations[s.denom];
 		let c = '32, 32, 32';
-		let fore = `rgb(${c})`;
+		// let fore = `rgb(${c})`;
 		let back = `rgba(${c}, 0.15)`;
 		return (
 			<span style={{
@@ -87,15 +87,16 @@ export class InlineBalance extends ReactiveComponent {
 				border: `0.05em solid ${back}`,
 				whiteSpace: 'nowrap'
 			}}>
-				<span style={{
-					paddingLeft: '0.3em',
-					paddingRight: '0.3em',
-					borderRadius: '0.2em',
-					borderTopRightRadius: 0,
-					borderBottomRightRadius: 0,
-					fontWeight: 'bold',
-					cursor: 'pointer'
-				}}
+				<span
+					style={{
+						paddingLeft: '0.3em',
+						paddingRight: '0.3em',
+						borderRadius: '0.2em',
+						borderTopRightRadius: 0,
+						borderBottomRightRadius: 0,
+						fontWeight: 'bold',
+						cursor: 'pointer'
+					}}
 					onClick={() => this.props.inert ? null : this.togglePrecise()}
 				>
 					{isNeg ? '-' : this.props.forceSign ? '+' : ''}
@@ -107,12 +108,13 @@ export class InlineBalance extends ReactiveComponent {
 					}
 					{same ? '' : '…'}
 				</span>
-				<span style={{
-					paddingLeft: '0.3em',
-					paddingRight: '0.4em',
-					backgroundColor: back,
-					cursor: 'pointer'
-				}}
+				<span
+					style={{
+						paddingLeft: '0.3em',
+						paddingRight: '0.4em',
+						backgroundColor: back,
+						cursor: 'pointer'
+					}}
 					onClick={() => this.props.inert ? null : this.cycleDenom()}
 				>
 					<span style={{
@@ -128,7 +130,7 @@ export class InlineBalance extends ReactiveComponent {
 						{d}
 					</span>
 				</span>
-		    </span>
+			</span>
 		);
 	}
 }

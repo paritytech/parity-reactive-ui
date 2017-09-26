@@ -12,14 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* eslint-disable no-return-assign */
+
 import React from 'react';
 import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
 import {Button, Label, Statistic} from 'semantic-ui-react';
-
-function instanceOfBond(b) {
-	return typeof(b) === 'object' && typeof(b.reset) === 'function' && typeof(b.changed) === 'function';
-}
 
 export class BondedForm extends ReactiveComponent {
 	constructor (object, bondableProps) {
@@ -29,7 +27,7 @@ export class BondedForm extends ReactiveComponent {
 	render () {
 		let p = {};
 		Object.keys(this.props)
-			.filter(k => !(instanceOfBond(this.props[k])))
+			.filter(k => !(Bond.instanceOf(this.props[k])))
 			.forEach(k => p[k] = this.props[k]);
 		Object.assign(p, this.state);
 		return React.createElement(this.object, p);

@@ -14,11 +14,10 @@
 
 import React from 'react';
 import {Api} from '@parity/parity.js';
-import {bonds} from 'oo7-parity';
 import {ReactiveComponent, Rimg} from 'oo7-react';
-import {isNullData} from 'oo7-parity';
 import {Label, Icon} from 'semantic-ui-react';
 import {AccountIcon} from './AccountIcon';
+import {bonds, isNullData} from 'oo7-parity';
 
 export class AccountLabel extends ReactiveComponent {
 	constructor () {
@@ -28,10 +27,9 @@ export class AccountLabel extends ReactiveComponent {
 		if (this.state.address === null) {
 			return (<Label
 				as='a'
-				basic={false}
 				image
 				color='red'
-				basic={true}
+				basic
 				style={{
 					borderTopLeftRadius: '16px',
 					borderBottomLeftRadius: '16px'
@@ -45,7 +43,7 @@ export class AccountLabel extends ReactiveComponent {
 				as='a'
 				color={'black'}
 				image
-				basic={true}
+				basic
 				style={{
 					borderTopLeftRadius: '16px',
 					borderBottomLeftRadius: '16px'
@@ -117,10 +115,10 @@ class AccountLabelAux extends ReactiveComponent {
 				)}
 				{(badges.length > 0 || this.state.names.owned || this.state.names.registry) ? (
 					<Label.Detail style={{paddingLeft: 0, paddingRight: 0}}>
-					{badges}
+						{badges}
 					</Label.Detail>
 				) : ''}
-		    </Label>
+			</Label>
 		);
 	}
 }

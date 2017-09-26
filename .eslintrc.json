@@ -1,5 +1,5 @@
 {
-	"extends": ["semistandard"],
+	"extends": ["semistandard", "standard-react"],
 	"parser": "babel-eslint",
 	"env": {
 		"browser": true,
@@ -9,7 +9,9 @@
 	"globals": {
 	},
 	"rules": {
-	  "indent": ["error", "tab"],
-	  "no-tabs": 0
+		"indent": ["error", "tab"],
+		"no-tabs": 0,
+		"react/jsx-indent": ["error", "tab"],
+		"react/jsx-indent-props": ["error", "tab"]
 	}
 }

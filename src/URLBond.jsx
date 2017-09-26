@@ -27,4 +27,4 @@ URLBond.defaultProps = {
 		return x ? { internal: x, external: x.href, corrected: x.href } : null;
 	},
 	defaultValue: ''
-}
+};

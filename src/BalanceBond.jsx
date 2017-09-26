@@ -32,7 +32,7 @@ export class BalanceBond extends InputBond {
 
 	handleBlur () {
 		let s = this.state;
-		if (typeof(s.corrected) === 'string') {
+		if (typeof s.corrected === 'string') {
 			s.display = s.corrected;
 			delete s.corrected;
 			this.setState(s);
@@ -44,7 +44,7 @@ export class BalanceBond extends InputBond {
 			onChange={(_, v) => this.setUnits(v.value)}
 			value={this.getUnits()}
 			options={denominations
-				.filter(x => x[0] == x[0].toLowerCase())
+				.filter(x => x[0] === x[0].toLowerCase())
 				.map(d => ({key: d, value: d, text: d}))
 			}
 		/>);
@@ -54,7 +54,7 @@ BalanceBond.defaultProps = {
 	placeholder: '0',
 	defaultValue: '0',
 	validator: (u, s) => {
-		let q = u === '' ? { denom: 6, units: '0', decimals: '', origNum: '', origDenom: ''} : interpretRender(u, null);
+		let q = u === '' ? { denom: 6, units: '0', decimals: '', origNum: '', origDenom: '' } : interpretRender(u, null);
 		let d = q && q.denom !== null ? q.origNum : undefined;
 		if (q) {
 			defDenom(q, s.internal ? s.internal.denom : 6);

@@ -12,12 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* global parity */
+
 import React from 'react';
-import {Api} from '@parity/parity.js';
 import {Bond} from 'oo7';
-import {ReactiveComponent, Rimg} from 'oo7-react';
 import {bonds, isNullData} from 'oo7-parity';
-import {Label, Input} from 'semantic-ui-react';
+import {Label} from 'semantic-ui-react';
 import {AccountIcon} from './AccountIcon';
 import {InputBond} from './InputBond';
 
@@ -26,12 +26,14 @@ export class AddressBond extends InputBond {
 		super();
 
 		bonds.addressOf = n => Bond.mapAll([bonds.registry.lookupAddress(n, 'A'), bonds.me], (reg, me) =>
-			({ registry: isNullData(reg) ? null : reg, internal: n == 'null' ? '0x0000000000000000000000000000000000000000' : n == 'me' ? me : null })
+			({ registry: isNullData(reg) ? null : reg, internal: n === 'null' ? '0x0000000000000000000000000000000000000000' : n === 'me' ? me : null })
 		);
 	}
 
 	makeIcon (p) {
-		return p ? 'left' : this.state.ok
+		return p
+			? 'left'
+			: this.state.ok
 				? (<i style={{opacity: 1}} className='icon'>
 					<AccountIcon
 						style={{opacity: 1, border: '0.5em solid transparent'}}
@@ -59,12 +61,13 @@ export class AddressBond extends InputBond {
 		);
 	}
 }
+
 AddressBond.defaultProps = {
 	placeholder: '0xAddress, name or e-mail',
 	validator: a => {
 		let m = a.match(/^(0x)([a-fA-F0-9]+)$/);
 		if (m) {
-			if (m[2].length != 40) {
+			if (m[2].length !== 40) {
 				return null;
 			}
 			let addr = '0x' + m[2];
@@ -75,8 +78,7 @@ AddressBond.defaultProps = {
 				return { external: addr, internal: a, corrected: addr, extra: { noChecksum: true } };
 			}
 			return null;
-		}
-		else {
+		} else {
 			return bonds.addressOf(a).map(a => {
 				let n = a.registry || a.internal;
 				return n ? { external: n, internal: a } : null;

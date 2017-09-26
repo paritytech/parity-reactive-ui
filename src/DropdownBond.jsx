@@ -17,28 +17,25 @@ import {Dropdown} from 'semantic-ui-react';
 import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
 
-function instanceOfBond(b) {
-	return typeof(b) === 'object' && typeof(b.reset) === 'function' && typeof(b.changed) === 'function';
-}
-
 export class DropdownBond extends ReactiveComponent {
 	constructor () {
 		super(['disabled', 'enabled']);
 	}
-	componentWillMount() {
+
+	componentWillMount () {
 		this.setState({options: this.props.options});
 		this.handleChange(null, {value: this.props.defaultValue || this.props.options[0].value});
 	}
 
-	handleAddition (e, { value }) {
+	handleAddition = (e, { value }) => {
 		this.setState({
-			options: [{ text: `${value} - Custom value`, value }, ...this.props.options],
-		})
+			options: [{ text: `${value} - Custom value`, value }, ...this.props.options]
+		});
 	}
 
-	handleChange (e, { value }) {
+	handleChange = (e, { value }) => {
 		this.setState({ currentValue: value });
-		if (instanceOfBond(this.props.bond)) {
+		if (Bond.instanceOf(this.props.bond)) {
 			if (value === null) {
 				this.props.bond.reset();
 			} else {
@@ -48,7 +45,7 @@ export class DropdownBond extends ReactiveComponent {
 	}
 
 	render () {
-		const { currentValue } = this.state
+		const { currentValue } = this.state;
 
 		return (
 			<Dropdown
@@ -59,14 +56,15 @@ export class DropdownBond extends ReactiveComponent {
 				selection={this.props.selection}
 				allowAdditions={this.props.allowAdditions}
 				value={currentValue}
-				onAddItem={this.handleAddition.bind(this)}
-				onChange={this.handleChange.bind(this)}
+				onAddItem={this.handleAddition}
+				onChange={this.handleChange}
 				style={this.props.style}
 				disabled={this.state.disabled || !this.state.enabled}
 			/>
-		)
+		);
 	}
 }
+
 DropdownBond.defaultProps = {
 	placeholder: '',
 	additionLabel: 'Custom',
@@ -76,4 +74,4 @@ DropdownBond.defaultProps = {
 	defaultValue: '',
 	disabled: false,
 	options: [{text: 'Unknown', value: ''}]
-}
+};

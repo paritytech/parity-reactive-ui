@@ -12,13 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/* eslint-disable react/prop-types */
+
 import React from 'react';
 import {Input} from 'semantic-ui-react';
 import {Bond} from 'oo7';
-
-function instanceOfBond(b) {
-	return typeof(b) === 'object' && typeof(b.reset) === 'function' && typeof(b.changed) === 'function';
-}
 
 export class InputBond extends React.Component {
 	constructor () {
@@ -48,18 +46,19 @@ export class InputBond extends React.Component {
 		}
 	}
 
-	handleEdit(v, onlyDefault = false) {
-		if (this.editLock)
+	handleEdit (v, onlyDefault = false) {
+		if (this.editLock) {
 			return;
+		}
 
 		this.resetDefaultValueUpdate();
 
 		let f = function (b) {
-			if (typeof(b) === 'string') {
+			if (typeof b === 'string') {
 				b = { display: b, external: b, internal: b };
 			}
-			if (typeof(b) !== 'object') {
-				throw { message: 'Invalid value returned from validity function. Must be object with internal and optionally external, display, blurred fields or null', b };
+			if (typeof b !== 'object') {
+				throw new Error('Invalid value returned from validity function. Must be object with internal and optionally external, display, blurred fields or null');
 			}
 			if (b === null) {
 				this.setState({ok: false});
@@ -69,7 +68,7 @@ export class InputBond extends React.Component {
 					return {
 						ok: true,
 						internal: i,
-						display: typeof(b.display) === 'string' ? b.display : s.display,
+						display: typeof b.display === 'string' ? b.display : s.display,
 						corrected: b.corrected,
 						extra: b.extra || {},
 						onlyDefault,
@@ -79,7 +78,7 @@ export class InputBond extends React.Component {
 			}
 			/// Horrible duck-typing, necessary since the specific Bond class instance here is different to the other libraries since it's
 			/// pre-webpacked in a separate preprocessing step.
-			if (instanceOfBond(this.props.bond)) {
+			if (Bond.instanceOf(this.props.bond)) {
 				if (b === null) {
 					this.props.bond.reset();
 				} else {
@@ -92,11 +91,11 @@ export class InputBond extends React.Component {
 
 		this.setState({display: v, onlyDefault});
 
-		if (typeof(this.props.validator) !== 'function') {
+		if (typeof this.props.validator !== 'function') {
 			f(v);
 		} else {
 			let a = v !== undefined && this.props.validator(v, this.state);
-			if (a instanceof Promise || instanceOfBond(a)) {
+			if (a instanceof Promise || Bond.instanceOf(a)) {
 				a.then(f);
 			} else {
 				f(a);
@@ -105,13 +104,13 @@ export class InputBond extends React.Component {
 	}
 
 	handleBlur () {
-		this.setState(s => typeof(s.corrected) === 'string' && typeof(s.display) === 'string'
+		this.setState(s => typeof s.corrected === 'string' && typeof s.display === 'string'
 			? { display: s.corrected, corrected: undefined }
 			: {}
 		);
 	}
 
-	resetDefaultValueUpdate() {
+	resetDefaultValueUpdate () {
 		if (this.lastDefaultValueUpdate) {
 			window.clearTimeout(this.lastDefaultValueUpdate);
 			delete this.lastDefaultValueUpdate;
@@ -119,7 +118,7 @@ export class InputBond extends React.Component {
 	}
 
 	render () {
-		if (this.state.onlyDefault && typeof(this.props.defaultValue) === 'string' && this.state.display !== this.props.defaultValue) {
+		if (this.state.onlyDefault && typeof this.props.defaultValue === 'string' && this.state.display !== this.props.defaultValue) {
 			this.resetDefaultValueUpdate();
 			this.lastDefaultValueUpdate = window.setTimeout(() => { this.handleEdit(this.props.defaultValue, true); }, 0);
 		}
@@ -149,6 +148,7 @@ export class InputBond extends React.Component {
 		/>);
 	}
 }
+
 InputBond.defaultProps = {
 	placeholder: '',
 	defaultValue: '',

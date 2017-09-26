@@ -41,10 +41,10 @@ export class TransactButton extends ReactiveComponent {
 	}
 	execNext () {
 		let s = this.state;
-		let single = typeof(this.props.tx) === 'function' || this.props.tx.length === undefined;
+		let single = typeof this.props.tx === 'function' || this.props.tx.length === undefined;
 		if ((single && s.index === 0) || s.index < this.props.tx.length) {
 			let t = single ? this.props.tx : this.props.tx[s.index];
-			s.status = typeof(t) === 'function'
+			s.status = typeof t === 'function'
 				? t()
 				: bonds.post(t);
 			s.status.tie((x, i) => {
@@ -56,14 +56,14 @@ export class TransactButton extends ReactiveComponent {
 				}
 			});
 		}
-		s.index++
+		s.index++;
 		this.setState(s);
 	}
 	render () {
 		if (!this.props.tx) {
-			return (<span/>);
+			return (<span />);
 		}
-		return <TransactButtonAux
+		return (<TransactButtonAux
 			icon={this.props.icon}
 			size={this.props.size}
 			positive={this.state.positive}
@@ -86,7 +86,7 @@ export class TransactButton extends ReactiveComponent {
 			statusIcon={this.props.statusIcon}
 			colorPolicy={this.props.colorPolicy}
 			disabled={this.state.disabled || !this.state.enabled}
-		/>
+		/>);
 	}//
 }
 TransactButton.defaultProps = {
@@ -99,10 +99,11 @@ TransactButton.defaultProps = {
 };
 
 class TransactButtonAux extends ReactiveComponent {
-	constructor() {
+	constructor () {
 		super(['status']);
 	}
-	render() {
+
+	render () {
 		let specialColor = this.props.primary || this.props.secondary;
 		let done = this.state.status && (this.state.status.confirmed || this.state.status.failed);
 		let clickable = !this.state.status || done;
@@ -134,7 +135,7 @@ class TransactButtonAux extends ReactiveComponent {
 				showContent={this.props.statusText}
 				showIcon={this.props.statusIcon}
 				color={labelColor}
-				basic={labelColor == buttonColor && !specialColor ? undefined : false}
+				basic={labelColor === buttonColor && !specialColor ? undefined : false}
 			/>) : null}
 			disabled={!done && this.props.disabled}
 		/>);
