@@ -1,5 +1,5 @@
 import React from 'react';
-import {Api} from '@parity/parity.js';
+import Api from '@parity/api';
 import {bonds} from 'oo7-parity';
 import {ReactiveComponent, Rimg} from 'oo7-react';
 import {isNullData} from 'oo7-parity';

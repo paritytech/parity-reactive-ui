@@ -10,10 +10,8 @@
     "test": "npm run compile && mocha --compilers js:babel-core/register  --reporter spec",
     "dev": "webpack-dev-server --config=config/webpack.config.dev.js",
     "watch": "webpack --watch --config=config/webpack.config.dist.js",
-		"watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
-    "compile": "webpack --config=config/webpack.config.dist.js",
-    "prepublish": "../oo7/prepublish.sh && npm run compile",
-    "postpublish": "../oo7/postpublish.sh"
+    "watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
+    "compile": "webpack --config=config/webpack.config.dist.js"
   },
   "repository": {
     "type": "git",
@@ -33,20 +31,30 @@
   },
   "homepage": "https://github.com/ethcore/parity-reactive-ui#readme",
   "dependencies": {
+    "@parity/api": "^2.0.2",
+    "@parity/shared": "^2",
     "bignumber.js": "^4.0.0",
     "blockies": "0.0.2",
+    "file-saver": "^1.3.3",
+    "keycode": "^2.1.9",
     "oo7": "file:../oo7",
     "oo7-parity": "file:../oo7-parity",
     "oo7-react": "file:../oo7-react",
     "prop-types": "^15.5.9",
     "react": "^15.5.4",
     "react-dom": "^15.4.2",
+    "react-dropzone": "^4.1.3",
+    "react-event-listener": "^0.5.0",
+    "react-intl": "^2.4.0",
+    "react-portal": "^3.1.0",
+    "react-router": "^4.2.0",
     "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.68.3"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-loader": "^7.0.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-0": "^6.24.1",
