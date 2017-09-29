@@ -23,3 +23,5 @@ export {Block} from './Block';
 export {Transaction} from './Transaction';
 export Actionbar from './js-ui/Actionbar';
 export Button from './js-ui/Button';
+export DappLink from './js-ui/DappLink';
+export ContextProvider from './js-ui/ContextProvider';
