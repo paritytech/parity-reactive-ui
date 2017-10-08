@@ -7,6 +7,7 @@ export function styleStatus (value) {
 		value.initialising !== undefined || value.estimating !== undefined ? { text: 'estimating', icon: 'bullseye', color: 'blue', basic: true } :
 		value.estimated ||
 		value.requested ? { text: 'authorising', icon: 'key', color: 'orange', basic: true } :
+		value.scheduled ? { text: 'scheduled', icon: 'spinner', color: 'green', basic: false, loading: true } :
 		value.signed ? { text: 'finalising', icon: 'spinner', color: 'green', basic: true, loading: true } :
 		value.confirmed ? { text: 'finalised', icon: 'check', color: 'green', basic: false } :
 		value.failed ?

@@ -3,10 +3,6 @@ import {Dropdown} from 'semantic-ui-react';
 import {Bond} from 'oo7';
 import {ReactiveComponent} from 'oo7-react';
 
-function instanceOfBond(b) {
-	return typeof(b) === 'object' && typeof(b.reset) === 'function' && typeof(b.changed) === 'function';
-}
-
 export class DropdownBond extends ReactiveComponent {
 	constructor () {
 		super(['disabled', 'enabled']);
@@ -24,7 +20,7 @@ export class DropdownBond extends ReactiveComponent {
 
 	handleChange (e, { value }) {
 		this.setState({ currentValue: value });
-		if (instanceOfBond(this.props.bond)) {
+		if (Bond.instanceOf(this.props.bond)) {
 			if (value === null) {
 				this.props.bond.reset();
 			} else {
@@ -61,5 +57,6 @@ DropdownBond.defaultProps = {
 	allowAdditions: true,
 	defaultValue: '',
 	disabled: false,
+	enabled: true,
 	options: [{text: 'Unknown', value: ''}]
 }
