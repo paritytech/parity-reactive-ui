@@ -18,33 +18,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { nodeOrStringProptype } from '@parity/shared/util/proptypes';
+import Api from '@parity/api'
+//import styles from './dappLink.css';
 
-import styles from './actionbar.css';
-
-export default function Actionbar ({ buttons, children, className, health, title }) {
-  if (!buttons && !title) {
-    return null;
-  }
-
+export default function DappLink ({ children, className, to }, { api }) {
+  const [, appId, params] = to.split('/');
+  const onClick = () => api.shell.loadApp(appId, params);
+  //TODO:add styles.link for pointer
   return (
-    <div className={ `${styles.actionbar} ${className}` }>
-      <h3 className={ styles.title }>
-        { title }
-      </h3>
-      <div className={ styles.children }>
-        { children }
-      </div>
-      <div className={ styles.buttons }>
-        { buttons }
-      </div>
+    <div
+      className={ [className].join(' ') }
+      onClick={ onClick }
+    >
+      { children }
     </div>
   );
 }
 
-Actionbar.propTypes = {
-  title: nodeOrStringProptype(),
-  buttons: PropTypes.array,
-  children: PropTypes.node,
+DappLink.contextTypes = {
+  api: PropTypes.object.isRequired
+};
+
+DappLink.propTypes = {
+  children: nodeOrStringProptype().isRequired,
   className: PropTypes.string,
-  health: PropTypes.node
+  to: PropTypes.string.isRequired
 };

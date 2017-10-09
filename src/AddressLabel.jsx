@@ -62,7 +62,6 @@ export class AddressLabel extends ReactiveComponent {
 
 	render(){
 		const { address, isHashHovered, isCopyHovered } = this.state;
-		console.log('addy', address, isHashHovered);
 		if(typeof this.state.address == 'undefined') return(<div></div>);
 		return(
 			<div>
@@ -71,7 +70,7 @@ export class AddressLabel extends ReactiveComponent {
 						basic={!isCopyHovered}
 						icon="clone"
 						color='blue'
-						onClick={this.onCopyAddress.bind(this,this.state.address)}
+						onClick={this.onCopyAddress.bind(this,address)}
 						onMouseEnter={this.handleCopyHover.bind(this)}
 						onMouseLeave={this.handleCopyHover.bind(this)}>
 					</Button>
@@ -79,7 +78,7 @@ export class AddressLabel extends ReactiveComponent {
 						basic={!isHashHovered}
 						color='blue'
 						onMouseEnter={this.handleHashHover.bind(this)}
-						onMouseLeave={this.handleHashHover.bind(this)} >{this.state.address.substr(0,7)}...{this.state.address.substr(-5)}
+						onMouseLeave={this.handleHashHover.bind(this)} >{address.substr(0,7)}...{address.substr(-5)}
 					</Button>
 				</Button.Group>
 			</div>
