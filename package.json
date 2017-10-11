@@ -10,7 +10,7 @@
     "test": "npm run compile && mocha --compilers js:babel-core/register  --reporter spec",
     "dev": "webpack-dev-server --config=config/webpack.config.dev.js",
     "watch": "webpack --watch --config=config/webpack.config.dist.js",
-		"watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
+    "watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
     "compile": "webpack --config=config/webpack.config.dist.js",
     "prepublish": "../oo7/prepublish.sh && npm run compile",
     "postpublish": "../oo7/postpublish.sh"
@@ -33,6 +33,7 @@
   },
   "homepage": "https://github.com/ethcore/parity-reactive-ui#readme",
   "dependencies": {
+    "@parity/parity.js": "^1.8.11",
     "bignumber.js": "^4.0.0",
     "blockies": "0.0.2",
     "oo7": "file:../oo7",
