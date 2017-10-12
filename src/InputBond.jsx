@@ -1,10 +1,11 @@
 import React from 'react';
 import {Input} from 'semantic-ui-react';
 import {Bond} from 'oo7';
+import {ReactiveComponent} from 'oo7-react';
 
-export class InputBond extends React.Component {
+export class InputBond extends ReactiveComponent {
 	constructor () {
-		super();
+		super(['defaultValue']);
 		this.state = {
 			display: null,
 			internal: null,
@@ -31,18 +32,22 @@ export class InputBond extends React.Component {
 	}
 
 	handleEdit(v, onlyDefault = false) {
+//		console.log('handleEdit', v, onlyDefault);
 		if (this.editLock)
 			return;
 
 		this.resetDefaultValueUpdate();
+		this.latestEdit = Symbol();
 
 		let f = function (b) {
+//			console.log('updating...', b);
 			if (typeof(b) === 'string') {
 				b = { display: b, external: b, internal: b };
 			}
 			if (typeof(b) !== 'object') {
 				throw { message: 'Invalid value returned from validity function. Must be object with internal and optionally external, display, blurred fields or null', b };
 			}
+//			console.log('ok...', b);
 			if (b === null) {
 				this.setState({ok: false});
 			} else {
@@ -79,7 +84,11 @@ export class InputBond extends React.Component {
 		} else {
 			let a = v !== undefined && this.props.validator(v, this.state);
 			if (a instanceof Promise || Bond.instanceOf(a)) {
-				a.then(f);
+				let thisSymbol = this.latestEdit;
+				a.then(r => {
+					if (this.latestEdit === thisSymbol)
+						f(r);
+				});
 			} else {
 				f(a);
 			}
@@ -93,17 +102,24 @@ export class InputBond extends React.Component {
 		);
 	}
 
-	resetDefaultValueUpdate() {
+	resetDefaultValueUpdate () {
 		if (this.lastDefaultValueUpdate) {
+//			console.log('kill update');
 			window.clearTimeout(this.lastDefaultValueUpdate);
 			delete this.lastDefaultValueUpdate;
 		}
 	}
 
+	resetValueToDefault () {
+		this.resetDefaultValueUpdate();
+//		console.log('schedule update');
+		this.lastDefaultValueUpdate = window.setTimeout(() => { this.handleEdit(this.state.defaultValue, true); }, 0);
+	}
+
 	render () {
-		if (this.state.onlyDefault && typeof(this.props.defaultValue) === 'string' && this.state.display !== this.props.defaultValue) {
-			this.resetDefaultValueUpdate();
-			this.lastDefaultValueUpdate = window.setTimeout(() => { this.handleEdit(this.props.defaultValue, true); }, 0);
+		if (this.state.onlyDefault && typeof(this.state.defaultValue) === 'string' && this.state.display !== this.state.defaultValue) {
+//			console.log('newDefault', this.state.defaultValue);
+			this.resetValueToDefault();
 		}
 		return (<Input
 			className={this.props.className}
@@ -118,7 +134,7 @@ export class InputBond extends React.Component {
 			size={this.props.size}
 			transparent={this.props.transparent}
 			type='text'
-			value={this.state.display == null ? this.props.defaultValue : this.state.display}
+			value={this.state.display == null ? this.state.defaultValue : this.state.display}
 			error={!this.state.ok}
 			onKeyDown={this.props.onKeyDown}
 			onChange={(e, v) => this.handleEdit(v.value)}

@@ -11,9 +11,13 @@ export class AddressBond extends InputBond {
 	constructor () {
 		super();
 
-		bonds.addressOf = n => Bond.mapAll([bonds.registry.lookupAddress(n, 'A'), bonds.me], (reg, me) =>
-			({ registry: isNullData(reg) ? null : reg, internal: n == 'null' ? '0x0000000000000000000000000000000000000000' : n == 'me' ? me : null })
-		);
+		bonds.addressOf = n => Bond.mapAll([
+			bonds.registry.lookupAddress(n, 'A'),
+			bonds.me
+		], (reg, me) => ({
+			registry: isNullData(reg) ? null : reg,
+			internal: n == 'null' ? '0x0000000000000000000000000000000000000000' : n == 'me' ? me : null
+		}));
 	}
 
 	makeIcon (p) {
