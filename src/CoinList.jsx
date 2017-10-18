@@ -57,7 +57,6 @@ class CoinIcon extends ReactiveComponent {
   render () {
     const { src, tla, name, balance } = this.state;
 
-    console.log('imgsrcs', src, unknownIcon);
     return (<div style={ { display: 'inline-block' } }>
       <Popup
         key={ tla }

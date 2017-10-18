@@ -1,3 +1,5 @@
+var path = require ('path');
+
 module.exports = {
   module: {
     loaders: [
@@ -11,6 +13,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.json', '.jsx']
+    extensions: ['.js', '.json', '.jsx'],
+    modules: [
+    	path.join(__dirname,'..','node_modules'),	
+    	path.join(__dirname,'..','node_modules/@parity/ui/node_modules')
+    ]
   }
 };
