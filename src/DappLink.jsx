@@ -17,14 +17,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { nodeOrStringProptype } from '@parity/shared/util/proptypes';
 import Api from '@parity/api'
-//import styles from './dappLink.css';
 
 export default function DappLink ({ children, className, to }, { api }) {
   const [, appId, params] = to.split('/');
   const onClick = () => api.shell.loadApp(appId, params);
-  //TODO:add styles.link for pointer
+
   return (
     <div
       className={ [className].join(' ') }
@@ -40,7 +38,7 @@ DappLink.contextTypes = {
 };
 
 DappLink.propTypes = {
-  children: nodeOrStringProptype().isRequired,
+  children: PropTypes.any.isRequired,
   className: PropTypes.string,
   to: PropTypes.string.isRequired
 };

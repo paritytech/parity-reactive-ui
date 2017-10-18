@@ -22,5 +22,6 @@ export { InlineBalance } from './InlineBalance';
 export { Block } from './Block';
 export { Transaction } from './Transaction';
 export { EtherBalance } from './EtherBalance';
-export { CoinList } from './CoinList';
+export { TokenList } from './TokenList';
 export { DappLink } from './DappLink';
+export { BadgeList } from './BadgeList';
