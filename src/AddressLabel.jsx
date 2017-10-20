@@ -66,7 +66,7 @@ export class AddressLabel extends ReactiveComponent {
 						onMouseEnter={this.handleCopyHover.bind(this)}
 						onMouseLeave={this.handleCopyHover.bind(this)}>
 					</Button>
-					<Button color='blue' basic>
+					<Button color='blue' basic style={ {cursor:'default'} }>
 						{address.substr(0,7)}...{address.substr(-5)}
 					</Button>
 				</Button.Group>
