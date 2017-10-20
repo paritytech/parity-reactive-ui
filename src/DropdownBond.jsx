@@ -8,6 +8,7 @@ export class DropdownBond extends ReactiveComponent {
 		super(['disabled', 'enabled']);
 	}
 	componentWillMount() {
+		super.componentWillMount();
 		this.setState({options: this.props.options});
 		this.handleChange(null, {value: this.props.defaultValue || this.props.options[0].value});
 	}
@@ -31,7 +32,6 @@ export class DropdownBond extends ReactiveComponent {
 
 	render () {
 		const { currentValue } = this.state
-
 		return (
 			<Dropdown
 				options={this.state.options}
@@ -44,7 +44,7 @@ export class DropdownBond extends ReactiveComponent {
 				onAddItem={this.handleAddition.bind(this)}
 				onChange={this.handleChange.bind(this)}
 				style={this.props.style}
-				disabled={this.state.disabled || !this.state.enabled}
+				disabled={!!this.state.disabled || !this.state.enabled}
 			/>
 		)
 	}

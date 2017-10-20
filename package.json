@@ -12,7 +12,8 @@
     "watch": "webpack --watch --config=config/webpack.config.dist.js",
 		"watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
     "compile": "webpack --config=config/webpack.config.dist.js",
-    "prepublish": "../oo7/prepublish.sh && npm run compile",
+    "prepublishOnly": "../oo7/prepublish.sh",
+    "prepublish": "npm run compile",
     "postpublish": "../oo7/postpublish.sh"
   },
   "repository": {
@@ -35,9 +36,9 @@
   "dependencies": {
     "bignumber.js": "^4.0.0",
     "blockies": "0.0.2",
-    "oo7": "file:../oo7",
-    "oo7-parity": "file:../oo7-parity",
-    "oo7-react": "file:../oo7-react",
+    "oo7": "^0.5.7",
+    "oo7-parity": "^0.6.13",
+    "oo7-react": "^0.4.7",
     "prop-types": "^15.5.9",
     "react": "^15.5.4",
     "react-dom": "^15.4.2",

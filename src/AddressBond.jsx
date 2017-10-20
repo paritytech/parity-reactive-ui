@@ -1,5 +1,4 @@
 import React from 'react';
-import {Api} from '@parity/parity.js';
 import {Bond} from 'oo7';
 import {ReactiveComponent, Rimg} from 'oo7-react';
 import {bonds, isNullData} from 'oo7-parity';
