@@ -23,8 +23,9 @@ export class TokenList extends ReactiveComponent {
     if (typeof tokens === 'undefined' || tokens.length === 0) {
       return <span>-</span>;
     }
+
     return (<div style={ this.style }>
-      { this.state.tokens.map((elem) => {
+      { tokens.map((elem) => {
         return (
           <TokenIcon
             key={ elem.name }
@@ -36,6 +37,7 @@ export class TokenList extends ReactiveComponent {
             name={ elem.name }
           />);
       }) }
+
     </div>);
   }
 }

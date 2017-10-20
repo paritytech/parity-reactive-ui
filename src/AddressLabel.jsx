@@ -6,7 +6,6 @@ export class AddressLabel extends ReactiveComponent {
 	constructor(){
 		super(['address']);
 		this.state = {
-			isHashHovered:false,
 			isCopyHovered:false
 		};
 	}
@@ -40,18 +39,11 @@ export class AddressLabel extends ReactiveComponent {
 		try {
 			var successful = document.execCommand('copy');
 			var msg = successful ? 'successful' : 'unsuccessful';
-			console.log('Copying text command was ' + msg);
 		} catch (err) {
-			console.log('Oops, unable to copy');
+			console.error('unable to copy ', err);
 		}
 
 		document.body.removeChild(textArea);
-	}
-
-	handleHashHover(){
-		this.setState({
-			isHashHovered: !this.state.isHashHovered
-		})
 	}
 
 	handleCopyHover(){
@@ -74,11 +66,8 @@ export class AddressLabel extends ReactiveComponent {
 						onMouseEnter={this.handleCopyHover.bind(this)}
 						onMouseLeave={this.handleCopyHover.bind(this)}>
 					</Button>
-					<Button
-						basic={!isHashHovered}
-						color='blue'
-						onMouseEnter={this.handleHashHover.bind(this)}
-						onMouseLeave={this.handleHashHover.bind(this)} >{address.substr(0,7)}...{address.substr(-5)}
+					<Button color='blue' basic>
+						{address.substr(0,7)}...{address.substr(-5)}
 					</Button>
 				</Button.Group>
 			</div>
