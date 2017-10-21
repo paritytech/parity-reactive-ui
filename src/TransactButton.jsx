@@ -48,7 +48,7 @@ export class TransactButton extends ReactiveComponent {
 				? t()
 				: bonds.post(t);
 			s.status.tie((x, i) => {
-				if (this.props.order ? this.props.causal ? x.confirmed : x.signed : x.requested) {
+				if (this.props.order ? this.props.causal ? x.confirmed || x.scheduled : x.signed : x.requested) {
 					this.execNext();
 					s.status.untie(i);
 				} else if (this.props.failed) {
@@ -105,7 +105,7 @@ class TransactButtonAux extends ReactiveComponent {
 
 	render () {
 		let specialColor = this.props.primary || this.props.secondary;
-		let done = this.state.status && (this.state.status.confirmed || this.state.status.failed);
+		let done = this.state.status && (this.state.status.confirmed || this.state.status.scheduled || this.state.status.failed);
 		let clickable = !this.state.status || done;
 		let status = this.state.status && styleStatus(this.state.status);
 		let statusColor = status ? status.color : null;

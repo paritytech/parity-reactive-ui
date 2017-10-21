@@ -19,19 +19,22 @@ import {Label, Icon} from 'semantic-ui-react';
 export function styleStatus (value) {
 	return (
 		value.initialising !== undefined || value.estimating !== undefined
-			? { text: 'estimating', icon: 'bullseye', color: 'blue', basic: true }
-			: value.estimated || value.requested
-				? { text: 'authorising', icon: 'key', color: 'orange', basic: true }
-				: value.signed
-					? { text: 'finalising', icon: 'spinner', color: 'green', basic: true, loading: true }
-					: value.confirmed
-						? { text: 'finalised', icon: 'check', color: 'green', basic: false }
-						: value.failed
-							? value.failed.code === -32015
-								? { text: 'invalid', icon: 'exclamation', color: 'red', basic: true }
-								: value.failed.code === -32040
-									? { text: 'rejected', icon: 'x', color: 'grey', basic: true } : null
-							: null
+      ? { text: 'estimating', icon: 'bullseye', color: 'blue', basic: true }
+		: value.estimated || value.requested
+      ? { text: 'authorising', icon: 'key', color: 'orange', basic: true }
+		: value.scheduled
+      ? { text: 'scheduled', icon: 'spinner', color: 'green', basic: false, loading: true }
+		: value.signed
+      ? { text: 'finalising', icon: 'spinner', color: 'green', basic: true, loading: true }
+    : value.confirmed
+      ? { text: 'finalised', icon: 'check', color: 'green', basic: false }
+		: value.failed
+      ? value.failed.code == -32015
+        ? { text: 'invalid', icon: 'exclamation', color: 'red', basic: true }
+      : value.failed.code == -32040
+        ? { text: 'rejected', icon: 'x', color: 'grey', basic: true }
+      : null
+    : null
 	);
 }
 

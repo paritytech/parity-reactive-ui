@@ -51,5 +51,6 @@ export class MultiInputBond extends ReactiveComponent {
 }
 MultiInputBond.defaultProps = {
 	defaultValue: '',
-	disabled: false
+	disabled: false,
+	enabled: true
 };
