@@ -1,11 +1,11 @@
-import React from 'react';
-import {bonds, toChecksumAddress} from 'oo7-parity';
-import {ReactiveComponent, Rimg} from 'oo7-react';
-import {isNullData} from 'oo7-parity';
-import {Label, Icon} from 'semantic-ui-react';
-import {AccountIcon} from './AccountIcon';
+const React = require('react');
+const {bonds, toChecksumAddress} = require('oo7-parity');
+const {ReactiveComponent, Rimg} = require('oo7-react');
+const {isNullData} = require('oo7-parity');
+const {Label, Icon} = require('semantic-ui-react');
+const {AccountIcon} = require('./AccountIcon');
 
-export class AccountLabel extends ReactiveComponent {
+class AccountLabel extends ReactiveComponent {
 	constructor () {
 		super(['address']);
 	}
@@ -109,3 +109,5 @@ class AccountLabelAux extends ReactiveComponent {
 		);
 	}
 }
+
+module.exports = { AccountLabel };

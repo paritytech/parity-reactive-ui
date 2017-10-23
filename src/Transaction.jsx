@@ -1,8 +1,8 @@
-import React from 'react';
-import { ReactiveComponent, Rspan, Hash } from 'oo7-react';
-import { Card, List, Icon} from 'semantic-ui-react';
-import { formatBlockNumber, formatBalance } from 'oo7-parity';
-import { InlineAccount, InlineBalance } from './';
+const React = require('react');
+const { ReactiveComponent, Rspan, Hash } = require('oo7-react');
+const { Card, List, Icon} = require('semantic-ui-react');
+const { formatBlockNumber, formatBalance } = require('oo7-parity');
+const { InlineAccount, InlineBalance } = require('./');
 
 // supports:
 // gas: true,
@@ -27,7 +27,7 @@ import { InlineAccount, InlineBalance } from './';
 const formatCondition = c => c ? (typeof(c) === timestamp ? new Date(c) : formatBlockNumber(c))
                                : '';
 
-export class Transaction extends ReactiveComponent {
+class Transaction extends ReactiveComponent {
   constructor() {
     super(['transaction']);
   }
@@ -224,3 +224,5 @@ Transaction.defaultProps = {
   to: true,
   ether: true,
 };
+
+module.exports = { Transaction };

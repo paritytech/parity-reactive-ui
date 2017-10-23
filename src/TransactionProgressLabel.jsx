@@ -1,8 +1,8 @@
-import React from 'react';
-import {ReactiveComponent} from 'oo7-react';
-import {Label, Icon} from 'semantic-ui-react';
+const React = require('react');
+const {ReactiveComponent} = require('oo7-react');
+const {Label, Icon} = require('semantic-ui-react');
 
-export function styleStatus (value) {
+function styleStatus (value) {
 	return (
 		value.initialising !== undefined || value.estimating !== undefined ? { text: 'estimating', icon: 'bullseye', color: 'blue', basic: true } :
 		value.estimated ||
@@ -18,7 +18,7 @@ export function styleStatus (value) {
 	);
 }
 
-export class TransactionProgressLabel extends ReactiveComponent {
+class TransactionProgressLabel extends ReactiveComponent {
 	constructor() {
 		super(['value']);
 	}
@@ -50,3 +50,5 @@ TransactionProgressLabel.defaultProps = {
 	current: 0,
 	total: 0
 };
+
+module.exports = { styleStatus, TransactionProgressLabel };

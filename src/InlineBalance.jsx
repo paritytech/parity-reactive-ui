@@ -1,10 +1,10 @@
-import React from 'react';
-import {BigNumber} from 'bignumber.js';
-import {ReactiveComponent} from 'oo7-react';
-import {splitValue, denominations} from 'oo7-parity';
+const React = require('react');
+const {BigNumber} = require('bignumber.js');
+const {ReactiveComponent} = require('oo7-react');
+const {splitValue, denominations} = require('oo7-parity');
 
 let usableDenoms = denominations.filter(x => x[0] === x[0].toLowerCase());
-export class InlineBalance extends ReactiveComponent {
+class InlineBalance extends ReactiveComponent {
 	constructor () {
 		super(['value']);
 		this.state = {
@@ -118,3 +118,5 @@ export class InlineBalance extends ReactiveComponent {
 		);
 	}
 }
+
+module.exports = { InlineBalance };

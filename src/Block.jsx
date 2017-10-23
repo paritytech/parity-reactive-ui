@@ -1,9 +1,9 @@
-import React from 'react'
-import { Rspan, ReactiveComponent, Hash} from 'oo7-react';
-import { bonds, formatBlockNumber} from 'oo7-parity';
-import { Bond } from 'oo7';
-import { InlineAccount } from './';
-import { Card, List, Icon} from 'semantic-ui-react'
+const React = require('react');
+const { Bond } = require('oo7');
+const { Rspan, ReactiveComponent, Hash} = require('oo7-react');
+const { bonds, formatBlockNumber} = require('oo7-parity');
+const { InlineAccount } = require('./');
+const { Card, List, Icon } = require('semantic-ui-react');
 
 // Reactive Block view
 // properties: author/miner[default], minerRegistry,  difficulty, totalDifficulty , gasLimit, gasUsed, hash, parentHash, sh3Uncles, size, transactions, timestamp[default], blockNumber[default], extraData
@@ -11,9 +11,9 @@ import { Card, List, Icon} from 'semantic-ui-react'
 // planned to include: [nonce, blockReward, unclesReward]
 
 const digits = 6
-const formatDifficulty = d => d.toString(10).substring(0,digits-1) + 'e^' + (d.toString(10).length - (digits-1))
+const formatDifficulty = d => d.toString(10).substring(0, digits - 1) + 'e^' + (d.toString(10).length - (digits - 1))
 
-export class Block extends ReactiveComponent {
+class Block extends ReactiveComponent {
   constructor() {
     super(['block']);
   }
@@ -162,3 +162,5 @@ Block.defaultProps = {
   blockNumber: true,
   timestamp: true,
 };
+
+module.exports = { Block };

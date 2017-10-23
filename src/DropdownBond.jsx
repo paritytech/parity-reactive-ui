@@ -1,9 +1,9 @@
-import React from 'react';
-import {Dropdown} from 'semantic-ui-react';
-import {Bond} from 'oo7';
-import {ReactiveComponent} from 'oo7-react';
+const React = require('react');
+const {Dropdown} = require('semantic-ui-react');
+const {Bond} = require('oo7');
+const {ReactiveComponent} = require('oo7-react');
 
-export class DropdownBond extends ReactiveComponent {
+class DropdownBond extends ReactiveComponent {
 	constructor () {
 		super(['disabled', 'enabled']);
 	}
@@ -60,3 +60,5 @@ DropdownBond.defaultProps = {
 	enabled: true,
 	options: [{text: 'Unknown', value: ''}]
 }
+
+module.exports = { DropdownBond };

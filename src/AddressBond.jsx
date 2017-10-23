@@ -1,12 +1,12 @@
-import React from 'react';
-import {Bond} from 'oo7';
-import {ReactiveComponent, Rimg} from 'oo7-react';
-import {bonds, isNullData} from 'oo7-parity';
-import {Label, Input} from 'semantic-ui-react';
-import {AccountIcon} from './AccountIcon';
-import {InputBond} from './InputBond';
+const React = require('react');
+const {Bond} = require('oo7');
+const {ReactiveComponent, Rimg} = require('oo7-react');
+const {bonds, isNullData} = require('oo7-parity');
+const {Label, Input} = require('semantic-ui-react');
+const {AccountIcon} = require('./AccountIcon');
+const {InputBond} = require('./InputBond');
 
-export class AddressBond extends InputBond {
+class AddressBond extends InputBond {
 	constructor () {
 		super();
 
@@ -74,3 +74,5 @@ AddressBond.defaultProps = {
 	},
 	defaultValue: ''
 };
+
+module.exports = { AddressBond };

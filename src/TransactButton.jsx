@@ -1,10 +1,10 @@
-import React from 'react';
-import {ReactiveComponent} from 'oo7-react';
-import {bonds} from 'oo7-parity';
-import {Button} from 'semantic-ui-react';
-import {TransactionProgressLabel, styleStatus} from './TransactionProgressLabel';
+const React = require('react');
+const {ReactiveComponent} = require('oo7-react');
+const {bonds} = require('oo7-parity');
+const {Button} = require('semantic-ui-react');
+const {TransactionProgressLabel, styleStatus} = require('./TransactionProgressLabel');
 
-export class TransactButton extends ReactiveComponent {
+class TransactButton extends ReactiveComponent {
 	constructor () {
 		super(['content', 'disabled', 'enabled', 'positive', 'negative', 'active']);
 		this.state = { index: 0, status: null };
@@ -126,3 +126,5 @@ class TransactButtonAux extends ReactiveComponent {
 		/>);
 	}
 }
+
+module.exports = { TransactButton };

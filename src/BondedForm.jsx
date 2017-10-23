@@ -1,9 +1,9 @@
-import React from 'react';
-import {Bond} from 'oo7';
-import {ReactiveComponent} from 'oo7-react';
-import {Button, Label, Statistic} from 'semantic-ui-react';
+const React = require('react');
+const {Bond} = require('oo7');
+const {ReactiveComponent} = require('oo7-react');
+const {Button, Label, Statistic} = require('semantic-ui-react');
 
-export class BondedForm extends ReactiveComponent {
+class BondedForm extends ReactiveComponent {
 	constructor (object, bondableProps) {
 		super(bondableProps);
 		this.object = object;
@@ -18,9 +18,11 @@ export class BondedForm extends ReactiveComponent {
 	}
 }
 
-export let BButton = () => new BondedForm(Button, ['label', 'content', 'disabled']);
-export let BStatistic = () => new BondedForm(Statistic, ['label', 'value', 'color']);
-export let BStatisticLabel = () => new BondedForm(Statistic.Label, ['children']);
-export let BStatisticValue = () => new BondedForm(Statistic.Value, ['children']);
-export let BLabel = () => new BondedForm(Label, ['content', 'detail']);
-export let BLabelDetail = () => new BondedForm(Label.Detail, ['content']);
+let BButton = () => new BondedForm(Button, ['label', 'content', 'disabled']);
+let BStatistic = () => new BondedForm(Statistic, ['label', 'value', 'color']);
+let BStatisticLabel = () => new BondedForm(Statistic.Label, ['children']);
+let BStatisticValue = () => new BondedForm(Statistic.Value, ['children']);
+let BLabel = () => new BondedForm(Label, ['content', 'detail']);
+let BLabelDetail = () => new BondedForm(Label.Detail, ['content']);
+
+module.exports = { BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel, BLabelDetail };

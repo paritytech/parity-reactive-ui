@@ -1,9 +1,9 @@
-import React from 'react';
-import {interpretRender, formatValueNoDenom, combineValue, defDenom, denominations} from 'oo7-parity';
-import {Dropdown} from 'semantic-ui-react';
-import {InputBond} from './InputBond';
+const React = require('react');
+const {interpretRender, formatValueNoDenom, combineValue, defDenom, denominations} = require('oo7-parity');
+const {Dropdown} = require('semantic-ui-react');
+const {InputBond} = require('./InputBond');
 
-export class BalanceBond extends InputBond {
+class BalanceBond extends InputBond {
 	getUnits () {
 		return this.state.ok ? denominations[this.state.internal ? this.state.internal.denom : 6] : null;
 	}
@@ -54,3 +54,5 @@ BalanceBond.defaultProps = {
 		} : null;
 	}
 };
+
+module.exports = { BalanceBond };

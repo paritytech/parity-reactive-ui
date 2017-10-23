@@ -1,9 +1,9 @@
-import React from 'react';
-import {Input} from 'semantic-ui-react';
-import {Bond} from 'oo7';
-import {ReactiveComponent} from 'oo7-react';
+const React = require('react');
+const {Input} = require('semantic-ui-react');
+const {Bond} = require('oo7');
+const {ReactiveComponent} = require('oo7-react');
 
-export class InputBond extends ReactiveComponent {
+class InputBond extends ReactiveComponent {
 	constructor () {
 		super(['defaultValue']);
 		this.state = {
@@ -152,3 +152,5 @@ InputBond.defaultProps = {
 	defaultValue: '',
 	reversible: false
 };
+
+module.exports = { InputBond };

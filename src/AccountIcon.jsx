@@ -1,7 +1,7 @@
-import blockies from 'blockies';
-import React from 'react';
-import {Image} from 'semantic-ui-react';
-import {ReactiveComponent} from 'oo7-react';
+const blockies = require('blockies');
+const React = require('react');
+const {Image} = require('semantic-ui-react');
+const {ReactiveComponent} = require('oo7-react');
 
 function createIdentityImage (address, scale = 8) {
 	return blockies({
@@ -11,7 +11,7 @@ function createIdentityImage (address, scale = 8) {
     }).toDataURL();
 }
 
-export class AccountIcon extends ReactiveComponent {
+class AccountIcon extends ReactiveComponent {
 	constructor() { super(['address', 'className', 'style']); }
 
 	render() {
@@ -41,3 +41,5 @@ AccountIcon.defaultProps = {
 	undefContent: '',
 	id: null
 }
+
+module.exports = { AccountIcon };
