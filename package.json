@@ -13,12 +13,12 @@
     "watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
     "compile": "webpack --config=config/webpack.config.dist.js",
     "prepublishOnly": "../oo7/prepublish.sh",
-    "prepublish": "npm run compile",
+    "prepare": "npm run compile",
     "postpublish": "../oo7/postpublish.sh"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ethcore/parity-reactive-ui.git"
+    "url": "git+https://github.com/paritytech/parity-reactive-ui.git"
   },
   "keywords": [
     "Promise",
@@ -30,9 +30,9 @@
   "author": "Parity Technologies <admin@parity.io> (https://parity.io/)",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/ethcore/parity-reactive-ui/issues"
+    "url": "https://github.com/paritytech/parity-reactive-ui/issues"
   },
-  "homepage": "https://github.com/ethcore/parity-reactive-ui#readme",
+  "homepage": "https://github.com/paritytech/parity-reactive-ui#readme",
   "dependencies": {
     "bignumber.js": "^4.0.0",
     "blockies": "0.0.2",
@@ -46,10 +46,9 @@
     "semantic-ui-react": "^0.68.3"
   },
   "devDependencies": {
-    "babel-cli": "^6.22.2",
     "babel-loader": "^7.0.0",
-    "babel-eslint": "^8.0.0",
-    "babel-preset-env": "^1.6.0",
+    "babel-cli": "^6.22.2",
+    "babel-preset-react": "^6.22.0",
     "chai": "^4.0.2",
     "css-loader": "^0.28.1",
     "file-loader": "^0.11.1",
