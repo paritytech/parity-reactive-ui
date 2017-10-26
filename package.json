@@ -9,12 +9,13 @@
   "scripts": {
     "test": "npm run compile && mocha --compilers js:babel-core/register  --reporter spec",
     "dev": "webpack-dev-server --config=config/webpack.config.dev.js",
-    "watch": "webpack --watch --config=config/webpack.config.dist.js",
+    "watch:old": "webpack --watch --config=config/webpack.config.dist.js",
     "watch:dev": "webpack --watch --config=config/webpack.config.dev.js",
     "compile": "webpack --config=config/webpack.config.dist.js",
     "prepublishOnly": "../oo7/prepublish.sh",
     "prepare": "npm run compile",
-    "postpublish": "../oo7/postpublish.sh"
+    "postpublish": "../oo7/postpublish.sh",
+    "watch": "watch 'npm run compile' src/ node_modules/"
   },
   "repository": {
     "type": "git",
@@ -46,8 +47,8 @@
     "semantic-ui-react": "^0.68.3"
   },
   "devDependencies": {
-    "babel-loader": "^7.0.0",
     "babel-cli": "^6.22.2",
+    "babel-loader": "^7.0.0",
     "babel-preset-react": "^6.22.0",
     "chai": "^4.0.2",
     "css-loader": "^0.28.1",
@@ -55,6 +56,7 @@
     "mocha": "^3.2.0",
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.8",
+    "watch": "^1.0.2",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5",
     "webpack-stream": "^3.2.0"
