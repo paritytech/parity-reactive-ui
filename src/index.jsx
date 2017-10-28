@@ -6,7 +6,8 @@ const {AccountIcon} = require('./AccountIcon');
 const {AccountLabel} = require('./AccountLabel');
 const {AddressBond} = require('./AddressBond');
 const {InlineAccount} = require('./InlineAccount');
-const {BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel, BLabelDetail} = require('./BondedForm');
+const {BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue,
+	BLabel, BLabelDetail} = require('./BondedForm');
 const {InputBond} = require('./InputBond');
 const {DropdownBond} = require('./DropdownBond');
 const {MultiInputBond} = require('./MultiInputBond');

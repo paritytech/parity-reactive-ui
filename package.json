@@ -15,7 +15,7 @@
     "prepublishOnly": "../oo7/prepublish.sh",
     "prepare": "npm run compile",
     "postpublish": "../oo7/postpublish.sh",
-    "watch": "watch 'npm run compile' src/ node_modules/oo7*"
+    "watch": "watch 'npm run compile' src/ node_modules/oo7/lib/ node_modules/oo7-parity/src/ node_modules/oo7-react/lib/"
   },
   "repository": {
     "type": "git",
