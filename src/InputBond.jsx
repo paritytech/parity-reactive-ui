@@ -4,8 +4,8 @@ const {Bond} = require('oo7');
 const {ReactiveComponent} = require('oo7-react');
 
 class InputBond extends ReactiveComponent {
-	constructor () {
-		super(['defaultValue']);
+	constructor (extraReactiveProps = []) {
+		super(['defaultValue', ...extraReactiveProps]);
 		this.state = {
 			display: null,
 			internal: null,
@@ -134,7 +134,7 @@ class InputBond extends ReactiveComponent {
 			size={this.props.size}
 			transparent={this.props.transparent}
 			type='text'
-			value={this.state.display == null ? this.state.defaultValue : this.state.display}
+			value={this.state.display != null ? this.state.display : this.state.defaultValue != null ? this.state.defaultValue : ''}
 			error={!this.state.ok}
 			onKeyDown={this.props.onKeyDown}
 			onChange={(e, v) => this.handleEdit(v.value)}

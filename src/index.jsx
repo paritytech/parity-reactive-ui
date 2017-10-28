@@ -10,6 +10,7 @@ const {BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel
 const {InputBond} = require('./InputBond');
 const {DropdownBond} = require('./DropdownBond');
 const {MultiInputBond} = require('./MultiInputBond');
+const {NumberBond} = require('./NumberBond');
 const {HashBond} = require('./HashBond');
 const {URLBond} = require('./URLBond');
 const {TransactionProgressLabel} = require('./TransactionProgressLabel');
@@ -26,5 +27,5 @@ module.exports = { bonds, options,
 	BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel,
 	BLabelDetail, InputBond, DropdownBond, MultiInputBond, HashBond, URLBond,
 	TransactionProgressLabel, TransactButton, SigningProgressLabel,
-	SigningButton, BalanceBond, InlineBalance, Block, Transaction
+	SigningButton, BalanceBond, InlineBalance, Block, Transaction, NumberBond
 }
