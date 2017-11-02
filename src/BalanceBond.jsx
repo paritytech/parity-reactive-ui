@@ -4,6 +4,8 @@ const {Dropdown} = require('semantic-ui-react');
 const {InputBond} = require('./InputBond');
 
 class BalanceBond extends InputBond {
+	constructor () { super(); }
+	
 	getUnits () {
 		return this.state.ok ? denominations[this.state.internal ? this.state.internal.denom : 6] : null;
 	}

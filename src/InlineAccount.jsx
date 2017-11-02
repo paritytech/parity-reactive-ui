@@ -25,10 +25,12 @@ class InlineAccountAux extends ReactiveComponent {
 	constructor () {
 		super(['names', 'badges']);
 	}
-	readyRender () {
-		let badges = this.state.badges.map((b, i) => (
-			<Rimg key={i} alt={b.caption} src={bonds.githubhint.entries(b.img)[0]} style={{height: '1em', verticalAlign: 'text-bottom'}}/>
-		));
+	render () {
+		let badges = this.ready()
+			? this.state.badges.map((b, i) => (
+				<Rimg key={i} alt={b.caption} src={bonds.githubhint.entries(b.img)[0]} style={{height: '1em', verticalAlign: 'text-bottom'}}/>
+			))
+			: [];
 
 		return (
 			<span
@@ -40,7 +42,7 @@ class InlineAccountAux extends ReactiveComponent {
 					paddingTop: '0.1em',
 					paddingBottom: '0.1em',
 					fontWeight: '900',
-					borderBottom: this.state.names.owned ? '2px solid #FBBD08' : '0',
+					borderBottom: this.ready() && this.state.names.owned ? '2px solid #FBBD08' : '0',
 					whiteSpace: 'nowrap'
 				}}
 			>
@@ -57,7 +59,7 @@ class InlineAccountAux extends ReactiveComponent {
 							top: '-0.03em'
 						}}
 					/>
-					{this.state.names.owned || this.state.names.registry ||
+					{(this.ready() && (this.state.names.owned || this.state.names.registry)) ||
 						(<span><span style={{
 							fontSize: 'small',
 							fontWeight: '100,lighter,light'

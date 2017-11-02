@@ -1,6 +1,8 @@
 const {InputBond} = require('./InputBond');
 
-class URLBond extends InputBond {}
+class URLBond extends InputBond {
+	constructor () { super(); }
+}
 URLBond.defaultProps = {
 	placeholder: 'https://...',
 	validator: u => {

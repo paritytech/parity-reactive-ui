@@ -1,6 +1,8 @@
 const {InputBond} = require('./InputBond');
 
-class HashBond extends InputBond {}
+class HashBond extends InputBond {
+	constructor () { super(); }
+}
 HashBond.defaultProps = {
 	placeholder: '0x...',
 	validator: v => {

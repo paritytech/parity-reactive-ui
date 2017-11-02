@@ -1,7 +1,7 @@
 const React = require('react');
 const {Bond} = require('oo7');
 const {ReactiveComponent, Rimg} = require('oo7-react');
-const {bonds, isNullData} = require('oo7-parity');
+const {bonds, isNullData, toChecksumAddress} = require('oo7-parity');
 const {Label, Input} = require('semantic-ui-react');
 const {AccountIcon} = require('./AccountIcon');
 const {InputBond} = require('./InputBond');
@@ -57,7 +57,7 @@ AddressBond.defaultProps = {
 				return null;
 			}
 			let addr = '0x' + m[2];
-			if (parity.api.util.toChecksumAddress(addr) === addr) {
+			if (toChecksumAddress(addr) === addr) {
 				return { external: addr, internal: a, corrected: addr };
 			}
 			if (addr.toLowerCase() === addr) {
