@@ -23,5 +23,4 @@ export { Block } from './Block';
 export { Transaction } from './Transaction';
 export { EtherBalance } from './EtherBalance';
 export { TokenList } from './TokenList';
-export { DappLink } from './DappLink';
 export { BadgeList } from './BadgeList';
