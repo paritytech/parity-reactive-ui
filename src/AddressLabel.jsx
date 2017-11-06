@@ -10,8 +10,7 @@ export class AddressLabel extends ReactiveComponent {
 		};
 	}
 
-	onCopyAddress(text = 'hello'){
-		console.log('copied');
+	onCopyAddress(text){
 		var textArea = document.createElement("textarea");
 
 		textArea.style.position = 'fixed';
