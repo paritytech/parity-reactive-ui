@@ -28,6 +28,10 @@
       "switches": "never"
     }],
     "react/jsx-closing-bracket-location": "error",
-    "react/jsx-curly-spacing": ["error", "always"]
+    "react/jsx-curly-spacing": ["error", "always"],
+    "react/jsx-indent": [2,"tab"],
+    "react/jsx-indent-props": [2,"tab"],
+  	"indent": ["error","tab"],
+  	"no-tabs": 0
   }
 }
