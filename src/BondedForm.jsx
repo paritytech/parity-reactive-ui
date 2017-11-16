@@ -1,10 +1,9 @@
 import React from 'react';
-import {Bond} from 'oo7';
-import {ReactiveComponent} from 'oo7-react';
-import {Button, Label, Statistic} from 'semantic-ui-react';
+import { ReactiveComponent } from 'oo7-react';
+import { Button, Label, Statistic } from 'semantic-ui-react';
 
-function instanceOfBond(b) {
-	return typeof(b) === 'object' && typeof(b.reset) === 'function' && typeof(b.changed) === 'function';
+function instanceOfBond (b) {
+	return typeof (b) === 'object' && typeof (b.reset) === 'function' && typeof (b.changed) === 'function';
 }
 
 export class BondedForm extends ReactiveComponent {
@@ -14,6 +13,7 @@ export class BondedForm extends ReactiveComponent {
 	}
 	render () {
 		let p = {};
+
 		Object.keys(this.props)
 			.filter(k => !(instanceOfBond(this.props[k])))
 			.forEach(k => p[k] = this.props[k]);

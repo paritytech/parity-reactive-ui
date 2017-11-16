@@ -3,15 +3,15 @@ import { ReactiveComponent } from 'oo7-react';
 import { Label, Button } from 'semantic-ui-react';
 
 export class AddressLabel extends ReactiveComponent {
-	constructor(){
+	constructor () {
 		super(['address']);
 		this.state = {
-			isCopyHovered:false
+			isCopyHovered: false
 		};
 	}
 
-	onCopyAddress(text){
-		var textArea = document.createElement("textarea");
+	onCopyAddress (text) {
+		var textArea = document.createElement('textarea');
 
 		textArea.style.position = 'fixed';
 		textArea.style.top = 0;
@@ -45,31 +45,32 @@ export class AddressLabel extends ReactiveComponent {
 		document.body.removeChild(textArea);
 	}
 
-	handleCopyHover(){
+	handleCopyHover () {
 		this.setState({
 			isCopyHovered: !this.state.isCopyHovered
-		})
+		});
 	}
 
-	render(){
+	render () {
 		const { address, isHashHovered, isCopyHovered } = this.state;
-		if(typeof this.state.address == 'undefined') return(<div></div>);
-		return(
+
+		if (typeof this.state.address === 'undefined') { return (<div />); }
+		return (
 			<div>
 				<Button.Group>
 					<Button
-						basic={!isCopyHovered}
-						icon="clone"
+						basic={ !isCopyHovered }
+						icon='clone'
 						color='blue'
-						onClick={this.onCopyAddress.bind(this,address)}
-						onMouseEnter={this.handleCopyHover.bind(this)}
-						onMouseLeave={this.handleCopyHover.bind(this)}>
-					</Button>
-					<Button color='blue' basic style={ {cursor:'default'} }>
-						{address.substr(0,7)}...{address.substr(-5)}
+						onClick={ this.onCopyAddress.bind(this, address) }
+						onMouseEnter={ this.handleCopyHover.bind(this) }
+						onMouseLeave={ this.handleCopyHover.bind(this) }
+					/>
+					<Button color='blue' basic style={ { cursor: 'default' } }>
+						{address.substr(0, 7)}...{address.substr(-5)}
 					</Button>
 				</Button.Group>
 			</div>
-		)
+		);
 	}
 }

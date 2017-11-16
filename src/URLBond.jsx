@@ -1,4 +1,4 @@
-import {InputBond} from './InputBond';
+import { InputBond } from './InputBond';
 
 export class URLBond extends InputBond {}
 URLBond.defaultProps = {
@@ -10,7 +10,8 @@ URLBond.defaultProps = {
 			try { return new URL(u); } catch (e) {}
 			return null;
 		})();
+
 		return x ? { internal: x, external: x.href, corrected: x.href } : null;
 	},
 	defaultValue: ''
-}
+};
