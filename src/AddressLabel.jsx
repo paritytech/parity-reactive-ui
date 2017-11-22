@@ -1,8 +1,8 @@
-import React from 'react';
-import { ReactiveComponent } from 'oo7-react';
-import { Label, Button } from 'semantic-ui-react';
+const React = require('react');
+const { ReactiveComponent } = require('oo7-react');
+const { Label, Button } = require('semantic-ui-react');
 
-export class AddressLabel extends ReactiveComponent {
+class AddressLabel extends ReactiveComponent {
 	constructor () {
 		super(['address']);
 		this.state = {
@@ -74,3 +74,5 @@ export class AddressLabel extends ReactiveComponent {
 		);
 	}
 }
+
+module.exports = { AddressLabel }

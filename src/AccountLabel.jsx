@@ -1,13 +1,12 @@
-import React from 'react';
 
-import Api from '@parity/api';
-import { bonds, isNullData } from 'oo7-parity';
-import { ReactiveComponent, Rimg } from 'oo7-react';
-import { Label, Icon } from 'semantic-ui-react';
+const React = require('react');
+const Api = require('@parity/api');
+const {bonds, toChecksumAddress,isNullData} = require('oo7-parity');
+const {ReactiveComponent, Rimg} = require('oo7-react');
+const {Label, Icon} = require('semantic-ui-react');
+const {AccountIcon} = require('./AccountIcon');
 
-import { AccountIcon } from './AccountIcon';
-
-export class AccountLabel extends ReactiveComponent {
+class AccountLabel extends ReactiveComponent {
 	constructor () {
 		super(['address']);
 	}
@@ -43,6 +42,7 @@ export class AccountLabel extends ReactiveComponent {
 					Null
 				</Label>);
 		} else {
+
 			let a = Api.util.toChecksumAddress(this.state.address);
 
 			return (
@@ -119,3 +119,5 @@ class AccountLabelAux extends ReactiveComponent {
 		);
 	}
 }
+
+module.exports = { AccountLabel };

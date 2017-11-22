@@ -1,26 +1,31 @@
-import 'semantic-ui-css/semantic.min.css';
+require('semantic-ui-css/semantic.min.css');
 
-export { bonds, options } from 'oo7-parity';
+const { bonds, options } = require('oo7-parity');
 
-export { AccountIcon } from './AccountIcon';
-export { AccountLabel } from './AccountLabel';
-export { AddressBond } from './AddressBond';
-export { InlineAccount } from './InlineAccount';
-export { BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel, BLabelDetail } from './BondedForm';
-export { InputBond } from './InputBond';
-export { DropdownBond } from './DropdownBond';
-export { MultiInputBond } from './MultiInputBond';
-export { HashBond } from './HashBond';
-export { URLBond } from './URLBond';
-export { TransactionProgressLabel } from './TransactionProgressLabel';
-export { TransactButton } from './TransactButton';
-export { SigningProgressLabel } from './SigningProgressLabel';
-export { SigningButton } from './SigningButton';
-export { BalanceBond } from './BalanceBond';
-export { AddressLabel } from './AddressLabel';
-export { InlineBalance } from './InlineBalance';
-export { Block } from './Block';
-export { Transaction } from './Transaction';
-export { EtherBalance } from './EtherBalance';
-export { TokenList } from './TokenList';
-export { BadgeList } from './BadgeList';
+const { AccountIcon } = require('./AccountIcon');
+const { AccountLabel } = require('./AccountLabel');
+const { AddressBond } = require('./AddressBond');
+const { InlineAccount } = require('./InlineAccount');
+const { BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue,
+	BLabel, BLabelDetail } = require('./BondedForm');
+const { InputBond } = require('./InputBond');
+const { DropdownBond } = require('./DropdownBond');
+const { MultiInputBond } = require('./MultiInputBond');
+const { NumberBond } = require('./NumberBond');
+const { HashBond } = require('./HashBond');
+const { URLBond } = require('./URLBond');
+const { TransactionProgressLabel } = require('./TransactionProgressLabel');
+const { TransactButton } = require('./TransactButton');
+const { SigningProgressLabel } = require('./SigningProgressLabel');
+const { SigningButton } = require('./SigningButton');
+const { BalanceBond } = require('./BalanceBond');
+const { InlineBalance } = require('./InlineBalance');
+const { Block } = require('./Block');
+const { Transaction } = require('./Transaction');
+
+module.exports = { bonds, options,
+	AccountIcon, AccountLabel, AddressBond, InlineAccount,
+	BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel,
+	BLabelDetail, InputBond, DropdownBond, MultiInputBond, HashBond, URLBond,
+	TransactionProgressLabel, TransactButton, SigningProgressLabel,
+	SigningButton, BalanceBond, InlineBalance, Block, Transaction, NumberBond };

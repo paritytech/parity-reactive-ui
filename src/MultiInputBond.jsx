@@ -1,10 +1,10 @@
-import React from 'react';
-import { ReactiveComponent } from 'oo7-react';
-import { AddressBond } from './AddressBond';
-import { HashBond } from './HashBond';
-import { InputBond } from './InputBond';
+const React = require('React');
+const { ReactiveComponent } = require('oo7-react');
+const { AddressBond } = require('./AddressBond');
+const { HashBond } = require('./HashBond');
+const { InputBond } = require('./InputBond');
 
-export class MultiInputBond extends ReactiveComponent {
+class MultiInputBond extends ReactiveComponent {
 	constructor () {
 		super(['type', 'defaultValue', 'disabled', 'enabled']);
 	}
@@ -40,5 +40,8 @@ export class MultiInputBond extends ReactiveComponent {
 }
 MultiInputBond.defaultProps = {
 	defaultValue: '',
-	disabled: false
+	disabled: false,
+	enabled: true
 };
+
+module.exports = { MultiInputBond };

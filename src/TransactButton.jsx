@@ -1,10 +1,10 @@
-import React from 'react';
-import { ReactiveComponent } from 'oo7-react';
-import { bonds } from 'oo7-parity';
-import { Button } from 'semantic-ui-react';
-import { TransactionProgressLabel, styleStatus } from './TransactionProgressLabel';
+const React = require('react');
+const { ReactiveComponent } = require('oo7-react');
+const { bonds } = require('oo7-parity');
+const { Button } = require('semantic-ui-react');
+const { TransactionProgressLabel, styleStatus } = require('./TransactionProgressLabel');
 
-export class TransactButton extends ReactiveComponent {
+class TransactButton extends ReactiveComponent {
 	constructor () {
 		super(['content', 'disabled', 'enabled', 'positive', 'negative', 'active']);
 		this.state = { index: 0, status: null };
@@ -37,7 +37,7 @@ export class TransactButton extends ReactiveComponent {
 				? t()
 				: bonds.post(t);
 			s.status.tie((x, i) => {
-				if (this.props.order ? this.props.causal ? x.confirmed : x.signed : x.requested) {
+				if (this.props.order ? this.props.causal ? x.confirmed || x.scheduled : x.signed : x.requested) {
 					this.execNext();
 					s.status.untie(i);
 				} else if (this.props.failed) {
@@ -52,30 +52,31 @@ export class TransactButton extends ReactiveComponent {
 		if (!this.props.tx) {
 			return (<span />);
 		}
-		return <TransactButtonAux
-			icon={ this.props.icon }
-			size={ this.props.size }
-			positive={ this.state.positive }
-			negative={ this.state.negative }
-			floated={ this.props.floated }
-			compact={ this.props.compact }
-			circular={ this.props.circular }
-			basic={ this.props.basic }
-			attached={ this.props.attached }
-			active={ this.state.active }
-			fluid={ this.props.fluid }
-			primary={ this.props.primary }
-			secondary={ this.props.secondary }
-			content={ this.state.content }
-			color={ this.props.color }
-			status={ this.state.status }
-			progress={ { current: this.state.index, total: this.props.tx.length } }
-			onClick={ this.handleClick }
-			statusText={ this.props.statusText }
-			statusIcon={ this.props.statusIcon }
-			colorPolicy={ this.props.colorPolicy }
-			disabled={ this.state.disabled || !this.state.enabled }
-		       />;
+		return (
+			<TransactButtonAux
+				icon={ this.props.icon }
+				size={ this.props.size }
+				positive={ this.state.positive }
+				negative={ this.state.negative }
+				floated={ this.props.floated }
+				compact={ this.props.compact }
+				circular={ this.props.circular }
+				basic={ this.props.basic }
+				attached={ this.props.attached }
+				active={ this.state.active }
+				fluid={ this.props.fluid }
+				primary={ this.props.primary }
+				secondary={ this.props.secondary }
+				content={ this.state.content }
+				color={ this.props.color }
+				status={ this.state.status }
+				progress={ { current: this.state.index, total: this.props.tx.length } }
+				onClick={ this.handleClick }
+				statusText={ this.props.statusText }
+				statusIcon={ this.props.statusIcon }
+				colorPolicy={ this.props.colorPolicy }
+				disabled={ this.state.disabled || !this.state.enabled }
+			/>);
 	}//
 }
 TransactButton.defaultProps = {
@@ -93,7 +94,7 @@ class TransactButtonAux extends ReactiveComponent {
 	}
 	render () {
 		let specialColor = this.props.primary || this.props.secondary;
-		let done = this.state.status && (this.state.status.confirmed || this.state.status.failed);
+		let done = this.state.status && (this.state.status.confirmed || this.state.status.scheduled || this.state.status.failed);
 		let clickable = !this.state.status || done;
 		let status = this.state.status && styleStatus(this.state.status);
 		let statusColor = status ? status.color : null;
@@ -130,3 +131,5 @@ class TransactButtonAux extends ReactiveComponent {
 		        />);
 	}
 }
+
+module.exports = { TransactButton };

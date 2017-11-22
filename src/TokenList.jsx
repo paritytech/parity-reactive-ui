@@ -1,10 +1,12 @@
-import { ReactiveComponent } from 'oo7-react';
-import { bonds } from 'oo7-parity';
-import { Popup, Image } from 'semantic-ui-react';
-import unknownIcon from './assets/unknown-64x64.png';
-import React from 'react';
+const React = require('react');
 
-export class TokenList extends ReactiveComponent {
+const { ReactiveComponent } = require('oo7-react');
+const { bonds } = require('oo7-parity');
+const { Popup, Image } = require'semantic-ui-react');
+
+const unknownIcon = require('./assets/unknown-64x64.png');
+
+class TokenList extends ReactiveComponent {
 	constructor () {
 		super(['tokens']);
 	}
@@ -73,3 +75,5 @@ class TokenIcon extends ReactiveComponent {
 			);
 		}
 }
+
+module.exports = { TokenList };

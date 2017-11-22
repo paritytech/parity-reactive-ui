@@ -1,6 +1,6 @@
-import { InputBond } from './InputBond';
+const { InputBond } = require('./InputBond');
 
-export class URLBond extends InputBond {}
+class URLBond extends InputBond {}
 URLBond.defaultProps = {
 	placeholder: 'https://...',
 	validator: u => {
@@ -15,3 +15,5 @@ URLBond.defaultProps = {
 	},
 	defaultValue: ''
 };
+
+module.exports = { URLBond };

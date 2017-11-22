@@ -1,8 +1,8 @@
-import React from 'react';
-import { ReactiveComponent } from 'oo7-react';
-import { Label, Icon } from 'semantic-ui-react';
+const React = require('react');
+const { ReactiveComponent } = require('oo7-react');
+const { Label, Icon } = require('semantic-ui-react');
 
-export function styleStatus (value) {
+function styleStatus (value) {
 	return (
 		value.requested ? { text: 'authorising', icon: 'key', color: 'orange', basic: true }
 			: value.signed ? { text: 'signed', icon: 'check', color: 'green', basic: false }
@@ -11,7 +11,7 @@ export function styleStatus (value) {
 	);
 }
 
-export class SigningProgressLabel extends ReactiveComponent {
+class SigningProgressLabel extends ReactiveComponent {
 	constructor () {
 		super(['value']);
 	}
@@ -41,3 +41,5 @@ SigningProgressLabel.defaultProps = {
 	showIcon: true,
 	basic: null
 };
+
+module.exports = { styleStatus, SigningProgressLabel };

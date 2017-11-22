@@ -1,10 +1,10 @@
-import React from 'react';
-import { bonds, isNullData, toChecksumAddress } from 'oo7-parity';
-import { ReactiveComponent, Rimg } from 'oo7-react';
-import { Icon } from 'semantic-ui-react';
-import { AccountIcon } from './AccountIcon';
+const React = require('react');
+const { bonds, isNullData, toChecksumAddress } = require('oo7-parity');
+const { ReactiveComponent, Rimg } = require('oo7-react');
+const { Icon } = require('semantic-ui-react');
+const { AccountIcon } = require('./AccountIcon');
 
-export class InlineAccount extends ReactiveComponent {
+class InlineAccount extends ReactiveComponent {
 	constructor () {
 		super(['address']);
 	}
@@ -23,7 +23,7 @@ InlineAccount.defaultProps = {
 	badges: true
 };
 
-export class InlineAccountAux extends ReactiveComponent {
+class InlineAccountAux extends ReactiveComponent {
 	constructor () {
 		super(['names', 'badges']);
 	}
@@ -84,3 +84,5 @@ export class InlineAccountAux extends ReactiveComponent {
 		);
 	}
 }
+
+module.exports = { InlineAccount };

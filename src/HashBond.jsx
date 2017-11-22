@@ -1,6 +1,6 @@
-import { InputBond } from './InputBond';
+const { InputBond } = require('./InputBond');
 
-export class HashBond extends InputBond {}
+class HashBond extends InputBond {}
 HashBond.defaultProps = {
 	placeholder: '0x...',
 	validator: v => {
@@ -11,3 +11,5 @@ HashBond.defaultProps = {
 		} : null;
 	}
 };
+
+module.exports = { HashBond };

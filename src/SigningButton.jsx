@@ -1,10 +1,10 @@
-import React from 'react';
-import { ReactiveComponent } from 'oo7-react';
-import { bonds } from 'oo7-parity';
-import { Button } from 'semantic-ui-react';
-import { SigningProgressLabel, styleStatus } from './SigningProgressLabel';
+const React = require('react');
+const { ReactiveComponent } = require('oo7-react');
+const { bonds } = require('oo7-parity');
+const { Button } = require('semantic-ui-react');
+const { SigningProgressLabel, styleStatus } = require('./SigningProgressLabel');
 
-export class SigningButton extends React.Component {
+class SigningButton extends React.Component {
 	constructor () {
 		super();
 		this.state = { status: null };
@@ -78,3 +78,5 @@ class SigningButtonAux extends ReactiveComponent {
 		);
 	}
 }
+
+module.exports = { SigningButton };

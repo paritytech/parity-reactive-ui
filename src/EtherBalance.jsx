@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { BigNumber } from 'bignumber.js';
-import { ReactiveComponent } from 'oo7-react';
+const React = require('react');
+const { BigNumber } = require('bignumber.js');
+const { ReactiveComponent } = require('oo7-react');
+
 // keeps balance of ether up to date
 export class EtherBalance extends ReactiveComponent {
 	constructor () { super(['balance']); }

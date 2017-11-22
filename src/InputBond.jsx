@@ -1,13 +1,11 @@
-import React from 'react';
-import { Input } from 'semantic-ui-react';
+const React = require('react');
+const {Input} = require('semantic-ui-react');
+const {Bond} = require('oo7');
+const {ReactiveComponent} = require('oo7-react');
 
-function instanceOfBond (b) {
-	return typeof (b) === 'object' && typeof (b.reset) === 'function' && typeof (b.changed) === 'function';
-}
-
-export class InputBond extends React.Component {
-	constructor () {
-		super();
+class InputBond extends ReactiveComponent {
+	constructor (extraReactiveProps = []) {
+		super(['defaultValue', ...extraReactiveProps]);
 		this.state = {
 			display: null,
 			internal: null,
@@ -37,6 +35,7 @@ export class InputBond extends React.Component {
 		if (this.editLock) { return; }
 
 		this.resetDefaultValueUpdate();
+		this.latestEdit = Symbol();
 
 		let f = function (b) {
 			if (typeof (b) === 'string') {
@@ -45,6 +44,7 @@ export class InputBond extends React.Component {
 			if (typeof (b) !== 'object') {
 				throw { message: 'Invalid value returned from validity function. Must be object with internal and optionally external, display, blurred fields or null', b };
 			}
+			//			console.log('ok...', b);
 			if (b === null) {
 				this.setState({ ok: false });
 			} else {
@@ -64,7 +64,7 @@ export class InputBond extends React.Component {
 			}
 			/// Horrible duck-typing, necessary since the specific Bond class instance here is different to the other libraries since it's
 			/// pre-webpacked in a separate preprocessing step.
-			if (instanceOfBond(this.props.bond)) {
+			if (Bond.instanceOf(this.props.bond)) {
 				if (b === null) {
 					this.props.bond.reset();
 				} else {
@@ -82,8 +82,12 @@ export class InputBond extends React.Component {
 		} else {
 			let a = v !== undefined && this.props.validator(v, this.state);
 
-			if (a instanceof Promise || instanceOfBond(a)) {
-				a.then(f);
+			if (a instanceof Promise || Bond.instanceOf(a)) {
+				let thisSymbol = this.latestEdit;
+				a.then(r => {
+					if (this.latestEdit === thisSymbol)
+						f(r);
+				});
 			} else {
 				f(a);
 			}
@@ -99,9 +103,16 @@ export class InputBond extends React.Component {
 
 	resetDefaultValueUpdate () {
 		if (this.lastDefaultValueUpdate) {
+		//			console.log('kill update');
 			window.clearTimeout(this.lastDefaultValueUpdate);
 			delete this.lastDefaultValueUpdate;
 		}
+	}
+
+	resetValueToDefault () {
+		this.resetDefaultValueUpdate();
+		//		console.log('schedule update');
+		this.lastDefaultValueUpdate = window.setTimeout(() => { this.handleEdit(this.state.defaultValue, true); }, 0);
 	}
 
 	render () {
@@ -142,3 +153,5 @@ InputBond.defaultProps = {
 	reversible: false,
 	bond
 };
+
+module.exports = { InputBond };
