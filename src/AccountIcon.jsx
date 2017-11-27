@@ -1,7 +1,7 @@
 const blockies = require('blockies');
 const React = require('react');
-const {Image} = require('semantic-ui-react');
-const {ReactiveComponent} = require('oo7-react');
+const { Image } = require('semantic-ui-react');
+const { ReactiveComponent } = require('oo7-react');
 
 function createIdentityImage (address, scale = 8) {
 	return blockies({
@@ -12,7 +12,7 @@ function createIdentityImage (address, scale = 8) {
 }
 
 class AccountIcon extends ReactiveComponent {
-	constructor() { super(['address', 'className', 'style']); }
+	constructor () { super(['address', 'className', 'style']); }
 
 	render () {
 		if (typeof (this.state.address) === 'string') {
@@ -43,6 +43,6 @@ AccountIcon.defaultProps = {
 	undefClassName: '_accountIcon _undefined',
 	undefContent: '',
 	id: null
-}
+};
 
 module.exports = { AccountIcon };

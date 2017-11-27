@@ -1,16 +1,16 @@
 const React = require('react');
-const {Dropdown} = require('semantic-ui-react');
-const {Bond} = require('oo7');
-const {ReactiveComponent} = require('oo7-react');
+const { Dropdown } = require('semantic-ui-react');
+const { Bond } = require('oo7');
+const { ReactiveComponent } = require('oo7-react');
 
 class DropdownBond extends ReactiveComponent {
 	constructor () {
 		super(['disabled', 'enabled']);
 	}
-	componentWillMount() {
+	componentWillMount () {
 		super.componentWillMount();
-		this.setState({options: this.props.options});
-		this.handleChange(null, {value: this.props.defaultValue || this.props.options[0].value});
+		this.setState({ options: this.props.options });
+		this.handleChange(null, { value: this.props.defaultValue || this.props.options[0].value });
 	}
 
 	handleAddition (e, { value }) {

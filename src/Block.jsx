@@ -2,7 +2,7 @@
 const React = require('react');
 const { Bond } = require('oo7');
 const { Rspan, ReactiveComponent, Hash } = require('oo7-react');
-const { bonds, formatBlockNumber} = require('oo7-parity');
+const { bonds, formatBlockNumber } = require('oo7-parity');
 const { InlineAccount } = require('./');
 const { Card, List, Icon } = require('semantic-ui-react');
 
@@ -13,6 +13,7 @@ const { Card, List, Icon } = require('semantic-ui-react');
 
 const digits = 6;
 const formatDifficulty = d => d.toString(10).substring(0, digits - 1) + 'e^' + (d.toString(10).length - (digits - 1));
+
 class Block extends ReactiveComponent {
 	constructor () {
 		super(['block']);
@@ -23,7 +24,7 @@ class Block extends ReactiveComponent {
 				<Card fluid>
 					<Card.Content>
 						<Card.Description>
-							<Icon name='warning circle' style={{height: '100%'}} />
+							<Icon name='warning circle' style={ { height: '100%' } } />
               block undefined
 						</Card.Description>
 					</Card.Content>

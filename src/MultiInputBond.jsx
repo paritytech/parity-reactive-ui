@@ -1,4 +1,4 @@
-const React = require('React');
+const React = require('react');
 const { ReactiveComponent } = require('oo7-react');
 const { AddressBond } = require('./AddressBond');
 const { HashBond } = require('./HashBond');

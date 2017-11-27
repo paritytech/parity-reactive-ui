@@ -1,11 +1,11 @@
 const React = require('react');
 const Api = require('@parity/api');
-const {Bond} = require('oo7');
-const {ReactiveComponent, Rimg} = require('oo7-react');
-const {bonds, isNullData} = require('oo7-parity');
-const {Label, Input} = require('semantic-ui-react');
-const {AccountIcon} = require('./AccountIcon');
-const {InputBond} = require('./InputBond');
+const { Bond } = require('oo7');
+const { ReactiveComponent, Rimg } = require('oo7-react');
+const { bonds, isNullData } = require('oo7-parity');
+const { Label, Input } = require('semantic-ui-react');
+const { AccountIcon } = require('./AccountIcon');
+const { InputBond } = require('./InputBond');
 
 class AddressBond extends InputBond {
 	constructor () {

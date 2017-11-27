@@ -3,7 +3,7 @@ const { BigNumber } = require('bignumber.js');
 const { ReactiveComponent } = require('oo7-react');
 
 // keeps balance of ether up to date
-export class EtherBalance extends ReactiveComponent {
+class EtherBalance extends ReactiveComponent {
 	constructor () { super(['balance']); }
 
 	render () {
@@ -14,3 +14,5 @@ export class EtherBalance extends ReactiveComponent {
 		return (<span>{ethVal.toFormat(5)} ETH</span>);
 	}
 }
+
+module.exports = { EtherBalance };

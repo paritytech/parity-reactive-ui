@@ -1,8 +1,7 @@
-
 const React = require('react');
-const {interpretRender, formatValueNoDenom, combineValue, defDenom, denominations} = require('oo7-parity');
-const {Dropdown} = require('semantic-ui-react');
-const {InputBond} = require('./InputBond');
+const { interpretRender, formatValueNoDenom, combineValue, defDenom, denominations } = require('oo7-parity');
+const { Dropdown } = require('semantic-ui-react');
+const { InputBond } = require('./InputBond');
 
 class BalanceBond extends InputBond {
 	getUnits () {

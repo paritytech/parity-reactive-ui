@@ -2,7 +2,7 @@ const React = require('react');
 
 const { ReactiveComponent } = require('oo7-react');
 const { bonds } = require('oo7-parity');
-const { Popup, Image } = require'semantic-ui-react');
+const { Popup, Image } = require('semantic-ui-react');
 
 const unknownIcon = require('./assets/unknown-64x64.png');
 

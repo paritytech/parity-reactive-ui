@@ -1,4 +1,4 @@
-const {InputBond} = require('./InputBond');
+const { InputBond } = require('./InputBond');
 
 class NumberBond extends InputBond {
 	constructor () {
@@ -10,6 +10,7 @@ NumberBond.defaultProps = {
 	placeholder: '123...',
 	validator: (v, s) => {
 		let m = Number.parseInt(v);
+
 		if (Number.isFinite(m) && m >= s.minimum && m <= s.maximum) {
 			return {
 				internal: v,

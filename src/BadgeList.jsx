@@ -1,8 +1,8 @@
-import { ReactiveComponent } from 'oo7-react';
-import { bonds } from 'oo7-parity';
-import React from 'react';
+const React = require('react');
+const { ReactiveComponent } = require('oo7-react');
+const { bonds } = require('oo7-parity');
 
-export class BadgeList extends ReactiveComponent {
+class BadgeList extends ReactiveComponent {
 	constructor () {
 		super(['badges']);
 	}
@@ -11,3 +11,5 @@ export class BadgeList extends ReactiveComponent {
 		return <div>-</div>;
 	}
 }
+
+module.exports = { BadgeList };

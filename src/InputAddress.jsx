@@ -27,7 +27,7 @@ import Input from './Input';
 
 // import styles from './inputAddress.css';
 
-export class InputAddress extends Component {
+class InputAddress extends Component {
 		static propTypes = {
 			account: PropTypes.object,
 			allowCopy: PropTypes.bool,
@@ -170,6 +170,7 @@ export class InputAddress extends Component {
 		}
 }
 
+module.exports = { InputAddress }
 // function mapStateToProps (state, props) {
 //   const { text, value } = props;
 

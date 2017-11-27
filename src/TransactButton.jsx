@@ -101,34 +101,36 @@ class TransactButtonAux extends ReactiveComponent {
 		let labelColor = (this.props.colorPolicy === 'button' && !specialColor ? this.props.color : null) || statusColor || this.props.color;
 		let buttonColor = (this.props.colorPolicy === 'status' ? statusColor : this.props.color) || this.props.color || statusColor;
 
-		return (<Button
-			icon={ this.state.status === null || !clickable ? this.props.icon : 'check' }
-			size={ this.props.size }
-			positive={ this.props.positive }
-			negative={ this.props.negative }
-			floated={ this.props.floated }
-			compact={ this.props.compact }
-			circular={ this.props.circular }
-			basic={ this.props.basic }
-			attached={ this.props.attached }
-			active={ this.props.active }
-			fluid={ this.props.fluid }
-			primary={ this.props.primary }
-			secondary={ this.props.secondary }
-			content={ done ? 'OK' : this.props.content }
-			color={ buttonColor }
-			onClick={ this.props.onClick }
-			label={ this.state.status ? (<TransactionProgressLabel
-				value={ this.state.status }
-				current={ this.props.progress.current }
-				total={ this.props.progress.total }
-				showContent={ this.props.statusText }
-				showIcon={ this.props.statusIcon }
-				color={ labelColor }
-				basic={ labelColor == buttonColor && !specialColor ? undefined : false }
-			                             />) : null }
-			disabled={ !done && this.props.disabled }
-		        />);
+		return (
+			<Button
+				icon={ this.state.status === null || !clickable ? this.props.icon : 'check' }
+				size={ this.props.size }
+				positive={ this.props.positive }
+				negative={ this.props.negative }
+				floated={ this.props.floated }
+				compact={ this.props.compact }
+				circular={ this.props.circular }
+				basic={ this.props.basic }
+				attached={ this.props.attached }
+				active={ this.props.active }
+				fluid={ this.props.fluid }
+				primary={ this.props.primary }
+				secondary={ this.props.secondary }
+				content={ done ? 'OK' : this.props.content }
+				color={ buttonColor }
+				onClick={ this.props.onClick }
+				disabled={ !done && this.props.disabled }
+				label={ this.state.status ? (
+					<TransactionProgressLabel
+						value={ this.state.status }
+						current={ this.props.progress.current }
+						total={ this.props.progress.total }
+						showContent={ this.props.statusText }
+						showIcon={ this.props.statusIcon }
+						color={ labelColor }
+						basic={ labelColor == buttonColor && !specialColor ? undefined : false }
+					/>) : null }
+			/>);
 	}
 }
 

@@ -75,4 +75,4 @@ class AddressLabel extends ReactiveComponent {
 	}
 }
 
-module.exports = { AddressLabel }
+module.exports = { AddressLabel };

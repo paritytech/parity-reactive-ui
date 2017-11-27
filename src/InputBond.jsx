@@ -1,7 +1,7 @@
 const React = require('react');
-const {Input} = require('semantic-ui-react');
-const {Bond} = require('oo7');
-const {ReactiveComponent} = require('oo7-react');
+const { Input } = require('semantic-ui-react');
+const { Bond } = require('oo7');
+const { ReactiveComponent } = require('oo7-react');
 
 class InputBond extends ReactiveComponent {
 	constructor (extraReactiveProps = []) {
