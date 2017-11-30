@@ -14,8 +14,8 @@ class AddressLabel extends ReactiveComponent {
 		var textArea = document.createElement('textarea');
 
 		textArea.style.position = 'fixed';
-		textArea.style.top = 0;
-		textArea.style.left = 0;
+		textArea.style.top = '-1000px';
+		textArea.style.left = '-1000px';
 		// Ensure it has a small width and height. Setting to 1px / 1em
 		// doesn't work as this gives a negative w/h on some browsers.
 		textArea.style.width = '2em';

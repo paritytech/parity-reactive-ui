@@ -1,5 +1,4 @@
 const React = require('react');
-const Api = require('@parity/api');
 const { bonds, toChecksumAddress, isNullData } = require('oo7-parity');
 const { ReactiveComponent, Rimg } = require('oo7-react');
 const { Label, Icon } = require('semantic-ui-react');
@@ -41,7 +40,7 @@ class AccountLabel extends ReactiveComponent {
 					Null
 				</Label>);
 		} else {
-			let a = Api.util.toChecksumAddress(this.state.address);
+			let a = toChecksumAddress(this.state.address);
 
 			return (
 				<AccountLabelAux
