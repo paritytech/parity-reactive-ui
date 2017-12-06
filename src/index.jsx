@@ -22,10 +22,11 @@ const { BalanceBond } = require('./BalanceBond');
 const { InlineBalance } = require('./InlineBalance');
 const { Block } = require('./Block');
 const { Transaction } = require('./Transaction');
+const { Icons } = require('./Icons');
 
 module.exports = { bonds, options,
 	AccountIcon, AccountLabel, AddressBond, InlineAccount,
 	BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel,
 	BLabelDetail, InputBond, DropdownBond, MultiInputBond, HashBond, URLBond,
 	TransactionProgressLabel, TransactButton, SigningProgressLabel,
-	SigningButton, BalanceBond, InlineBalance, Block, Transaction, NumberBond };
+	SigningButton, BalanceBond, InlineBalance, Block, Transaction, NumberBond, Icons };
