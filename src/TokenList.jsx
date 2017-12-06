@@ -11,7 +11,7 @@ class TokenList extends ReactiveComponent {
 		super(['tokens']);
 	}
 
-		style = {
+		style: {
 			display: 'inline-block',
 			backgroundColor: '#e2e2e2',
 			padding: '10px',
@@ -49,7 +49,7 @@ class TokenIcon extends ReactiveComponent {
 		super(['balance', 'src', 'tla', 'name']);
 	}
 
-		style = {
+		style: {
 			width: '40px',
 			height: '40px',
 			margin: '10px',
