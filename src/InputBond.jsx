@@ -150,8 +150,7 @@ class InputBond extends ReactiveComponent {
 InputBond.defaultProps = {
 	placeholder: '',
 	defaultValue: '',
-	reversible: false,
-	bond
+	reversible: false
 };
 
 module.exports = { InputBond };
