@@ -43,6 +43,7 @@
     "oo7-react": "^0.4.7",
     "prop-types": "^15.5.9",
     "react": "^15.5.4",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-dom": "^15.4.2",
     "semantic-ui-css": "^2.2.10",
     "semantic-ui-react": "^0.68.3"

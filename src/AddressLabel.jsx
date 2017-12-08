@@ -1,6 +1,7 @@
 const React = require('react');
 const { ReactiveComponent } = require('oo7-react');
-const { Label, Button } = require('semantic-ui-react');
+const { Button } = require('semantic-ui-react');
+const { CopyToClipboard } = require('react-copy-to-clipboard');
 
 class AddressLabel extends ReactiveComponent {
 	constructor () {
@@ -8,41 +9,7 @@ class AddressLabel extends ReactiveComponent {
 		this.state = {
 			isCopyHovered: false
 		};
-	}
-
-	onCopyAddress (text) {
-		var textArea = document.createElement('textarea');
-
-		textArea.style.position = 'fixed';
-		textArea.style.top = '-1000px';
-		textArea.style.left = '-1000px';
-		// Ensure it has a small width and height. Setting to 1px / 1em
-		// doesn't work as this gives a negative w/h on some browsers.
-		textArea.style.width = '2em';
-		textArea.style.height = '2em';
-		// We don't need padding, reducing the size if it does flash render.
-		textArea.style.padding = 0;
-		// Clean up any borders.
-		textArea.style.border = 'none';
-		textArea.style.outline = 'none';
-		textArea.style.boxShadow = 'none';
-		// Avoid flash of white box if rendered for any reason.
-		textArea.style.background = 'transparent';
-
-		textArea.value = text;
-
-		document.body.appendChild(textArea);
-
-		textArea.select();
-
-		try {
-			var successful = document.execCommand('copy');
-			var msg = successful ? 'successful' : 'unsuccessful';
-		} catch (err) {
-			console.error('unable to copy ', err);
-		}
-
-		document.body.removeChild(textArea);
+		this.handleCopyHover = this.handleCopyHover.bind(this);
 	}
 
 	handleCopyHover () {
@@ -52,20 +19,23 @@ class AddressLabel extends ReactiveComponent {
 	}
 
 	render () {
-		const { address, isHashHovered, isCopyHovered } = this.state;
+		const { address, isCopyHovered } = this.state;
 
 		if (typeof this.state.address === 'undefined') { return (<div />); }
 		return (
 			<div>
 				<Button.Group>
-					<Button
-						basic={ !isCopyHovered }
-						icon='clone'
-						color='blue'
-						onClick={ this.onCopyAddress.bind(this, address) }
-						onMouseEnter={ this.handleCopyHover.bind(this) }
-						onMouseLeave={ this.handleCopyHover.bind(this) }
-					/>
+					<CopyToClipboard
+						text={ this.state.address }
+					>
+						<Button
+							basic={ !isCopyHovered }
+							icon='clone'
+							color='blue'
+							onMouseEnter={ this.handleCopyHover }
+							onMouseLeave={ this.handleCopyHover }
+						/>
+					</CopyToClipboard>
 					<Button color='blue' basic style={ { cursor: 'default' } }>
 						{address.substr(0, 7)}...{address.substr(-5)}
 					</Button>
@@ -74,5 +44,8 @@ class AddressLabel extends ReactiveComponent {
 		);
 	}
 }
+
+//onClick={ this.onCopyAddress.bind(this, address) }
+
 
 module.exports = { AddressLabel };
