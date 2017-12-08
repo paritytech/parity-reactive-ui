@@ -1,5 +1,7 @@
 const blockies = require('blockies');
 const React = require('react');
+const PropTypes = require('prop-types');
+
 const { Image } = require('semantic-ui-react');
 const { ReactiveComponent } = require('oo7-react');
 
@@ -33,11 +35,16 @@ class AccountIcon extends ReactiveComponent {
 	}
 }
 
+AccountIcon.propTypes = {
+	classname: PropTypes.string,
+	undefClassName: PropTypes.string,
+	undefContent: PropTypes.string
+};
+
 AccountIcon.defaultProps = {
 	className: '_accountIcon',
 	undefClassName: '_accountIcon _undefined',
-	undefContent: '',
-	id: null
+	undefContent: ''
 };
 
 module.exports = { AccountIcon };
