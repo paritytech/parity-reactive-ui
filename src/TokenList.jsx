@@ -11,22 +11,23 @@ class TokenList extends ReactiveComponent {
 		super(['tokens']);
 	}
 
-		style:
+	render () {
+		let { tokens } = this.state;
 
-		render () {
-			let { tokens } = this.state;
+		if (typeof tokens === 'undefined' || tokens.length === 0) {
+			return <span>-</span>;
+		}
 
-			if (typeof tokens === 'undefined' || tokens.length === 0) {
-				return <span>-</span>;
-			}
-
-			return (<div style={ {
-				display: 'inline-block',
-				backgroundColor: '#e2e2e2',
-				padding: '10px',
-				borderRadius: '10px',
-				overflow: 'hidden'
-			} }>
+		return (
+			<div
+				style={ {
+					display: 'inline-block',
+					backgroundColor: '#e2e2e2',
+					padding: '10px',
+					borderRadius: '10px',
+					overflow: 'hidden'
+				}	}
+			>
 				{ tokens.map((elem) => {
 					return (
 						<TokenIcon
@@ -40,8 +41,9 @@ class TokenList extends ReactiveComponent {
 						/>);
 				}) }
 
-			</div>);
-		}
+			</div>
+		);
+	}
 }
 
 class TokenIcon extends ReactiveComponent {
@@ -52,17 +54,20 @@ class TokenIcon extends ReactiveComponent {
 	render () {
 		const { src, tla, name, balance } = this.state;
 
-		return (<div style={ { display: 'inline-block' } }>
+		return (<div style={
+			{
+				margin: '10px',
+				display: 'inline-block'
+			} }>
 			<Popup
 				key={ tla }
 				trigger={
 					<Image
-						style={ {
+						style={{
 							width: '40px',
 							height: '40px',
-							margin: '10px',
 							flexBasis: '25%'
-						} }
+						}}
 						src={ src || unknownIcon }
 						alt=''
 					/> }
