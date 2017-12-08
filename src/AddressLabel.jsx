@@ -21,7 +21,7 @@ class AddressLabel extends ReactiveComponent {
 	render () {
 		const { address, isCopyHovered } = this.state;
 
-		if (typeof this.state.address === 'undefined') { return (<div />); }
+		if (!this.state.address) { return (<div />); }
 		return (
 			<div>
 				<Button.Group>
