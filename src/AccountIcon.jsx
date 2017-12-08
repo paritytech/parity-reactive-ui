@@ -27,7 +27,6 @@ class AccountIcon extends ReactiveComponent {
 		} else {
 			return (
 				<span
-					style={ this.props.undefStyle }
 					className={ this.props.undefClassName }
 				>{this.props.undefContent}</span>);
 		}
@@ -35,9 +34,7 @@ class AccountIcon extends ReactiveComponent {
 }
 
 AccountIcon.defaultProps = {
-	style: {},
 	className: '_accountIcon',
-	undefStyle: {},
 	undefClassName: '_accountIcon _undefined',
 	undefContent: '',
 	id: null
