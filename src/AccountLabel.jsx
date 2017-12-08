@@ -40,7 +40,7 @@ class AccountLabel extends ReactiveComponent {
 					Null
 				</Label>);
 		} else {
-			let a = toChecksumAddress(this.state.address);
+			const a = toChecksumAddress(this.state.address);
 
 			return (
 				<AccountLabelAux
@@ -107,11 +107,11 @@ class AccountLabelAux extends ReactiveComponent {
 						{this.props.address.substr(2, 8)}…{this.props.address.slice(-4)}
 					</span>
 				)}
-				{(badges.length > 0 || this.state.names.owned || this.state.names.registry) ? (
-					<Label.Detail style={ { paddingLeft: 0, paddingRight: 0 } }>
+				{(badges.length > 0 || this.state.names.owned || this.state.names.registry) &&
+					(<Label.Detail style={ { paddingLeft: 0, paddingRight: 0 } }>
 						{badges}
-					</Label.Detail>
-				) : ''}
+					</Label.Detail>)
+				}
 			</Label>
 		);
 	}
