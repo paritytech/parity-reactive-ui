@@ -23,8 +23,6 @@ class AccountIcon extends ReactiveComponent {
 					src={ createIdentityImage(this.state.address) }
 					style={ Object.assign({ borderRadius: '50%' }, this.state.style) }
 					className={ typeof (this.state.className) === 'string' ? this.state.className : '' }
-					id={ this.props.id }
-					data-address-img
 				/>);
 		} else {
 			return (
