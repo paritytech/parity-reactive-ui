@@ -15,9 +15,9 @@ function styleStatus (value) {
 						: value.confirmed
 							? { text: 'finalised', icon: 'check', color: 'green', basic: false }
 							: value.failed
-								? value.failed.code == -32015
+								? value.failed.code === -32015
 									? { text: 'invalid', icon: 'exclamation', color: 'red', basic: true }
-									: value.failed.code == -32040
+									: value.failed.code === -32040
 										? { text: 'rejected', icon: 'x', color: 'grey', basic: true }
 										: null
 								: null

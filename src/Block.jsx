@@ -19,7 +19,7 @@ class Block extends ReactiveComponent {
 		super(['block']);
 	}
 	render () {
-		if (this.state.block === null || this.state.block === undefined) {
+		if (!this.state.block) {
 			return (
 				<Card fluid>
 					<Card.Content>
