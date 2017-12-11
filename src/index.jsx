@@ -26,6 +26,7 @@ const { Icons } = require('./Icons');
 const { EtherBalance } = require('./EtherBalance');
 const { TokenList } = require('./TokenList');
 const { AddressLabel } = require('./AddressLabel');
+const { BadgeList } = require('./BadgeList');
 
 module.exports = { bonds, options,
 	AccountIcon, AccountLabel, AddressBond, InlineAccount,
@@ -33,4 +34,4 @@ module.exports = { bonds, options,
 	BLabelDetail, InputBond, DropdownBond, MultiInputBond, HashBond, URLBond,
 	TransactionProgressLabel, TransactButton, SigningProgressLabel,
 	SigningButton, BalanceBond, InlineBalance, Block, Transaction, NumberBond,
-	Icons, EtherBalance, TokenList, AddressLabel };
+	Icons, EtherBalance, TokenList, AddressLabel, BadgeList };
