@@ -54,27 +54,28 @@ class TokenIcon extends ReactiveComponent {
 	render () {
 		const { src, tla, name, balance } = this.state;
 
-		return (<div style={
-			{
+		return (
+			<div style={ {
 				margin: '10px',
 				display: 'inline-block'
-			} }>
-			<Popup
-				key={ tla }
-				trigger={
-					<Image
-						style={{
-							width: '40px',
-							height: '40px',
-							flexBasis: '25%'
-						}}
-						src={ src || unknownIcon }
-						alt=''
-					/> }
-				header={ name }
-				content={ balance }
-			/>
-		</div>
+			} }
+			>
+				<Popup
+					key={ tla }
+					trigger={
+						<Image
+							style={ {
+								width: '40px',
+								height: '40px',
+								flexBasis: '25%'
+							} }
+							src={ src || unknownIcon }
+							alt=''
+						/> }
+					header={ name }
+					content={ balance }
+				/>
+			</div>
 		);
 	}
 }

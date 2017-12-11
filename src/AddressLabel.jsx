@@ -45,7 +45,4 @@ class AddressLabel extends ReactiveComponent {
 	}
 }
 
-//onClick={ this.onCopyAddress.bind(this, address) }
-
-
 module.exports = { AddressLabel };

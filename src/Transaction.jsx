@@ -1,7 +1,7 @@
 const React = require('react');
 const { ReactiveComponent, Rspan, Hash } = require('oo7-react');
-const { Card, List, Icon} = require('semantic-ui-react');
-const { formatBlockNumber, formatBalance } = require('oo7-parity');
+const { Card, List, Icon } = require('semantic-ui-react');
+const { formatBlockNumber } = require('oo7-parity');
 const { InlineAccount, InlineBalance } = require('./');
 
 // supports:
