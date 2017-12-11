@@ -11,7 +11,7 @@ class EtherBalance extends ReactiveComponent {
 		let ethdiv = new BigNumber('1e+18');
 		let ethVal = this.state.balance.div(ethdiv);
 
-		return (<span>{ethVal.toFormat(5)} ETH</span>);
+		return (<span>&Xi; {ethVal.toFormat(5)}</span>);
 	}
 }
 
