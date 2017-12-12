@@ -2,7 +2,7 @@ const React = require('react');
 
 const { ReactiveComponent } = require('oo7-react');
 const { bonds, formatToExponential } = require('oo7-parity');
-const { Popup, Image, Dropdown, Header } = require('semantic-ui-react');
+const { Dropdown, Header } = require('semantic-ui-react');
 
 const unknownIcon = require('./assets/unknown-64x64.png');
 
@@ -15,11 +15,11 @@ class TokenList extends ReactiveComponent {
 		let { tokens } = this.state;
 
 		if (typeof tokens === 'undefined' || tokens.length === 0) {
-			return <span>-</span>;
+			return <div />;
 		}
 
 		return (
-			<Dropdown text='Tokens' floating labeled button icon='ticket' className='icon'>
+			<Dropdown text={ `Tokens (${tokens.length})` } basic scrolling labeled button icon='ticket' className='icon'>
 				<Dropdown.Menu>
 					{ tokens.map((elem) => {
 						return (
