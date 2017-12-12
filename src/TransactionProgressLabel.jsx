@@ -3,25 +3,17 @@ const { ReactiveComponent } = require('oo7-react');
 const { Label, Icon } = require('semantic-ui-react');
 
 function styleStatus (value) {
-	return (
-		value.initialising !== undefined || value.estimating !== undefined
-			? { text: 'estimating', icon: 'bullseye', color: 'blue', basic: true }
-			: value.estimated || value.requested
-				? { text: 'authorising', icon: 'key', color: 'orange', basic: true }
-				: value.scheduled
-					? { text: 'scheduled', icon: 'spinner', color: 'green', basic: false, loading: true }
-					: value.signed
-						? { text: 'finalising', icon: 'spinner', color: 'green', basic: true, loading: true }
-						: value.confirmed
-							? { text: 'finalised', icon: 'check', color: 'green', basic: false }
-							: value.failed
-								? value.failed.code === -32015
-									? { text: 'invalid', icon: 'exclamation', color: 'red', basic: true }
-									: value.failed.code === -32040
-										? { text: 'rejected', icon: 'x', color: 'grey', basic: true }
-										: null
-								: null
-	);
+	if (value.initialising !== undefined || value.estimating !== undefined) return { text: 'estimating', icon: 'bullseye', color: 'blue', basic: true }
+	if (value.estimated || value.requested) return { text: 'authorising', icon: 'key', color: 'orange', basic: true }
+	if (value.scheduled) return { text: 'scheduled', icon: 'spinner', color: 'green', basic: false, loading: true }
+	if (value.signed) return { text: 'finalising', icon: 'spinner', color: 'green', basic: true, loading: true }
+	if (value.confirmed) return { text: 'finalised', icon: 'check', color: 'green', basic: false }
+	if (value.failed) {
+		if (value.failed.code === -32015) return { text: 'invalid', icon: 'exclamation', color: 'red', basic: true }
+		if (value.failed.code === -32040) return { text: 'rejected', icon: 'x', color: 'grey', basic: true }
+		else return null
+	}
+	else return null
 }
 
 class TransactionProgressLabel extends ReactiveComponent {
