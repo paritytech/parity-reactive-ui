@@ -9,7 +9,7 @@ class AccountLabel extends ReactiveComponent {
 		super(['address']);
 	}
 	render () {
-		if (this.state.address === null) {
+		if (!this.state.address) {
 			return (
 				<Label
 					as='a'
@@ -58,11 +58,11 @@ class AccountLabelAux extends ReactiveComponent {
 		super(['names', 'badges']);
 	}
 	readyRender () {
-		let badges = this.state.badges.map((b, i) => (
+		let badges = this.state.badges.map((badge, index) => (
 			<Rimg
-				key={ i }
-				alt={ b.caption }
-				src={ bonds.githubhint.entries(b.img)[0] }
+				key={ index }
+				alt={ badge.caption }
+				src={ bonds.githubhint.entries(badge.img)[0] }
 				style={ {
 					marginLeft: '0.25em',
 					marginRight: '0.25em',
