@@ -48,7 +48,7 @@ class TokenIcon extends ReactiveComponent {
 		let { src, tla, name, balance } = this.state;
 
 		balance = balance || 0;
-		console.log('bala', balance);
+
 		return (
 			<Dropdown.Item
 				content={
