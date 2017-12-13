@@ -24,7 +24,7 @@ class TransactionProgressLabel extends ReactiveComponent {
 		if (!this.state.value) {
 			return (<span />);
 		}
-		let status = styleStatus(this.state.value);
+		const status = styleStatus(this.state.value);
 
 		return (
 			<Label

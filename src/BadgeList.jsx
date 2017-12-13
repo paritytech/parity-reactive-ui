@@ -12,13 +12,13 @@ class BadgeList extends ReactiveComponent {
 			return (<div className={ this.state.className || '' } />);
 		}
 
-		let badges = this.state.badges.map((b, i) => {
-			let src = bonds.githubhint.entries(b.img)[0] || '';
+		const badges = this.state.badges.map((badge, index) => {
+			const src = bonds.githubhint.entries(badge.img)[0] || '';
 
 			return (
 				<Rimg
-					key={ i }
-					alt={ b.name }
+					key={ index }
+					alt={ badge.name }
 					src={ src }
 					style={ {
 						width: '20px',

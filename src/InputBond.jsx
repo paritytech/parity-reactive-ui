@@ -49,7 +49,7 @@ class InputBond extends ReactiveComponent {
 				this.setState({ ok: false });
 			} else {
 				this.setState(s => {
-					let i = b && b.hasOwnProperty('internal') ? b.internal : s.internal;
+					const i = b && b.hasOwnProperty('internal') ? b.internal : s.internal;
 
 					return {
 						ok: true,

@@ -9,7 +9,7 @@ class NumberBond extends InputBond {
 NumberBond.defaultProps = {
 	placeholder: '123...',
 	validator: (v, s) => {
-		let m = Number.parseInt(v);
+		const m = Number.parseInt(v);
 
 		if (Number.isFinite(m) && m >= s.minimum && m <= s.maximum) {
 			return {

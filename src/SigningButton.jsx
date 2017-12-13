@@ -51,11 +51,11 @@ class SigningButtonAux extends ReactiveComponent {
 		super(['status']);
 	}
 	render () {
-		let clickable = !this.state.status || this.state.status.signed || this.state.status.failed;
-		let status = this.state.status && styleStatus(this.state.status);
-		let statusColor = status ? status.color : null;
-		let labelColor = (this.props.colorPolicy === 'button' ? this.props.color : null) || statusColor || this.props.color;
-		let buttonColor = (this.props.colorPolicy === 'status' ? statusColor : this.props.color) || this.props.color || statusColor;
+		const clickable = !this.state.status || this.state.status.signed || this.state.status.failed;
+		const status = this.state.status && styleStatus(this.state.status);
+		const statusColor = status ? status.color : null;
+		const labelColor = (this.props.colorPolicy === 'button' ? this.props.color : null) || statusColor || this.props.color;
+		const buttonColor = (this.props.colorPolicy === 'status' ? statusColor : this.props.color) || this.props.color || statusColor;
 
 		return (
 			<Button

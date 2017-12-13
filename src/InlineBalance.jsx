@@ -3,7 +3,7 @@ const { BigNumber } = require('bignumber.js');
 const { ReactiveComponent } = require('oo7-react');
 const { splitValue, denominations } = require('oo7-parity');
 
-let usableDenoms = denominations.filter(x => x[0] === x[0].toLowerCase());
+const usableDenoms = denominations.filter(x => x[0] === x[0].toLowerCase());
 
 class InlineBalance extends ReactiveComponent {
 	constructor () {
@@ -15,26 +15,26 @@ class InlineBalance extends ReactiveComponent {
 	}
 
 	precise () {
-		let s = this.state;
+		const s = this.state;
 
 		return s.precise === null ? this.props.precise : s.precise;
 	}
 
 	togglePrecise () {
-		let s = this.state;
+		const s = this.state;
 
 		s.precise = !s.precise;
 		this.setState(s);
 	}
 
 	denom () {
-		let s = this.state;
+		const s = this.state;
 
 		return s.denom === null ? usableDenoms.indexOf(this.props.units) : s.denom;
 	}
 
 	cycleDenom () {
-		let denom = (this.denom() + 2) % (usableDenoms.length + 1) - 1;
+		const denom = (this.denom() + 2) % (usableDenoms.length + 1) - 1;
 
 		this.setState({ denom });
 	}
@@ -72,10 +72,10 @@ class InlineBalance extends ReactiveComponent {
 		}
 		units = units.replace(/(\d)(?=(\d{3})+$)/g, '$1,');
 
-		let d = denominations[s.denom];
-		let c = '32, 32, 32';
-		let fore = `rgb(${c})`;
-		let back = `rgba(${c}, 0.15)`;
+		const d = denominations[s.denom];
+		const c = '32, 32, 32';
+		// const fore = `rgb(${c})`;
+		const back = `rgba(${c}, 0.15)`;
 
 		return (
 			<span style={ {

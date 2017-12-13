@@ -9,7 +9,7 @@ class InlineAccount extends ReactiveComponent {
 		super(['address']);
 	}
 	readyRender () {
-		let a = toChecksumAddress(this.state.address);
+		const a = toChecksumAddress(this.state.address);
 
 		return (
 			<InlineAccountAux
@@ -28,7 +28,7 @@ class InlineAccountAux extends ReactiveComponent {
 		super(['names', 'badges']);
 	}
 	readyRender () {
-		let badges = this.state.badges.map((b, i) => (
+		const badges = this.state.badges.map((b, i) => (
 			<Rimg key={ i } alt={ b.caption } src={ bonds.githubhint.entries(b.img)[0] } style={ { height: '1em', verticalAlign: 'text-bottom' } } />
 		));
 

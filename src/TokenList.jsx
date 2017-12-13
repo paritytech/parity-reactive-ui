@@ -12,7 +12,7 @@ class TokenList extends ReactiveComponent {
 	}
 
 	render () {
-		let { tokens } = this.state;
+		const { tokens } = this.state;
 
 		if (typeof tokens === 'undefined' || tokens.length === 0) {
 			return <div />;
@@ -45,7 +45,7 @@ class TokenIcon extends ReactiveComponent {
 	}
 
 	render () {
-		let { src, tla, name, balance } = this.state;
+		const { src, tla, name, balance } = this.state;
 
 		balance = balance || 0;
 

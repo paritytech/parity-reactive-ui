@@ -51,13 +51,13 @@ class AddressBond extends InputBond {
 AddressBond.defaultProps = {
 	placeholder: '0xAddress, name or e-mail',
 	validator: a => {
-		let m = a.match(/^(0x)([a-fA-F0-9]+)$/);
+		const m = a.match(/^(0x)([a-fA-F0-9]+)$/);
 
 		if (m) {
 			if (m[2].length !== 40) {
 				return null;
 			}
-			let addr = '0x' + m[2];
+			const addr = '0x' + m[2];
 
 			if (toChecksumAddress(addr) === addr) {
 				return { external: addr, internal: a, corrected: addr };
@@ -68,7 +68,7 @@ AddressBond.defaultProps = {
 			return null;
 		} else {
 			return bonds.addressOf(a).map(a => {
-				let n = a.registry || a.internal;
+				const n = a.registry || a.internal;
 
 				return n ? { external: n, internal: a } : null;
 			});

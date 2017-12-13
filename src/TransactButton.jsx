@@ -28,10 +28,10 @@ class TransactButton extends ReactiveComponent {
 	}
 	execNext () {
 		let s = this.state;
-		let single = typeof (this.props.tx) === 'function' || this.props.tx.length === undefined;
+		const single = typeof (this.props.tx) === 'function' || this.props.tx.length === undefined;
 
 		if ((single && s.index === 0) || s.index < this.props.tx.length) {
-			let t = single ? this.props.tx : this.props.tx[s.index];
+			const t = single ? this.props.tx : this.props.tx[s.index];
 
 			s.status = typeof (t) === 'function'
 				? t()
@@ -93,13 +93,13 @@ class TransactButtonAux extends ReactiveComponent {
 		super(['status']);
 	}
 	render () {
-		let specialColor = this.props.primary || this.props.secondary;
-		let done = this.state.status && (this.state.status.confirmed || this.state.status.scheduled || this.state.status.failed);
-		let clickable = !this.state.status || done;
-		let status = this.state.status && styleStatus(this.state.status);
-		let statusColor = status ? status.color : null;
-		let labelColor = (this.props.colorPolicy === 'button' && !specialColor ? this.props.color : null) || statusColor || this.props.color;
-		let buttonColor = (this.props.colorPolicy === 'status' ? statusColor : this.props.color) || this.props.color || statusColor;
+		const specialColor = this.props.primary || this.props.secondary;
+		const done = this.state.status && (this.state.status.confirmed || this.state.status.scheduled || this.state.status.failed);
+		const clickable = !this.state.status || done;
+		const status = this.state.status && styleStatus(this.state.status);
+		const statusColor = status ? status.color : null;
+		const labelColor = (this.props.colorPolicy === 'button' && !specialColor ? this.props.color : null) || statusColor || this.props.color;
+		const buttonColor = (this.props.colorPolicy === 'status' ? statusColor : this.props.color) || this.props.color || statusColor;
 
 		return (
 			<Button
