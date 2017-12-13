@@ -1,6 +1,5 @@
 
 const React = require('react');
-const { Bond } = require('oo7');
 const { Rspan, ReactiveComponent, Hash } = require('oo7-react');
 const { bonds, formatBlockNumber } = require('oo7-parity');
 const { InlineAccount } = require('./');

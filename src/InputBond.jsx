@@ -84,6 +84,7 @@ class InputBond extends ReactiveComponent {
 
 			if (a instanceof Promise || Bond.instanceOf(a)) {
 				let thisSymbol = this.latestEdit;
+
 				a.then(r => {
 					if (this.latestEdit === thisSymbol)
 						f(r);

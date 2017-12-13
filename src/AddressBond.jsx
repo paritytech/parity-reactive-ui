@@ -1,8 +1,7 @@
 const React = require('react');
 const { Bond } = require('oo7');
-const { ReactiveComponent, Rimg } = require('oo7-react');
 const { bonds, isNullData, toChecksumAddress } = require('oo7-parity');
-const { Label, Input } = require('semantic-ui-react');
+const { Label } = require('semantic-ui-react');
 const { AccountIcon } = require('./AccountIcon');
 const { InputBond } = require('./InputBond');
 
@@ -15,7 +14,7 @@ class AddressBond extends InputBond {
 			bonds.me
 		], (reg, me) => ({
 			registry: isNullData(reg) ? null : reg,
-			internal: n == 'null' ? '0x0000000000000000000000000000000000000000' : n == 'me' ? me : null
+			internal: n === 'null' ? '0x0000000000000000000000000000000000000000' : n === 'me' ? me : null
 		}));
 	}
 
@@ -55,7 +54,7 @@ AddressBond.defaultProps = {
 		let m = a.match(/^(0x)([a-fA-F0-9]+)$/);
 
 		if (m) {
-			if (m[2].length != 40) {
+			if (m[2].length !== 40) {
 				return null;
 			}
 			let addr = '0x' + m[2];

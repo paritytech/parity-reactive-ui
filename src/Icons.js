@@ -24,7 +24,7 @@ Icons.ComputerIcon = (props) => createIcon('desktop', props);
 Icons.ContractIcon = (props) => createIcon('code', props);
 Icons.CopyIcon = (props) => createIcon('copy', props);
 Icons.DashboardIcon = (props) => createIcon('cubes', props);
-// Duplicate below
+// Duplicate CheckIcon/DoneIcon below
 Icons.DoneIcon = (props) => createIcon('check', props);
 Icons.DeleteIcon = (props) => createIcon('trash', props);
 Icons.DevelopIcon = (props) => createIcon('connectdevelop', props);
