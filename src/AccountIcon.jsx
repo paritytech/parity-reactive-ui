@@ -36,7 +36,6 @@ class AccountIcon extends ReactiveComponent {
 }
 
 AccountIcon.propTypes = {
-	classname: PropTypes.string,
 	undefClassName: PropTypes.string,
 	undefContent: PropTypes.string
 };
