@@ -11,7 +11,7 @@ class BadgeList extends ReactiveComponent {
 		if (typeof this.state.badges === 'undefined') {
 			return (<div className={ this.state.className || '' } />);
 		}
-		console.log(this.state.badges);
+
 		let badges = this.state.badges.map((b, i) => {
 			let src = bonds.githubhint.entries(b.img)[0] || '';
 
