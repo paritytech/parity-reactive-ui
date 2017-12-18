@@ -7,7 +7,7 @@ class EtherBalance extends ReactiveComponent {
 	constructor () { super(['balance']); }
 
 	render () {
-		if (typeof this.state.balance === 'undefined') { return (<span>-</span>); }
+		if (typeof this.state.balance === 'undefined') { return (<span>Loading...</span>); }
 		const ethdiv = new BigNumber('1e+18');
 		const ethVal = this.state.balance.div(ethdiv);
 

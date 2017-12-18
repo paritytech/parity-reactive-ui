@@ -14,14 +14,16 @@ class TokenList extends ReactiveComponent {
 	render () {
 		const { tokens } = this.state;
 
-		if (typeof tokens === 'undefined' || tokens.length === 0) {
-			return <div />;
-		}
+		console.log('rerender tokenlist');
+
+		// if (tokens && tokens.length === 0) {
+		// 	return <div />;
+		// }
 
 		return (
-			<Dropdown text={ `Tokens (${tokens.length})` } basic scrolling labeled button icon='ticket' className='icon'>
+			<Dropdown text={ tokens ? 'Tokens (' + tokens.length + ')' : 'Loading...' } basic scrolling labeled button icon='ticket' className='icon'>
 				<Dropdown.Menu>
-					{ tokens.map((elem) => {
+					{tokens && tokens.map((elem) => {
 						return (
 							<TokenIcon
 								key={ elem.name }
@@ -45,8 +47,8 @@ class TokenIcon extends ReactiveComponent {
 	}
 
 	render () {
-		const { src, tla, name, balance } = this.state;
-
+		let { src, tla, name, balance } = this.state;
+		console.log('rerender tokenicon')
 		balance = balance || 0;
 
 		return (
