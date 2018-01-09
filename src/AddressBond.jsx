@@ -1,10 +1,9 @@
 const React = require('react');
-const {Bond} = require('oo7');
-const {ReactiveComponent, Rimg} = require('oo7-react');
-const {bonds, isNullData} = require('oo7-parity');
-const {Label, Input} = require('semantic-ui-react');
-const {AccountIcon} = require('./AccountIcon');
-const {InputBond} = require('./InputBond');
+const { Bond } = require('oo7');
+const { bonds, isNullData, toChecksumAddress } = require('oo7-parity');
+const { Label } = require('semantic-ui-react');
+const { AccountIcon } = require('./AccountIcon');
+const { InputBond } = require('./InputBond');
 
 class AddressBond extends InputBond {
 	constructor () {
@@ -15,18 +14,18 @@ class AddressBond extends InputBond {
 			bonds.me
 		], (reg, me) => ({
 			registry: isNullData(reg) ? null : reg,
-			internal: n == 'null' ? '0x0000000000000000000000000000000000000000' : n == 'me' ? me : null
+			internal: n === 'null' ? '0x0000000000000000000000000000000000000000' : n === 'me' ? me : null
 		}));
 	}
 
 	makeIcon (p) {
 		return p ? 'left' : this.state.ok
-				? (<i style={{opacity: 1}} className='icon'>
-					<AccountIcon
-						style={{opacity: 1, border: '0.5em solid transparent'}}
-						address={this.state.external}
-					/></i>)
-				: undefined;
+			? (<i style={ { opacity: 1 } } className='icon'>
+				<AccountIcon
+					style={ { opacity: 1, border: '0.5em solid transparent' } }
+					address={ this.state.external }
+				/></i>)
+			: undefined;
 	}
 
 	render () {
@@ -34,6 +33,7 @@ class AddressBond extends InputBond {
 			position: 'absolute',
 			zIndex: this.props.labelZIndex || 10
 		};
+
 		return (
 			<div>
 				{InputBond.prototype.render.call(this)}
@@ -41,8 +41,8 @@ class AddressBond extends InputBond {
 					{this.state.ok
 						? ''
 						: this.state.extra.noChecksum
-							? (<Label pointing color='orange' basic content='No checksum' style={labelStyle} />)
-							: (<Label pointing basic content='Unknown/invalid address' style={labelStyle} />)}
+							? (<Label pointing color='orange' basic content='No checksum' style={ labelStyle } />)
+							: (<Label pointing basic content='Unknown/invalid address' style={ labelStyle } />)}
 				</div>
 			</div>
 		);
@@ -51,23 +51,25 @@ class AddressBond extends InputBond {
 AddressBond.defaultProps = {
 	placeholder: '0xAddress, name or e-mail',
 	validator: a => {
-		let m = a.match(/^(0x)([a-fA-F0-9]+)$/);
+		const m = a.match(/^(0x)([a-fA-F0-9]+)$/);
+
 		if (m) {
-			if (m[2].length != 40) {
+			if (m[2].length !== 40) {
 				return null;
 			}
-			let addr = '0x' + m[2];
-			if (parity.api.util.toChecksumAddress(addr) === addr) {
+			const addr = '0x' + m[2];
+
+			if (toChecksumAddress(addr) === addr) {
 				return { external: addr, internal: a, corrected: addr };
 			}
 			if (addr.toLowerCase() === addr) {
 				return { external: addr, internal: a, corrected: addr, extra: { noChecksum: true } };
 			}
 			return null;
-		}
-		else {
+		} else {
 			return bonds.addressOf(a).map(a => {
-				let n = a.registry || a.internal;
+				const n = a.registry || a.internal;
+
 				return n ? { external: n, internal: a } : null;
 			});
 		}

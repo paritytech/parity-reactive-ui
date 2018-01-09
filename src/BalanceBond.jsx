@@ -1,7 +1,7 @@
 const React = require('react');
-const {interpretRender, formatValueNoDenom, combineValue, defDenom, denominations} = require('oo7-parity');
-const {Dropdown} = require('semantic-ui-react');
-const {InputBond} = require('./InputBond');
+const { interpretRender, formatValueNoDenom, combineValue, defDenom, denominations } = require('oo7-parity');
+const { Dropdown } = require('semantic-ui-react');
+const { InputBond } = require('./InputBond');
 
 class BalanceBond extends InputBond {
 	getUnits () {
@@ -10,7 +10,8 @@ class BalanceBond extends InputBond {
 
 	setUnits (v) {
 		let s = this.state.internal;
-		let d = denominations.indexOf(v);
+		const d = denominations.indexOf(v);
+
 		s.denom = d;
 		this.state.internal = s;
 		this.handleEdit(this.state.display);
@@ -18,7 +19,8 @@ class BalanceBond extends InputBond {
 
 	handleBlur () {
 		let s = this.state;
-		if (typeof(s.corrected) === 'string') {
+
+		if (typeof (s.corrected) === 'string') {
 			s.display = s.corrected;
 			delete s.corrected;
 			this.setState(s);
@@ -26,22 +28,24 @@ class BalanceBond extends InputBond {
 	}
 
 	makeAction (p) {
-		return p ? 'right' : (<Dropdown
-			onChange={(_, v) => this.setUnits(v.value)}
-			value={this.getUnits()}
-			options={denominations
-				.filter(x => x[0] == x[0].toLowerCase())
-				.map(d => ({key: d, value: d, text: d}))
-			}
-		/>);
+		return p ? 'right' : (
+			<Dropdown
+				onChange={ (_, v) => this.setUnits(v.value) }
+				value={ this.getUnits() }
+				options={ denominations
+					.filter(x => x[0] === x[0].toLowerCase())
+					.map(d => ({ key: d, value: d, text: d }))
+				}
+			/>);
 	}
 }
 BalanceBond.defaultProps = {
 	placeholder: '0',
 	defaultValue: '0',
 	validator: (u, s) => {
-		let q = u === '' ? { denom: 6, units: '0', decimals: '', origNum: '', origDenom: ''} : interpretRender(u, null);
-		let d = q && q.denom !== null ? q.origNum : undefined;
+		const q = u === '' ? { denom: 6, units: '0', decimals: '', origNum: '', origDenom: '' } : interpretRender(u, null);
+		const d = q && q.denom !== null ? q.origNum : undefined;
+
 		if (q) {
 			defDenom(q, s.internal ? s.internal.denom : 6);
 		}

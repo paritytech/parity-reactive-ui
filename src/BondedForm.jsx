@@ -1,7 +1,7 @@
 const React = require('react');
-const {Bond} = require('oo7');
-const {ReactiveComponent} = require('oo7-react');
-const {Button, Label, Statistic} = require('semantic-ui-react');
+const { Bond } = require('oo7');
+const { ReactiveComponent } = require('oo7-react');
+const { Button, Label, Statistic } = require('semantic-ui-react');
 
 class BondedForm extends ReactiveComponent {
 	constructor (object, bondableProps) {
@@ -10,6 +10,7 @@ class BondedForm extends ReactiveComponent {
 	}
 	render () {
 		let p = {};
+
 		Object.keys(this.props)
 			.filter(k => !Bond.instanceOf(this.props[k]))
 			.forEach(k => p[k] = this.props[k]);
@@ -18,11 +19,11 @@ class BondedForm extends ReactiveComponent {
 	}
 }
 
-let BButton = () => new BondedForm(Button, ['label', 'content', 'disabled']);
-let BStatistic = () => new BondedForm(Statistic, ['label', 'value', 'color']);
-let BStatisticLabel = () => new BondedForm(Statistic.Label, ['children']);
-let BStatisticValue = () => new BondedForm(Statistic.Value, ['children']);
-let BLabel = () => new BondedForm(Label, ['content', 'detail']);
-let BLabelDetail = () => new BondedForm(Label.Detail, ['content']);
+const BButton = () => new BondedForm(Button, ['label', 'content', 'disabled']);
+const BStatistic = () => new BondedForm(Statistic, ['label', 'value', 'color']);
+const BStatisticLabel = () => new BondedForm(Statistic.Label, ['children']);
+const BStatisticValue = () => new BondedForm(Statistic.Value, ['children']);
+const BLabel = () => new BondedForm(Label, ['content', 'detail']);
+const BLabelDetail = () => new BondedForm(Label.Detail, ['content']);
 
 module.exports = { BondedForm, BButton, BStatistic, BStatisticLabel, BStatisticValue, BLabel, BLabelDetail };

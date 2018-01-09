@@ -1,7 +1,7 @@
 const React = require('react');
-const {Input} = require('semantic-ui-react');
-const {Bond} = require('oo7');
-const {ReactiveComponent} = require('oo7-react');
+const { Input } = require('semantic-ui-react');
+const { Bond } = require('oo7');
+const { ReactiveComponent } = require('oo7-react');
 
 class InputBond extends ReactiveComponent {
 	constructor (extraReactiveProps = []) {
@@ -31,32 +31,30 @@ class InputBond extends ReactiveComponent {
 		}
 	}
 
-	handleEdit(v, onlyDefault = false) {
-//		console.log('handleEdit', v, onlyDefault);
-		if (this.editLock)
-			return;
+	handleEdit (v, onlyDefault = false) {
+		if (this.editLock) { return; }
 
 		this.resetDefaultValueUpdate();
 		this.latestEdit = Symbol();
 
 		let f = function (b) {
-//			console.log('updating...', b);
-			if (typeof(b) === 'string') {
+			if (typeof (b) === 'string') {
 				b = { display: b, external: b, internal: b };
 			}
-			if (typeof(b) !== 'object') {
+			if (typeof (b) !== 'object') {
 				throw { message: 'Invalid value returned from validity function. Must be object with internal and optionally external, display, blurred fields or null', b };
 			}
-//			console.log('ok...', b);
+			//			console.log('ok...', b);
 			if (b === null) {
-				this.setState({ok: false});
+				this.setState({ ok: false });
 			} else {
 				this.setState(s => {
-					let i = b && b.hasOwnProperty('internal') ? b.internal : s.internal;
+					const i = b && b.hasOwnProperty('internal') ? b.internal : s.internal;
+
 					return {
 						ok: true,
 						internal: i,
-						display: typeof(b.display) === 'string' ? b.display : s.display,
+						display: typeof (b.display) === 'string' ? b.display : s.display,
 						corrected: b.corrected,
 						extra: b.extra || {},
 						onlyDefault,
@@ -77,14 +75,16 @@ class InputBond extends ReactiveComponent {
 			}
 		}.bind(this);
 
-		this.setState({display: v, onlyDefault});
+		this.setState({ display: v, onlyDefault });
 
-		if (typeof(this.props.validator) !== 'function') {
+		if (typeof (this.props.validator) !== 'function') {
 			f(v);
 		} else {
 			let a = v !== undefined && this.props.validator(v, this.state);
+
 			if (a instanceof Promise || Bond.instanceOf(a)) {
 				let thisSymbol = this.latestEdit;
+
 				a.then(r => {
 					if (this.latestEdit === thisSymbol)
 						f(r);
@@ -96,7 +96,7 @@ class InputBond extends ReactiveComponent {
 	}
 
 	handleBlur () {
-		this.setState(s => typeof(s.corrected) === 'string' && typeof(s.display) === 'string'
+		this.setState(s => typeof (s.corrected) === 'string' && typeof (s.display) === 'string'
 			? { display: s.corrected, corrected: undefined }
 			: {}
 		);
@@ -104,7 +104,7 @@ class InputBond extends ReactiveComponent {
 
 	resetDefaultValueUpdate () {
 		if (this.lastDefaultValueUpdate) {
-//			console.log('kill update');
+		//			console.log('kill update');
 			window.clearTimeout(this.lastDefaultValueUpdate);
 			delete this.lastDefaultValueUpdate;
 		}
@@ -112,39 +112,40 @@ class InputBond extends ReactiveComponent {
 
 	resetValueToDefault () {
 		this.resetDefaultValueUpdate();
-//		console.log('schedule update');
+		//		console.log('schedule update');
 		this.lastDefaultValueUpdate = window.setTimeout(() => { this.handleEdit(this.state.defaultValue, true); }, 0);
 	}
 
 	render () {
-		if (this.state.onlyDefault && typeof(this.state.defaultValue) === 'string' && this.state.display !== this.state.defaultValue) {
-//			console.log('newDefault', this.state.defaultValue);
-			this.resetValueToDefault();
+		if (this.state.onlyDefault && typeof (this.props.defaultValue) === 'string' && this.state.display !== this.props.defaultValue) {
+			this.resetDefaultValueUpdate();
+			this.lastDefaultValueUpdate = window.setTimeout(() => { this.handleEdit(this.props.defaultValue, true); }, 0);
 		}
-		return (<Input
-			className={this.props.className}
-			style={this.props.style}
-			name={this.props.name}
-			children={this.props.children}
-			disabled={this.props.disabled}
-			fluid={this.props.fluid}
-			placeholder={this.props.placeholder}
-			inverted={this.props.inverted}
-			loading={this.props.loading}
-			size={this.props.size}
-			transparent={this.props.transparent}
-			type='text'
-			value={this.state.display != null ? this.state.display : this.state.defaultValue != null ? this.state.defaultValue : ''}
-			error={!this.state.ok}
-			onKeyDown={this.props.onKeyDown}
-			onChange={(e, v) => this.handleEdit(v.value)}
-			onBlur={() => this.handleBlur()}
-			action={this.makeAction ? this.makeAction() : this.props.action}
-			label={this.makeLabel ? this.makeLabel() : this.props.label}
-			labelPosition={this.makeLabel ? this.makeLabel(true) : this.props.labelPosition}
-			icon={this.makeIcon ? this.makeIcon() : this.props.icon}
-			iconPosition={this.makeIcon ? this.makeIcon(true) : this.props.iconPosition}
-		/>);
+		return (
+			<Input
+				className={ this.props.className }
+				style={ this.props.style }
+				name={ this.props.name }
+				children={ this.props.children }
+				disabled={ this.props.disabled }
+				fluid={ this.props.fluid }
+				placeholder={ this.props.placeholder }
+				inverted={ this.props.inverted }
+				loading={ this.props.loading }
+				size={ this.props.size }
+				transparent={ this.props.transparent }
+				type='text'
+				value={ this.state.display == null ? this.props.defaultValue : this.state.display }
+				error={ !this.state.ok }
+				onKeyDown={ this.props.onKeyDown }
+				onChange={ (e, v) => this.handleEdit(v.value) }
+				onBlur={ () => this.handleBlur() }
+				action={ this.makeAction ? this.makeAction() : this.props.action }
+				label={ this.makeLabel ? this.makeLabel() : this.props.label }
+				labelPosition={ this.makeLabel ? this.makeLabel(true) : this.props.labelPosition }
+				icon={ this.makeIcon ? this.makeIcon() : this.props.icon }
+				iconPosition={ this.makeIcon ? this.makeIcon(true) : this.props.iconPosition }
+			/>);
 	}
 }
 InputBond.defaultProps = {
